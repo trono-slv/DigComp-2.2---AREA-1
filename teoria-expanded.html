@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teoria DigComp Area 1 - Alfabetizzazione su Informazioni e Dati</title>
+  <meta name="description" content="Teoria completa per il quiz DigComp 2.2 - Area 1: Alfabetizzazione su Informazioni e Dati">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --accent-orange: #f97316;
+      --accent-yellow: #eab308;
+      --bg-dark: #0a0e1a;
+      --bg-card: rgba(15, 20, 40, 0.95);
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    /* Tab Navigation */
+    .tab-container {
+      display: flex;
+      gap: 4px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 2px solid var(--accent-orange);
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-orange) #1e293b;
+    }
+    
+    .tab-btn {
+      padding: 0.75rem 1.25rem;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .tab-btn:hover {
+      background: rgba(249, 115, 22, 0.1);
+      color: var(--text-primary);
+    }
+    
+    .tab-btn.active {
+      background: var(--accent-orange);
+      color: #fff;
+      border-bottom-color: var(--accent-yellow);
+    }
+    
+    /* Module Content */
+    .module {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .module.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Content Styling */
+    .module h2 {
+      color: var(--accent-orange);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(249,115,22,0.3);
+    }
+    
+    .module h3 {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 1rem;
+    }
+    
+    .module p {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    
+    /* Key Points */
+    .key-points {
+      background: rgba(249,115,22,0.1);
+      border-left: 4px solid var(--accent-orange);
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .key-points h4 {
+      color: var(--accent-orange);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .key-points ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    
+    .key-points li {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Highlight Box */
+    .highlight-box {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    
+    .highlight-box .label {
+      color: var(--accent-yellow);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .highlight-box p {
+      color: #fff;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    
+    /* Examples */
+    .examples {
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(234,179,8,0.3);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    
+    .examples h4 {
+      color: var(--accent-yellow);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .examples ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    
+    .examples li {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Transition Box */
+    .transition-box {
+      background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(234,179,8,0.15));
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 2rem 0 1rem;
+      text-align: center;
+    }
+    
+    .transition-box p {
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin: 0;
+    }
+    
+    .transition-box strong {
+      color: var(--accent-orange);
+    }
+    
+    /* Header & Footer */
+    .site-header {
+      background: linear-gradient(180deg, rgba(15,20,30,0.98), rgba(10,14,26,0.95));
+      border-bottom: 3px solid var(--accent-orange);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .site-header h1 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .breadcrumb {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--accent-orange);
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-orange);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      margin: 1rem;
+      background: rgba(249,115,22,0.1);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+      background: rgba(249,115,22,0.2);
+      text-decoration: none;
+    }
+    
+    .site-footer {
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(249,115,22,0.2);
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    /* Content Container */
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    
+    @media (max-width: 640px) {
+      .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+      .module h2 { font-size: 1.4rem; }
+      .content-container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <h1>📚 Teoria DigComp 2.2 - Area 1</h1>
+    <p class="breadcrumb">Home > <a href="index.html">Quiz</a> > Teoria</p>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tab-container" role="tablist">
+    <button class="tab-btn active" data-tab="mod1" role="tab">MOD 1.1</button>
+    <button class="tab-btn" data-tab="mod2" role="tab">MOD 1.2</button>
+    <button class="tab-btn" data-tab="mod3" role="tab">MOD 1.3</button>
+    <button class="tab-btn" data-tab="mod4" role="tab">MOD 1.4</button>
+    <button class="tab-btn" data-tab="mod5" role="tab">MOD 1.5</button>
+    <button class="tab-btn" data-tab="mod6" role="tab">MOD 1.6</button>
+    <button class="tab-btn" data-tab="mod7" role="tab">MOD 1.7</button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content-container">
+    
+    <!-- MODULO 1.1 -->
+    <article id="mod1" class="module active">
+      <h2>Le Competenze Digitali e il Quadro di Riferimento Europeo DigComp</h2>
+      <h3>Comprendere lo standard europeo per l'occupabilità e la cittadinanza attiva</h3>
+      
+      <p>La <strong>competenza digitale</strong> non consiste semplicemente nel saper utilizzare un dispositivo tecnologico per scopi ricreativi, bensì nell'uso sicuro, critico e responsabile delle tecnologie per il lavoro, l'apprendimento e la partecipazione attiva alla società. Nel contesto lavorativo moderno, questa competenza è diventata un requisito fondamentale: secondo le stime della Commissione Europea, il 90% dei posti di lavoro richiede almeno un livello base di competenze digitali.</p>
+      
+      <p>Per uniformare la valutazione di queste abilità a livello continentale, la Commissione Europea ha sviluppato il framework <strong>DigComp 2.2</strong> (Digital Competence Framework), un modello di riferimento che definisce le competenze digitali essenziali per tutti i cittadini europei. Questo framework, aggiornato nel 2022, identifica 5 aree di competenza e 21 sottocategorie di competenze specifiche.</p>
+      
+      <div class="highlight-box">
+        <div class="label">Definizione chiave</div>
+        <p><strong>DigComp 2.2</strong>: Framework europeo che definisce le competenze digitali necessarie per l'occupabilità, l'inclusione sociale e la partecipazione civica. Pubblicato dal Joint Research Centre della Commissione Europea.</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>Competenza digitale</strong>: capacità di utilizzare le tecnologie digitali in modo sicuro, critico e responsabile.</li>
+          <li><strong>DigComp 2.2</strong>: aggiornamento del 2022 del framework europeo con 5 aree e 21 competenze specifiche.</li>
+          <li><strong>Area 1 - Information and Data Literacy</strong>: prima area del framework, focalizzata sulla ricerca, valutazione e gestione delle informazioni.</li>
+          <li><strong>Livelli di competenza</strong>: Foundational (base), Intermediate (intermedio), Advanced (avanzato), Highly Specialized (specialistico).</li>
+          <li><strong>Applicazione lavorativa</strong>: il 70% delle offerte di lavoro richiede competenze digitali di base.</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>求职</strong>: Un recruiter cerca candidati usando LinkedIn e filtri avanzati per trovare profili con competenze specifiche.</li>
+          <li><strong>营销</strong>: Un marketing manager analizza i dati di Google Analytics per valutare l'efficacia di una campagna.</li>
+          <li><strong>医疗</strong>: Un operatore sanitario ricerca linee guida cliniche aggiornate su banche dati mediche autorevoli.</li>
+          <li><strong>教育</strong>: Un insegnante valuta l'affidabilità di una risorsa didattica online prima di utilizzarla in classe.</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>🔜 <strong>Prossimo modulo:</strong> Comprenderemo la differenza tra <em>dati grezzi</em>, <em>informazioni elaborate</em> e <em>contenuti digitali</em>.</p>
+      </div>
+    </article>
+
+    <!-- MODULO 1.2 -->
+    <article id="mod2" class="module">
+      <h2>La Piramide dell'Informazione: Dati, Informazioni e Contenuti Digitali</h2>
+      <h3>Dalla materia prima al contenuto strutturato</h3>
+      
+      <p>Per comprendere appieno l'<strong>alfabetizzazione informativa</strong>, è fondamentale distinguere i tre livelli della piramide dell'informazione: <strong>dati</strong>, <strong>informazioni</strong> e <strong>contenuti digitali</strong>. Questa distinzione non è solo teorica, ma ha implicazioni pratiche significative nel mondo del lavoro.</p>
+      
+      <p>Un <strong>dato</strong> è un elemento grezzo, privo di contesto: un numero, una parola, una data. Da solo, non comunica nulla di significativo. Quando i dati vengono elaborati, organizzati e contestualizzati, diventano <strong>informazione</strong>. L'informazione risponde a domande come "cosa", "quando", "dove". I <strong>contenuti digitali</strong>, invece, sono informazioni strutturate e presentate in formato digitale, pensate per essere condivise, fruite e interact.</p>
+      
+      <div class="highlight-box">
+        <div class="label">Definizione chiave</div>
+        <p><strong>Piramide dell'Informazione</strong>: Modello gerarchico che distingue dati (materia grezza), informazioni (dati elaborati e contestualizzati) e contenuti digitali (informazioni strutturate per la fruizione).</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>Dato grezzo</strong>: elemento atomicozzato (numero, testo, immagine) senza interpretazione.</li>
+          <li><strong>Informazione</strong>: dato elaborato con contesto, che risponde a domande specifiche.</li>
+          <li><strong>Contenuto digitale</strong>: informazione strutturata per la condivisione (articoli, video, podcast, app).</li>
+          <li><strong>Valore aggiunto</strong>: il passaggio da dato a contenuto richiede interpretazione, organizzazione e presentazione.</li>
+          <li><strong>Data-driven decision</strong>: le aziende moderne basano le decisioni sull'analisi dei dati grezzi.</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>Dato → Informazione</strong>: "847362" è un dato. "847362 vendite nel Q1 2024" è un'informazione.</li>
+          <li><strong>Informazione → Contenuto</strong>: I dati di vendita diventano un report, un grafico, una presentazione.</li>
+          <li><strong>Contenuto digitale</strong>: Un blog post, un video tutorial, un'app per la gestione progetti.</li>
+          <li><strong>Contesto aziendale</strong>: Un CRM raccoglie dati (nome, email), li elabora in informazioni (cliente abituale, acquisti frequenti), e crea contenuti (newsletter personalizzate).</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>🔜 <strong>Prossimo modulo:</strong> Vedremo <em>come funzionano i motori di ricerca</em> e come estrarre informazioni dal web.</p>
+      </div>
+    </article>
+
+    <!-- MODULO 1.3 -->
+    <article id="mod3" class="module">
+      <h2>Anatomia di una Ricerca Web - Come Funzionano i Motori di Ricerca</h2>
+      <h3>Dal crawling al ranking: il viaggio di una query</h3>
+      
+      <p>Quando digitiamo una domanda in un motore di ricerca, attiviamo un processo complesso che si compie in millisecondi. Comprendere <strong>come funzionano i motori di ricerca</strong> ci permette di formulare query più efficaci e di valutare criticamente i risultati ottenuti.</p>
+      
+      <p>Il processo inizia con lo <strong>crawling</strong>: software automatici chiamati "bot" o "spider" esplorano continuamente il web, seguendo i link tra le pagine. Le pagine scoperte vengono analizzate e archiviate in un enorme database, l'<strong>index</strong>. Quando un utente effettua una ricerca, il motore consulta l'index per trovare le pagine più rilevanti, applicando algoritmi di <strong>ranking</strong> che valutano centinaia di fattori: pertinenza del contenuto, qualità, freschezza, autorità del sito e UX.</p>
+      
+      <div class="highlight-box">
+        <div class="label">Definizione chiave</div>
+        <p><strong>Crawling</strong>: processo automatizzato con cui i bot dei motori di ricerca esplorano il web per scoprire e indicizzare nuove pagine web.</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>Crawling</strong>: i bot esplorano il web seguendo link, scoprendo nuove pagine da indicizzare.</li>
+          <li><strong>Indexing</strong>: le pagine vengono analizzate e archiviate nel database del motore di ricerca.</li>
+          <li><strong>Ranking</strong>: algoritmo che ordina i risultati in base a pertinenza, autorità, freschezza e hundreds di altri fattori.</li>
+          <li><strong>Query processing</strong>: interpretazione della query utente, including intenzione di ricerca.</li>
+          <li><strong>Privacy</strong>: motori come DuckDuckGo non tracciano la cronologia di ricerca, a differenza di Google.</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>Query efficace</strong>: "come creare grafico Excel da dati tabella" invece di "Excel grafico".</li>
+          <li><strong>Risultati sponsorizzati</strong>: i primi risultati con etichetta "Annuncio" sono pagine che hanno pagato per essere visualizzate.</li>
+          <li><strong>Snippet</strong>: il testo sotto il titolo è un estratto della pagina che contiene le parole cercate.</li>
+          <li><strong>Confronto privacy</strong>: Google salva cronologia ricerche per personalizzare risultati; DuckDuckGo non lo fa.</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>🔜 <strong>Prossimo modulo:</strong> Esploreremo <em>l'evoluzione della ricerca</em> con l'intelligenza artificiale generativa.</p>
+      </div>
+    </article>
+
+    <!-- MODULO 1.4 -->
+    <article id="mod4" class="module">
+      <h2>L'Evoluzione della Ricerca: Dai Link all'Intelligenza Artificiale Generativa</h2>
+      <h3>La rivoluzione dei chatbot AI nella ricerca di informazioni</h3>
+      
+      <p>L'evoluzione dei motori di ricerca ha subito un'accelerazione epocale con l'introduzione dell'<strong>Intelligenza Artificiale Generativa</strong>. ChatGPT, Claude, Gemini e altri chatbot AI hanno trasformato il modo in cui cerchiamo e otteniamo informazioni: dalla ricerca basata su link alla conversazione diretta.</p>
+      
+      <p>I <strong>Large Language Models</strong> (LLM) come GPT-4 non cercano semplicemente pagine web, ma generano risposte contestuali basate su enormi quantità di testo su cui sono stati addestrati. Questo rappresenta un cambio paradigmatico: invece di ricevere una lista di fonti, l'utente ottiene una risposta sintetica. Tuttavia, questa tecnologia presenta limiti importanti: le cosiddette <strong>allucinazioni</strong>, ovvero risposte che sembrano plausibili ma sono inventate o errate.</p>
+      
+      <div class="highlight-box">
+        <div name="label">Definizione chiave</div>
+        <p><strong>Allucinazione AI</strong>: fenomeno per cui un'intelligenza artificiale genera risposte plausibili ma inaccurate o completamente inventate, presentate con sicurezza.</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>Ricerca tradizionale</strong>: l'utente riceve una lista di link e deve leggere e valutare le fonti.</li>
+          <li><strong>Ricerca conversazionale</strong>: l'AI risponde direttamente, sintetizzando informazioni da più fonti.</li>
+          <li><strong>Allucinazioni</strong>: le AI possono inventare dati, citazioni, statistiche non esistenti.</li>
+          <li><strong>Verifiche critiche</strong>: sempre verificare le informazioni prodotte da AI con fonti autorevoli.</li>
+          <li><strong>Approccio ibrido</strong>: usare l'AI per brainstorming e scaffolding, poi validare le informazioni.</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>Allucinazione</strong>: un chatbot afferma che una legge italiana specifica esiste quando in realtà non è mai stata approvata.</li>
+          <li><strong>Prompt efficace</strong>: "Spiegami il GDPR in modo semplice, con esempi pratici" produce risultati migliori di domande vaghe.</li>
+          <li><strong>Validazione</strong>: chiedere all'AI di citare le fonti e poi verificare che esistano e siano attendibili.</li>
+          <li><strong>Limiti attuali</strong>: le AI non hanno accesso a informazioni in tempo reale (a meno di plugin specifici).</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>🔜 <strong>Prossimo modulo:</strong> Impareremo a <em>valutare criticamente le fonti</em> e riconoscere la disinformazione.</p>
+      </div>
+    </article>
+
+    <!-- MODULO 1.5 -->
+    <article id="mod5" class="module">
+      <h2>Valutazione Critica delle Fonti e Verifiche Fattologiche</h2>
+      <h3>Riconoscere affidabilità e disinformazione nel contesto digitale</h3>
+      
+      <p>In un'epoca di informazione sovrabbondante, la capacità di <strong>valutare criticamente le fonti</strong> è una competenza essenziale. Le fake news, la disinformazione e la propaganda online possono influenzare decisioni personali, professionali e politiche. Saper distinguere fonti affidabili da contenuti manipolati è fondamentale.</p>
+      
+      <p>Il <strong>CRAAP Test</strong> è uno strumento pratico per valutare qualsiasi fonte: Currency (attualità), Relevance (rilevanza), Authority (autorità), Accuracy (accuratezza), Purpose (finalità). A questo si aggiunge la consapevolezza dei <strong>bias cognitivi</strong> come il confirmation bias (confermare le proprie convinzioni) e l'availability heuristic (fidarsi delle informazioni più facili da ricordare).</p>
+      
+      <div class="highlight-box">
+        <div class="label">Definizione chiave</div>
+        <p><strong>CRAAP Test</strong>: metodo di valutazione delle fonti che analizza Currency (attualità), Relevance (rilevanza), Authority (autorità), Accuracy (accuratezza), Purpose (finalità).</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>Fake news</strong>: notizie false o ingannevoli create intenzionalmente per manipolare l'opinione pubblica.</li>
+          <li><strong>Fonte originale vs secondaria</strong>: la fonte originale è quella che ha prodotto per prima l'informazione; la secondaria la riporta.</li>
+          <li><strong>Authority</strong>: verificare chi è l'autore, quali sono le sue credenziali, è un esperto del campo?</li>
+          <li><strong>Bias cognitivi</strong>: il confirmation bias ci porta a cercare conferme delle nostre idee, ignorando evidenze contrarie.</li>
+          <li><strong>Fact-checking</strong>: strumenti come Snopes, Facta, BUTAC verificano la veridicità di notizie virali.</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>Fonte autorevole</strong>: un articolo scientifico peer-reviewed su una rivista internazionale è più affidabile di un post social.</li>
+          <li><strong>Data la notizia</strong>: una notizia su un evento recente deve indicare data e fonte originale.</li>
+          <li><strong>Conflitti di interesse</strong>: un articolo sponsorizzato da un'azienda deve essere valutato con attenzione critica.</li>
+          <li><strong>Tono neutro</strong>: fonti con linguaggio esagerato, emotivo o politicamente schierato spesso mancano di obiettività.</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>🔜 <strong>Prossimo modulo:</strong> Scopriremo come <em>gestire i dati personali</em> nel rispetto del GDPR.</p>
+      </div>
+    </article>
+
+    <!-- MODULO 1.6 -->
+    <article id="mod6" class="module">
+      <h2>Organizzazione e Gestione dei Dati Personali</h2>
+      <h3>GDPR, Privacy e Sicurezza dei Dati nel Contesto Lavorativo</h3>
+      
+      <p>Il <strong>Regolamento Generale sulla Protezione dei Dati (GDPR)</strong> è la normativa europea che protegge i dati personali dei cittadini. Entrato in vigore nel 2018, ha rivoluzionato il modo in cui le organizzazioni raccolgono, elaborano e conservano i dati. Comprendere il GDPR non è solo un obbligo legale, ma una competenza professionale fondamentale.</p>
+      
+      <p>I <strong>dati personali</strong> sono informazioni che identificano o possono identificare una persona (nome, email, indirizzo IP). I <strong>dati sensibili</strong> (salute, religione, origine etnica) godono di protezione rafforzata. Il GDPR si basa su principi chiave: licità, trasparenza, minimizzazione, esattezza, limitazione della conservazione, integrità e riservatezza.</p>
+      
+      <div class="highlight-box">
+        <div class="label">Definizione chiave</div>
+        <p><strong>GDPR (General Data Protection Regulation)</strong>: Regolamento UE 2016/679 che disciplina la protezione dei dati personali, garantendo diritti agli interessati e obblighi ai titolari del trattamento.</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>Dati personali</strong>: informazioni che identificano direttamente o indirettamente una persona fisica.</li>
+          <li><strong>Dati sensibili</strong>: categorie speciali che richiedono tutela rafforzata (salute, religione, orientamento politico).</li>
+          <li><strong>Diritti dell'interessato</strong>: accesso (art.15), rettifica (art.16), cancellazione (art.17), portabilità (art.20).</li>
+          <li><strong>Consenso informato</strong>: deve essere libero, specifico, informato e univoco per essere valido.</li>
+          <li><strong>Data minimization</strong>: raccogliere solo i dati strettamente necessari per lo scopo dichiarato.</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>Cookie banner</strong>: un sito che non offre possibilità di rifiutare i cookie non è conforme al GDPR.</li>
+          <li><strong>Data breach</strong>: in caso di furto di dati, il titolare deve notificare l'autorità entro 72 ore.</li>
+          <li><strong>Contratto di lavoro</strong>: i dati del dipendente devono essere conservati solo per la durata necessaria e poi cancellati.</li>
+          <li><strong>Marketing</strong>: inviare email promozionali richiede consenso esplicito; il mero acquisto non equivale a consenso.</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>🔜 <strong>Prossimo modulo:</strong> Impareremo <em>tecniche di ricerca avanzata</em> con operatori booleani e strategie professionali.</p>
+      </div>
+    </article>
+
+    <!-- MODULO 1.7 -->
+    <article id="mod7" class="module">
+      <h2>Ricerca Avanzata e Strategie Informative</h2>
+      <h3>Tecniche Professionali di Ricerca: Operatori Booleani e Ricerca Specializzata</h>
+      
+      <p>La capacità di <strong>cercare informazioni in modo efficace</strong> è una competenza che distingue un utente digitale competente da uno mediocre. Gli operatori booleani e le tecniche di ricerca avanzata permettono di affinare le query, ridurre il rumore e trovare esattamente ciò che serve in minor tempo.</p>
+      
+      <p>Gli <strong>operatori booleani</strong> di base sono tre: AND (entrambi i termini presenti), OR (almeno uno dei termini), NOT (escludi un termine). A questi si aggiungono NEAR (termini vicini), le <strong>wildcard</strong> (asterischi per varianti), la ricerca per <strong>dominio</strong> (site:), per <strong>file type</strong> (filetype:), e la ricerca in <strong>database professionali</strong> come PubMed, Scopus, JSTOR.</p>
+      
+      <div class="highlight-box">
+        <div class="label">Definizione chiave</div>
+        <p><strong>Operatori booleani</strong>: strumenti logici (AND, OR, NOT) che permettono di combinare o escludere termini di ricerca per ottenere risultati più precisi.</p>
+      </div>
+      
+      <div class="key-points">
+        <h4>📌 Punti Chiave</h4>
+        <ol>
+          <li><strong>AND</strong>: restringe la ricerca a risultati che contengono tutti i termini specificati.</li>
+          <li><strong>OR</strong>: amplia la ricerca a risultati che contengono almeno uno dei termini.</li>
+          <li><strong>NOT</strong>: esclude risultati che contengono il termine specificato.</li>
+          <li><strong>Wildcard (*)</strong>: sostituisce qualsiasi parte di parola (es. "manager*" trova manager, management, managerial).</li>
+          <li><strong>Site:</strong>: cerca solo all'interno di un sito specifico (es. site:gov.it).</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li><strong>Ricerca specifica</strong>: "climate change AND Italy" trova solo risultati che parlano del cambiamento climatico in Italia.</li>
+          <li><strong>Ricerca per tema</strong>: "renewable energy OR solar power OR wind energy" amplia la ricerca a più fonti.</li>
+          <li><strong>Esclusione</strong>: "Apple NOT fruit" esclude i risultati sulla frutta e mostra solo quelli sulla tecnologia.</li>
+          <li><strong>File PDF</strong>: "digital competence filetype:pdf" cerca solo documenti PDF.</li>
+          <li><strong>Ricerca accademica</strong>: usare database come Google Scholar, PubMed, JSTOR per fonti peer-reviewed.</li>
+        </ul>
+      </div>
+      
+      <div class="transition-box">
+        <p>✅ <strong>Modulo finale completato!</strong> Ora hai tutte le basi per affrontare il quiz DigComp Area 1 con sicurezza.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>📚 Teoria DigComp 2.2 - Area 1: Alfabetizzazione su Informazioni e Dati</p>
+    <p style="margin-top: 0.5rem; color: var(--accent-orange);">© Dott. Salvatore Trono</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const modules = document.querySelectorAll('.module');
+      
+      // Check for saved tab in localStorage
+      const savedTab = localStorage.getItem('activeTheoryTab');
+      if (savedTab && document.getElementById(savedTab)) {
+        activateTab(savedTab);
+      }
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-tab');
+          activateTab(targetId);
+          localStorage.setItem('activeTheoryTab', targetId);
+        });
+      });
+      
+      function activateTab(targetId) {
+        tabs.forEach(t => t.classList.remove('active'));
+        modules.forEach(m => m.classList.remove('active'));
+        
+        document.querySelector(`[data-tab="${targetId}"]`).classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+      }
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          window.location.href = 'index.html';
+        }
+      });
+    });
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
