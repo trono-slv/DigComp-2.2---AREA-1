@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigComp 2.0 – Area 1: Ricerca e gestione di informazioni, dati e contenuti digitali</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark min-h-screen">
+  
+  <!-- ============================================ -->
+  <!-- SCREEN 1: WELCOME -->
+  <!-- ============================================ -->
+  <div id="screen-welcome" class="screen fade-in">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      
+      <!-- Header -->
+      <header class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-gradient mb-2">DigComp 2.0</h1>
+        <h2 class="text-xl md:text-2xl text-cyan mb-4">Area 1 – Ricerca e gestione di informazioni, dati e contenuti digitali</h2>
+        <p class="text-lg text-secondary">👤 Dott. Salvatore Trono – Esperto in SSL – Docente Formatore</p>
+      </header>
+
+      <!-- Description -->
+      <div class="card mb-6">
+        <p class="text-lg text-primary">
+          <strong>Area 2 DigComp:</strong> Alfabetizzazione su Informazioni e Dati
+        </p>
+        <p class="text-secondary mt-2">
+          Test sulle competenze digitali area 1 del framework europeo DigComp 2.0
+        </p>
+      </div>
+
+      <!-- Instructions -->
+      <div class="card mb-6">
+        <h3 class="text-xl font-semibold text-cyan mb-3">📋 Istruzioni</h3>
+        <ul class="space-y-2 text-secondary">
+          <li>• Il test estrae casualmente <strong>30 domande</strong> da un pool di 60</li>
+          <li>• Hai a disposizione <strong>60 minuti</strong> per completare il quiz</li>
+          <li>• Ogni domanda prevede una sola risposta corretta</li>
+          <li>• Il quiz avanza automaticamente dopo la selezione</li>
+          <li>• <strong>Non è possibile tornare</strong> alle domande precedenti</li>
+          <li>• Per procedere, seleziona la risposta facendo clic su di essa</li>
+        </ul>
+      </div>
+
+      <!-- Cards -->
+      <p class="text-center text-secondary mb-4">Scegli un'opzione per iniziare:</p>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <a href="teoria.html" id="btn-card-teoria" class="card card-clickable hover:border-cyan flex flex-col items-center justify-center p-6 text-center no-underline">
+          <span class="text-4xl mb-2">📖</span>
+          <span class="text-lg font-semibold text-primary">Teoria da leggere prima del test</span>
+        </a>
+        <button id="btn-card-procedi" class="card card-clickable hover:border-orange flex flex-col items-center justify-center p-6 text-center">
+          <span class="text-4xl mb-2">▶</span>
+          <span class="text-lg font-semibold text-primary">Procedi al quiz</span>
+        </button>
+      </div>
+
+      <!-- Start Button -->
+      <div class="text-center">
+        <button id="btn-start" class="btn-primary text-xl px-8 py-4">
+          Inizia
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-center mt-12 pt-6 border-t border-gray-700">
+        <p class="text-sm text-secondary">
+          Credits: Dott. Salvatore Trono - Laureato in Servizi Giuridici per l'Impresa • Formatore • Esperto in Sicurezza sui Luoghi di Lavoro
+        </p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 2: QUIZ -->
+  <!-- ============================================ -->
+  <div id="screen-quiz" class="screen hidden">
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+      
+      <!-- Quiz Header -->
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center gap-4">
+          <button id="btn-home" class="btn-secondary flex items-center gap-2">
+            <span>🏠</span>
+            <span class="hidden sm:inline">Torna alla Home</span>
+          </button>
+        </div>
+        <div class="timer-display" id="timer-display">60:00</div>
+      </div>
+
+      <!-- Timer Alert -->
+      <div id="timer-alert" class="timer-alert hidden">
+        ⏰ Attenzione! Rimangono meno di 5 minuti!
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="mb-6">
+        <div class="flex justify-between text-sm text-secondary mb-2">
+          <span>Progresso</span>
+          <span id="progress-text">0 / 30</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Question Container -->
+      <div id="question-container"></div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 3: RESULTS -->
+  <!-- ============================================ -->
+  <div id="screen-results" class="screen hidden">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      
+      <!-- Result Header -->
+      <div class="text-center mb-8">
+        <div id="result-container" class="result-box">
+          <div class="result-icon" id="result-icon">🏆</div>
+          <div class="result-text" id="result-text">Eccellente!</div>
+          <div class="result-percentage" id="result-percentage">85%</div>
+          <div class="result-score" id="result-score">26 / 30</div>
+        </div>
+      </div>
+
+      <!-- Result Actions -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <button id="btn-restart-results" class="btn-primary flex items-center justify-center gap-2">
+          <span>🔄</span>
+          <span>Rifai il Test</span>
+        </button>
+        <button id="btn-restart" class="btn-secondary flex items-center justify-center gap-2">
+          <span>🏠</span>
+          <span>Torna alla Home</span>
+        </button>
+      </div>
+
+      <!-- Recap -->
+      <div class="card">
+        <h3 class="text-xl font-semibold text-cyan mb-4">📊 Riepilogo delle risposte</h3>
+        <div id="recap-container" class="space-y-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MODAL: LEGAL WARNING -->
+  <!-- ============================================ -->
+  <div id="modal-legal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h2 class="modal-title">⚠️ ATTENZIONE</h2>
+      <div class="modal-divider"></div>
+      
+      <div class="legal-red-box">
+        <div class="legal-icon">⚖️</div>
+        <div class="legal-content">
+          <p class="legal-bold">RIFERIMENTO NORMATIVO</p>
+          <p class="legal-text">Legge 22 aprile 1941, n. 633 (Legge sul diritto d'autore)</p>
+          
+          <p class="legal-bold mt-4">SANZIONI PENALI</p>
+          <p class="legal-text">Artt. 171 e ss. L. 633/1941</p>
+          
+          <p class="legal-bold mt-4">DIVIETI</p>
+          <ul class="legal-list">
+            <li>❌ Riproduzione non autorizzata</li>
+            <li>❌ Distribuzione</li>
+            <li>❌ Modifica</li>
+            <li>❌ Uso commerciale</li>
+          </ul>
+          
+          <p class="legal-bold mt-4">AUTORIZZAZIONE</p>
+          <p class="legal-text">Richiesta dall'autore Dott. Salvatore Trono</p>
+        </div>
+      </div>
+      
+      <div class="disclaimer-box">
+        <p>
+          È <strong>proibita la distribuzione</strong> e l'utilizzo non autorizzato del presente materiale didattico. 
+          L'utilizzo è consentito esclusivamente per finalità educative, didattiche e di formazione. 
+          Il presente test <strong>NON costituisce formazione certificata</strong>.
+        </p>
+      </div>
+      
+      <div class="modal-buttons">
+        <button id="btn-cancel" class="btn-cancel">ANNULLA</button>
+        <button id="btn-accept" class="btn-accept">ACCETTO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MODAL: CONFIRM HOME -->
+  <!-- ============================================ -->
+  <div id="modal-confirm" class="modal-overlay hidden">
+    <div class="modal-box modal-confirm">
+      <h2 class="modal-title"> Conferma</h2>
+      <div class="modal-divider"></div>
+      
+      <p class="text-center text-primary py-4">
+        Sei sicuro di voler tornare alla home? Il progresso del quiz verrà perduto.
+      </p>
+      
+      <div class="modal-buttons">
+        <button id="btn-confirm-cancel" class="btn-cancel">NO, RESTO</button>
+        <button id="btn-confirm-ok" class="btn-accept">SÌ, ESCI</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
