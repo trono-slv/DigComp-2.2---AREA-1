@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teoria - DigComp 2.0 Area 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark min-h-screen flex flex-col">
+  
+  <!-- ============================================ -->
+  <!-- HEADER -->
+  <!-- ============================================ -->
+  <header class="bg-dark border-b border-gray-700 sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+      <h1 class="text-2xl font-bold text-orange-500 mb-4 text-center">DigComp 2.0 - Area 1</h1>
+      
+      <!-- Tab Navigation -->
+      <nav class="flex flex-wrap justify-center gap-2">
+        <button onclick="switchModule(1)" id="tab-1" class="tab-btn tab-active">
+          1.1
+        </button>
+        <button onclick="switchModule(2)" id="tab-2" class="tab-btn">
+          1.2
+        </button>
+        <button onclick="switchModule(3)" id="tab-3" class="tab-btn">
+          1.3
+        </button>
+        <button onclick="switchModule(4)" id="tab-4" class="tab-btn">
+          1.4
+        </button>
+        <button onclick="switchModule(5)" id="tab-5" class="tab-btn">
+          1.5
+        </button>
+        <button onclick="switchModule(6)" id="tab-6" class="tab-btn">
+          1.6
+        </button>
+        <button onclick="switchModule(7)" id="tab-7" class="tab-btn">
+          1.7
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT -->
+  <!-- ============================================ -->
+  <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+    
+    <!-- MODULO 1.1 -->
+    <div id="mod-1-1" class="module-content">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.1 Le Competenze Digitali e il Quadro di Riferimento Europeo DigComp</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>Il <strong>Framework DigComp</strong> (Digital Competence Framework) rappresenta lo strumento di riferimento europeo per definire e valutare le competenze digitali dei cittadini. Sviluppato dal Joint Research Centre (JRC) della Commissione Europea, nella sua versione più recente <strong>DigComp 2.2</strong>, fornisce un modello strutturato di competenze suddivise in 5 aree fondamentali.</p>
+        
+        <p>Le <strong>5 Aree del DigComp 2.2</strong> sono:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>Area 1 - Informazione e dati</strong>: cercare, valutare, gestire e proteggere informazioni digitali</li>
+          <li><strong>Area 2 - Comunicazione e collaborazione</strong>: interagire, condividere, collaborare attraverso tecnologie digitali</li>
+          <li><strong>Area 3 - Creazione di contenuti</strong>: creare e modificare contenuti digitali in diversi formati</li>
+          <li><strong>Area 4 - Sicurezza</strong>: proteggere dati, identità, dispositivi e privacy</li>
+          <li><strong>Area 5 - Problem solving</strong>: identificare bisogni digitali e risolvere problemi tecnici</li>
+        </ul>
+        
+        <p>Il <strong>modello di competenze</strong> prevede 8 livelli di proficiency (dalla Base all'AdvancED), descrivendo per ogni competenza cosa un cittadino deve essere in grado di fare. Questo framework è utilizzato da governi, istituzioni educative e organizzazioni per sviluppare programmi di formazione digitale e certificare le competenze.</p>
+        
+        <p>L'<strong>importanza del DigComp</strong> nella società contemporanea è fondamentale: la competenza digitale è ormai considerata una competenza chiave per la cittadinanza attiva, l'occupabilità e la partecipazione sociale. L' Area 1, in particolare, risponde alla necessità di formare cittadini capaci di navigare l'enorme quantità di informazioni disponibili online in modo critico e consapevole.</p>
+        
+        <p>In Italia, il <strong>Piano Nazionale Scuola Digitale (PNSD)</strong> e le recenti iniziative di <strong>alfabetizzazione digitale</strong> adottano il framework DigComp come riferimento per definire gli obiettivi formativi nelle scuole e nella pubblica amministrazione.</p>
+      </div>
+    </div>
+
+    <!-- MODULO 1.2 -->
+    <div id="mod-1-2" class="module-content hidden">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.2 La Piramide dell'Informazione</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>Per comprendere come gestire le informazioni digitali, è essenziale comprendere la <strong>gerarchia dell'informazione</strong>, spesso rappresentata come una piramide che parte dal dato grezzo e arriva alla conoscenza.</p>
+        
+        <p>Alla <strong>base della piramide</strong> troviamo il <strong>Dato</strong>: un fatto grezzo, una misura numerica o una descrizione atomica che di per sé non ha significato. Esempi di dati sono: "37", "Via Roma 15", "2024-01-15". Senza contesto, i dati sono privi di significato.</p>
+        
+        <p>Il <strong>secondo livello</strong> è l'<strong>Informazione</strong>: dati organizzati e contestualizzati che acquistano significato. L'informazione risponde alla domanda "cosa?". Ad esempio: "La temperatura è 37°C" (dato + unità di misura + contesto). L'informazione è il risultato dell'elaborazione e dell'organizzazione dei dati.</p>
+        
+        <p>Il <strong>terzo livello</strong> rappresenta la <strong>Conoscenza</strong>: informazioni integrate con esperienza, comprensione e competenza personale. La conoscenza risponde alla domanda "come?". È ciò che permette di applicare le informazioni in contesti specifici e di prendere decisioni.</p>
+        
+        <p>Il <strong>vertice della piramide</strong> è la <strong> Saggezza</strong>: l'applicazione della conoscenza con discernimento, capacità di giudizio e previsione. La saggezza risponde alla domanda "perché?".</p>
+        
+        <p>Nel contesto digitale, questa piramide si riflette nel modo in cui <strong>organizziamo i nostri file e le nostre ricerche</strong>: dai dati grezzi (numeri, stringhe) ai database strutturati, fino ai contenuti web che forniscono conoscenza. Comprendere questa gerarchia aiuta a valutare criticamente la qualità delle informazioni trovate online e a organizzare efficacemente i propri archivi digitali.</p>
+      </div>
+    </div>
+
+    <!-- MODULO 1.3 -->
+    <div id="mod-1-3" class="module-content hidden">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.3 Anatomia di una Ricerca Web</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>Comprendere <strong>come funziona una ricerca web</strong> è fondamentale per diventare utenti digitali più efficaci. Il processo di ricerca si articola in tre fasi principali: crawling, indexing e ranking.</p>
+        
+        <p>Il <strong>Crawling</strong> è la fase in cui i <strong>bot</strong> (detti anche spider o crawler) esplorano il web in modo automatico. Partendo da una lista di URL noti, seguono i link presenti nelle pagine per scoprire nuovi contenuti. I crawler visitano quotidianamente miliardi di pagine web, analizzando il codice HTML, i file multimediali e i link presenti.</p>
+        
+        <p>L'<strong>Indexing</strong> è il processo con cui i contenuti scoperti vengono <strong>analizzati e catalogati</strong>. Durante questa fase, i crawler estraggono parole chiave, meta tag, titoli, descrizioni e altri elementi significativi, creando un enorme database invertito: invece di cercare per documento, si cercano i documenti per parola chiave.</p>
+        
+        <p>Il <strong>Ranking</strong> è la fase più complessa: quando un utente effettua una ricerca, l'algoritmo del motore di ricerca deve <strong>ordinare milioni di risultati</strong> in base alla rilevanza. I fattori considerati includono: pertinenza delle parole chiave, qualità e autorevolezza del sito, struttura della pagina, esperienza utente, backlink ricevuti e molti altri segnali.</p>
+        
+        <p>I motori di ricerca moderni utilizzano <strong>intelligenza artificiale</strong> per migliorare la comprensione delle query e dei contenuti. L'algoritmo Google, ad esempio, considera oltre 200 fattori di ranking. Comprendere queste dinamiche aiuta a formulare ricerche più efficaci e a valutare criticamente i risultati ottenuti.</p>
+        
+        <p>È importante sapere che i motori di ricerca raccolgono anche <strong>dati sulla privacy</strong>: cronologia delle ricerche, posizione, device utilizzato. Questi dati vengono utilizzati per personalizzare i risultati, sollevando questioni importanti sulla privacy e sulla formazione delle cosiddette "bolle filtro".</p>
+      </div>
+    </div>
+
+    <!-- MODULO 1.4 -->
+    <div id="mod-1-4" class="module-content hidden">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.4 L'Evoluzione della Ricerca: Dai Link all'IA Generativa</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>Il panorama della ricerca informativa sta attraversando una <strong>trasformazione radicale</strong> con l'avvento dei modelli linguistici di grandi dimensioni (LLM) e dei sistemi di intelligenza artificiale generativa.</p>
+        
+        <p>I <strong>Large Language Models (LLM)</strong> come ChatGPT, Claude o Gemini sono sistemi addestrati su enormi quantità di testo per comprendere e generare linguaggio naturale. A differenza dei motori di ricerca tradizionali che restituiscono una lista di link, gli LLM possono <strong>sintetizzare informazioni</strong> da fonti multiple e fornire risposte dirette in linguaggio naturale.</p>
+        
+        <p>Tuttavia, i LLM presentano <strong>limitazioni significative</strong>. Il fenomeno delle <strong>"allucinazioni"</strong> è particolarmente grave: i modelli possono generare risposte che sembrano plausibili ma sono completamente errate o inventate. Non essendo connessi in tempo reale al web, possono fornire informazioni obsolete. Inoltre, non sempre è possibile verificare le fonti da cui derivano le informazioni fornite.</p>
+        
+        <p>La <strong>verifica delle informazioni</strong> diventa quindi ancora più critica. È essenziale:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Confrontare le informazioni con fonti autorevoli e indipendenti</li>
+          <li>Verificare la data di pubblicazione delle fonti originali</li>
+          <li>Utilizzare tool di fact-checking specializzati</li>
+          <li>Mantenere un approccio critico anche verso le risposte dell'IA</li>
+        </ul>
+        
+        <p>I <strong>bias negli algoritmi di ricerca</strong> rappresentano un altro problema cruciale. I sistemi di IA possono replicare e amplificare pregiudizi presenti nei dati di addestramento, come stereotipi di genere, etnia o religione. I risultati personalizzati creano "bolle filtro" che limitano l'esposizione a prospettive diverse, rafforzando i pregiudizi esistenti.</p>
+        
+        <p>Il futuro della ricerca sarà probabilmente <strong>ibrido</strong>: motori di ricerca tradizionali integrati con assistenti IA che aiutano a sintetizzare e contestualizzare le informazioni, ma la competenza digitale di base rimane fondamentale per navigare questo nuovo panorama in modo consapevole.</p>
+      </div>
+    </div>
+
+    <!-- MODULO 1.5 -->
+    <div id="mod-1-5" class="module-content hidden">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.5 Riconoscere Affidabilità e Disinformazione</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>In un'epoca di <strong>sovraccarico informativo</strong>, saper valutare l'affidabilità delle fonti online è una competenza essenziale. Il <strong>test CRAAP</strong> è uno strumento pratico per valutare qualsiasi fonte informativa.</p>
+        
+        <p>Il test CRAAP valuta:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>C</strong>urrency (Attualità): quando è stata pubblicata? È stata aggiornata?</li>
+          <li><strong>R</strong>elevance (Rilevanza): è pertinente alla tua ricerca?</li>
+          <li><strong>A</strong>uthority (Autorevolezza): chi è l'autore? È un esperto? Ha credibilità?</li>
+          <li><strong>A</strong>ccuracy (Accuratezza): ci sono fonti citate? I dati sono verificabili?</li>
+          <li><strong>P</strong>urpose (Scopo): è informativo, promozionale, satirico?</li>
+        </ul>
+        
+        <p>La <strong>disinformazione</strong> (notizie false create intenzionalmente per ingannare) e la <strong>misinformazione</strong> (informazioni false condivise senza intento malevolo) sono fenomeni sempre più diffusi. I <strong>deepfake</strong>, contenuti audiovisivi generati dall'IA, rappresentano una minaccia emergente particolarmente insidiosa.</p>
+        
+        <p>Per contrastare la disinformazione, è fondamentale:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Verificare l'informazione su siti di fact-checking (PolitiFact, Snopes, Facta)</li>
+          <li>Confrontare più fonti indipendenti prima di condividere</li>
+          <li>Controllare la data di pubblicazione (notizie vecchie ripresentate come nuove)</li>
+          <li>Analizzare il linguaggio: titoli sensazionalistici, uso di maiuscole</li>
+          <li>Verificare le immagini con ricerca inversa (Google Images, TinEye)</li>
+          <li>Prestare attenzione ai bias di conferma e alle "bolle filtro"</li>
+        </ul>
+        
+        <p>L'<strong>infodemia</strong> (termine coniato durante la pandemia COVID-19) descrive l'eccesso di informazioni, spesso contraddittorie, che genera confusione e sovraccarico cognitivo. Saper filtrare, selezionare e verificare le fonti è la competenza chiave per navigare questo scenario.</p>
+      </div>
+    </div>
+
+    <!-- MODULO 1.6 -->
+    <div id="mod-1-6" class="module-content hidden">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.6 GDPR, Privacy e Sicurezza dei Dati</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>Il <strong>Regolamento Generale sulla Protezione dei Dati (GDPR)</strong>, in vigore dal maggio 2018, rappresenta il quadro normativo di riferimento per la protezione dei dati personali nell'Unione Europea. Comprendere i suoi principi è fondamentale per ogni cittadino digitale.</p>
+        
+        <p>I <strong>diritti fondamentali</strong> riconosciuti dal GDPR includono:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>Diritto di accesso</strong>: ottenere conferma del trattamento e accedere ai propri dati</li>
+          <li><strong>Diritto di rettifica</strong>: correggere dati inesatti o incompleti</li>
+          <li><strong>Diritto alla cancellazione</strong>: ("diritto all'oblio") richiedere la rimozione dei dati</li>
+          <li><strong>Diritto alla portabilità</strong>: trasferire i dati tra servizi diversi</li>
+          <li><strong>Diritto di opposizione</strong>: rifiutare certain tipi di trattamento</li>
+        </ul>
+        
+        <p>Il <strong>principio di minimizzazione</strong> (data minimization) stabilisce che devono essere raccolti solo i dati strettamente necessari per lo scopo dichiarato. Il <strong>consenso informato</strong> deve essere libero, specifico, informato e inequivocabile.</p>
+        
+        <p>Nel contesto della ricerca e gestione delle informazioni digitali, la privacy si manifesta in diversi ambiti:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>Profilazione</strong>: i motori di ricerca creano profili dettagliati degli utenti</li>
+          <li><strong>Tracciamento</strong>: cookie e tecniche di tracciamento monitorano il comportamento online</li>
+          <li><strong>Data breach</strong>: rischio di accesso non autorizzato ai dati personali</li>
+          <li><strong>Social engineering</strong>: attacchi che sfruttano informazioni personali per ingannare</li>
+        </ul>
+        
+        <p>Per proteggere la propria privacy online, è essenziale: utilizzarepassword complesse e uniche, abilitare l'autenticazione a due fattori, verificare le impostazioni di privacy dei servizi utilizzati, diffidare di richieste di dati personali non giustificate, e utilizzare strumenti come VPN e browser attenti alla privacy (es. Firefox, Brave, Tor).</p>
+      </div>
+    </div>
+
+    <!-- MODULO 1.7 -->
+    <div id="mod-1-7" class="module-content hidden">
+      <h2 class="text-2xl font-bold text-orange-400 mb-6">1.7 Ricerca Avanzata: Operatori Booleani</h2>
+      
+      <div class="space-y-4 text-primary leading-relaxed">
+        <p>Gli <strong>operatori booleani</strong> sono strumenti fondamentali per affinare le ricerche e ottenere risultati più precisi. L'algebra booleana, sviluppata nel XIX secolo dal matematico George Boole, è alla base del funzionamento dei motori di ricerca moderni.</p>
+        
+        <p>L'operatore <strong>AND</strong> (spesso implicito): restringe la ricerca includendo solo risultati che contengono tutti i termini specificati. Esempio: "salute AND alimentazione" trova pagine che parlano di entrambi gli argomenti. In molti motori di ricerca, lo spazio tra i termini funziona come AND.</p>
+        
+        <p>L'operatore <strong>OR</strong>: amplia la ricerca includendo risultati che contengono uno qualsiasi dei termini. Esempio: "gatto OR cane" trova pagine che parlano di gatti O di cani (o entrambi). È utile per cercare sinonimi o varianti di un termine.</p>
+        
+        <p>L'operatore <strong>NOT</strong> (o il segno meno -): esclude dai risultati i termini specificati. Esempio: "giaguaro -animali -auto" esclude i risultati sugli animali e sulle automobili, concentrandosi sul frutto o sulla marca. Attenzione: il meno deve essere immediatamente seguito dalla parola da escludere, senza spazio.</p>
+        
+        <p>Altri <strong>operatori avanzati</strong>:</p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>"phrase"</strong>: cerca una frase esatta (tra virgolette)</li>
+          <li><strong>site:dominio</strong>: limita la ricerca a un sito specifico</li>
+          <li><strong>filetype:estensione</strong>: cerca file di un tipo specifico (pdf, doc, xls)</li>
+          <li><strong>intitle:termine</strong>: cerca termini nel titolo della pagina</li>
+          <li><strong>inurl:termine</strong>: cerca termini nell'URL della pagina</li>
+          <li><strong>* (asterisco)</strong>: jolly che sostituisce qualsiasi parola</li>
+        </ul>
+        
+        <p>La <strong>strategia di ricerca efficace</strong> combina questi elementi: iniziare con termini generici, poi raffinare con operatori, filtrare per data o tipo di file, e verificare i risultati con il test CRAAP. La pratica costante migliora significativamente l'efficienza della ricerca informativa.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================ -->
+  <!-- FOOTER NAVIGAZIONE -->
+  <!-- ============================================ -->
+  <footer class="bg-dark border-t border-gray-700 sticky bottom-0">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <button id="btnIndietro" onclick="prevModule()" disabled class="nav-btn nav-prev disabled">
+        ⬅️ Indietro
+      </button>
+      <button onclick="goHome()" class="nav-btn nav-home">
+        🏠 Torna alla Home
+      </button>
+      <button id="btnAvanti" onclick="nextModule()" class="nav-btn nav-next">
+        Avanti ➡️
+      </button>
+    </nav>
+  </footer>
+
+  <script>
+    let currentModule = 1;
+    const totalModules = 7;
+
+    function switchModule(index) {
+      // Hide all modules
+      for (let i = 1; i <= totalModules; i++) {
+        document.getElementById('mod-1-' + i).classList.add('hidden');
+        document.getElementById('tab-' + i).classList.remove('tab-active');
+      }
+      
+      // Show selected module
+      document.getElementById('mod-1-' + index).classList.remove('hidden');
+      document.getElementById('tab-' + index).classList.add('tab-active');
+      
+      currentModule = index;
+      updateNavButtons();
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateNavButtons() {
+      const btnPrev = document.getElementById('btnIndietro');
+      const btnNext = document.getElementById('btnAvanti');
+      
+      // Disable prev on first module
+      btnPrev.disabled = (currentModule === 1);
+      btnPrev.classList.toggle('disabled', currentModule === 1);
+      
+      // Disable next on last module
+      btnNext.disabled = (currentModule === totalModules);
+      btnNext.classList.toggle('disabled', currentModule === totalModules);
+    }
+
+    function prevModule() {
+      if (currentModule > 1) {
+        switchModule(currentModule - 1);
+      }
+    }
+
+    function nextModule() {
+      if (currentModule < totalModules) {
+        switchModule(currentModule + 1);
+      }
+    }
+
+    function goHome() {
+      window.location.href = 'index.html';
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        prevModule();
+      } else if (e.key === 'ArrowRight') {
+        nextModule();
+      }
+    });
+
+    // Initialize
+    switchModule(1);
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
