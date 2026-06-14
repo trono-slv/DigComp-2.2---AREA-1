@@ -1,3 +1,5 @@
+https://trono-slv.github.io/DigComp-2.2---AREA-1/
+
 # Quiz Application - DigComp 2.2 Area 1
 
 This is a static web application implementing the DigComp 2.2 Area 1 digital competence framework. It includes an interactive quiz with 180 questions across 3 chapters and difficulty levels, plus a theory section.
