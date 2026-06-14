@@ -3,205 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DigComp 2.0 - Area 1</title>
+  <title>DigComp 2.2 - Area 1 | Quiz Interattivo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark min-h-screen">
-  
-  <!-- ============================================ -->
+<body class="bg-gray-900 text-gray-100">
+
   <!-- SCREEN 1: WELCOME -->
-  <!-- ============================================ -->
-  <div id="screen-welcome" class="screen fade-in">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-      
-      <!-- Header -->
-      <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-orange-500 mb-2">DigComp 2.0</h1>
-        <h2 class="text-xl text-yellow-400 mb-4">Area 1 - Ricerca e gestione di informazioni, dati e contenuti digitali</h2>
-        <p class="text-gray-400">👤 Dott. Salvatore Trono – Esperto in SSL – Docente Formatore</p>
-      </header>
+  <div id="screen-welcome" class="screen active">
+    <header class="site-header">
+      <h1>📚 DigComp 2.2 - Area 1</h1>
+      <p class="subtitle">Alfabetizzazione su Informazione e Dati</p>
+      <p class="author">👤 Dott. Salvatore Trono – Esperto in SSL – Docente Formatore</p>
+    </header>
 
-      <!-- Description -->
-      <div class="card mb-6">
-        <p class="text-lg text-primary">
-          Questo test valuta le tue competenze digitali nell'ambito della ricerca e gestione delle informazioni, 
-          in conformità con il Framework europeo DigComp 2.2 per le competenze digitali dei cittadini.
-        </p>
-        <p class="text-secondary mt-2">
-          L'Area 1 del DigComp 2.2 riguarda la capacità di cercare, valutare e gestire informazioni digitali, 
-          riconoscendo fonti affidabili, proteggendo i dati personali e utilizzando efficacemente gli strumenti di ricerca.
-        </p>
-      </div>
-
-      <!-- Instructions -->
-      <div class="card mb-6">
-        <ul class="space-y-2 text-secondary">
-          <li>📝 <strong>30 domande</strong> estratte casualmente da un database di 70 domande</li>
-          <li>⏱️ <strong>30 minuti</strong> di tempo disponibile</li>
-          <li>📊 <strong>80%</strong> per eccellente, <strong>60%</strong> per sufficiente</li>
-          <li>🔄 <strong>Random</strong>: ogni tentativo ha domande diverse</li>
+    <main class="welcome-main">
+      <section class="welcome-section">
+        <h2>📖 Descrizione Test</h2>
+        <p>Questo test valuta la tua comprensione dei concetti fondamentali di DigComp 2.2 - Area 1, che affronta tre competenze chiave:</p>
+        <ul class="list-content">
+          <li><strong>1.1 Navigare, ricercare e filtrare:</strong> cercare informazioni online, usare browser e motori di ricerca, comprendere gli algoritmi</li>
+          <li><strong>1.2 Valutare dati e informazioni:</strong> analizzare criticamente fonti, riconoscere bias, distinguere fatti da opinioni</li>
+          <li><strong>1.3 Gestire dati e contenuti:</strong> organizzare file, proteggere privacy, usare backup e cloud storage</li>
         </ul>
-      </div>
+      </section>
 
-      <!-- Cards -->
-      <div class="grid md:grid-cols-2 gap-4 mb-8">
-        <a href="teoria-expanded.html" class="card card-clickable hover:brightness-110 transition-all">
-          <span class="text-4xl mb-2">📚</span>
-          <h3 class="text-xl font-bold text-orange-400 mb-2">Teoria da leggere prima del test</h3>
-          <p class="text-secondary text-sm">Studia i 7 moduli DigComp Area 1 per preparearti al quiz</p>
-        </a>
-        <button onclick="openModal()" class="card card-clickable hover:brightness-110 transition-all">
-          <span class="text-4xl mb-2">📝</span>
-          <h3 class="text-xl font-bold text-orange-400 mb-2">Procedi al Quiz</h3>
-          <p class="text-secondary text-sm">Inizia il test di valutazione delle competenze</p>
-        </button>
-      </div>
+      <section class="welcome-section">
+        <h2>📋 Istruzioni Svolgimento</h2>
+        <ul class="list-content">
+          <li>Rispondi a tutte le domande senza tornare indietro</li>
+          <li>Hai 2 minuti per domanda (timer automatico)</li>
+          <li>Al termine riceverai il punteggio e il riepilogo dettagliato</li>
+          <li>Potrai ripetere il test per una nuova valutazione con domande diverse</li>
+          <li><strong>⚠️ Attenzione:</strong> Accettando i termini confermi che il test è solo a scopo formativo</li>
+        </ul>
+      </section>
 
-      <!-- Footer -->
-      <footer class="text-center mt-8">
-        <p class="text-sm text-secondary">Credits: Dott. Salvatore Trono - Laureato in Servizi Giuridici per l'Impresa • Formatore • Esperto in Sicurezza sui Luoghi di Lavoro</p>
-      </footer>
-    </div>
+      <section class="welcome-section cards-section">
+        <p class="cards-invite">📌 <strong>Prima di procedere:</strong></p>
+        <div class="cards-grid">
+          <a href="teoria.html" class="card-link">
+            <span class="card-icon">📚</span>
+            <span class="card-title">Leggi la Teoria</span>
+            <span class="card-desc">Ripassare prima di fare il test</span>
+          </a>
+          <button onclick="openModalWarning()" class="card-link">
+            <span class="card-icon">📝</span>
+            <span class="card-title">Inizia il Quiz</span>
+            <span class="card-desc">Comincia la valutazione</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Credits: Dott. Salvatore Trono - Laureato in Servizi Giuridici per l'Impresa • Formatore • Esperto in Sicurezza sui Luoghi di Lavoro</p>
+      <p class="disclaimer">⚠️ <em>Questo materiale è fornito a scopo esclusivamente formativo e non costituisce formazione certificata.</em></p>
+    </footer>
   </div>
 
-  <!-- ============================================ -->
-  <!-- SCREEN 2: QUIZ -->
-  <!-- ============================================ -->
-  <div id="screen-quiz" class="screen hidden">
-    <div class="container mx-auto px-4 py-8 max-w-3xl">
-      
-      <!-- Quiz Header -->
-      <div class="flex items-center gap-4 mb-6">
-        <button onclick="openConfirmModal()" class="btn-secondary flex items-center gap-2">
-          <span>🏠</span> Home
-        </button>
-        <div id="timer-display" class="timer-display">30:00</div>
-      </div>
-
-      <!-- Timer Alert -->
-      <div id="timer-alert" class="timer-alert hidden">
-        ⏰ Attenzione! Rimangono meno di 5 minuti!
-      </div>
-
-      <!-- Progress Bar -->
-      <div class="mb-6">
-        <div class="flex justify-between text-sm text-gray-400 mb-2">
-          <span>Progresso</span>
-          <span id="progress-text">0 / 30</span>
-        </div>
-        <div class="progress-bar">
-          <div id="progress-bar" class="progress-fill" style="width: 0%"></div>
-        </div>
-      </div>
-
-      <!-- Question Container -->
-      <div id="question-container"></div>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- SCREEN 3: RESULTS -->
-  <!-- ============================================ -->
-  <div id="screen-results" class="screen hidden">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-      
-      <!-- Result Header -->
-      <div class="text-center mb-8">
-        <div id="result-container" class="result-box">
-          <div id="result-icon" class="result-icon"></div>
-          <div id="result-text" class="result-text"></div>
-          <div id="result-percentage" class="result-percentage"></div>
-          <div id="result-score" class="result-score"></div>
-        </div>
-      </div>
-
-      <!-- Result Actions -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-        <button onclick="startQuiz()" class="btn-primary flex items-center justify-center gap-2">
-          <span>🔄</span>
-          <span>Rifai il Test</span>
-        </button>
-        <button onclick="goHome()" class="btn-secondary flex items-center justify-center gap-2">
-          <span>🏠</span>
-          <span>Torna alla Home</span>
-        </button>
-      </div>
-
-      <!-- Recap -->
-      <div class="card">
-        <h3 class="text-xl font-bold text-orange-400 mb-4">Dettaglio risposte</h3>
-        <div id="recap-container" class="space-y-4"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- MODAL: LEGAL WARNING -->
-  <!-- ============================================ -->
-  <div id="modal-legal" class="modal-overlay hidden">
+  <!-- MODAL WARNING -->
+  <div id="modal-overlay" class="modal-overlay hidden">
     <div class="modal-box">
       <h2 class="modal-title">⚠️ ATTENZIONE</h2>
       <div class="modal-divider"></div>
       
-      <div class="legal-red-box">
-        <div class="legal-icon">⚖️</div>
-        <div class="legal-content">
-          <p class="legal-text">
-            <strong>Riferimento:</strong> Questo test è proprietà intellettuale del Dott. Salvatore Trono. 
-            La riproduzione, distribuzione o utilizzo non autorizzato è <strong>ILLEGALE</strong> e passibile 
-            di <strong>SANZIONI PENALI</strong> ai sensi del D.Lgs. 63/2004 e della L. 633/1941 (Legge sul Copyright).
-          </p>
-          
-          <p class="legal-bold mt-4">DIVIETI</p>
+      <div class="modal-legal">
+        <div class="legal-header">⚖️ AVVISO LEGALE E DISCLAIMER</div>
+        
+        <div class="legal-section">
+          <h3>📜 Riferimento Normativo</h3>
+          <p>Questo materiale è coperto da diritti d'autore secondo il D.Lgs. 633/1941 (Legge sul Diritto d'Autore italiano) e dalle direttive UE sulla protezione delle opere intellettuali.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>⚖️ Sanzioni Penali</h3>
+          <p>La riproduzione, distribuzione, modifica o uso non autorizzato del presente materiale è vietato per legge e può esporre a sanzioni penali fino a €516 e civili per il danno arrecato (art. 171 bis L.A.).</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>❌ Divieti Espliciti</h3>
           <ul class="legal-list">
-            <li>❌ Riproduzione non autorizzata</li>
-            <li>❌ Distribuzione</li>
-            <li>❌ Modifica</li>
-            <li>❌ Uso commerciale</li>
+            <li>❌ Vietato copiare e distribuire senza autorizzazione dell'autore</li>
+            <li>❌ Vietato modificare o alterare il contenuto</li>
+            <li>❌ Vietato usare per scopi commerciali</li>
+            <li>❌ Vietato pubblicare su altri siti senza permesso esplicito</li>
           </ul>
-          
-          <p class="legal-bold mt-4">AUTORIZZAZIONE</p>
-          <p class="legal-text">L'utilizzo è consentito ESCLUSIVAMENTE previa autorizzazione scritta del proprietario.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>✅ Autorizzazione Richiesta</h3>
+          <p>Per qualsiasi uso al di là della consultazione personale a scopo formativo, è <strong>OBBLIGATORIO</strong> ottenere autorizzazione scritta da:</p>
+          <p><strong>Dott. Salvatore Trono</strong><br>Esperto in SSL – Docente Formatore</p>
         </div>
       </div>
-      
-      <div class="disclaimer-box">
-        <p>
-          <span class="disclaimer-highlight">Disclaimer:</span> Il presente test <strong>NON costituisce formazione certificata</strong> 
-          ai sensi del D.Lgs. 81/2008. Per la formazione obbligatoria in materia di sicurezza sul lavoro, 
-          rivolgersi a enti formativi accreditati. Il Dott. Salvatore Trono declina ogni responsabilità per 
-          l'utilizzo improprio delle informazioni qui contenute.
-        </p>
+
+      <div class="modal-disclaimer">
+        <p><strong>DICHIARAZIONE IMPORTANTE:</strong></p>
+        <p>Confermo di aver letto e compreso che:</p>
+        <ul class="disclaimer-list">
+          <li>✓ Questo materiale è fornito esclusivamente a scopo formativo</li>
+          <li>✓ <strong>NON costituisce formazione certificata o abilitante</strong></li>
+          <li>✓ L'autore è Dott. Salvatore Trono</li>
+          <li>✓ Non posso distribuirlo, modificarlo o usarlo senza autorizzazione</li>
+          <li>✓ Accetto pienamente i termini sopra descritti</li>
+        </ul>
       </div>
-      
+
       <div class="modal-buttons">
-        <button onclick="closeModal()" class="btn-cancel">ANNULLA</button>
-        <button onclick="startQuiz()" class="btn-accept">ACCETTO E PROCEDI</button>
+        <button onclick="closeModalWarning()" class="btn-secondary">❌ ANNULLA</button>
+        <button onclick="startQuiz()" class="btn-primary">✅ ACCETTO E CONTINUO</button>
       </div>
     </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- MODAL: CONFIRM HOME -->
-  <!-- ============================================ -->
-  <div id="modal-confirm" class="modal-overlay hidden">
-    <div class="modal-box modal-confirm">
-      <h2 class="modal-title"> Conferma</h2>
-      <div class="modal-divider"></div>
-      
-      <p class="text-center text-primary py-4">
-        Sei sicuro di voler tornare alla home? Il quiz verrà interrotto e il progresso sarà perso.
-      </p>
-      
-      <div class="modal-buttons">
-        <button onclick="closeConfirmModal()" class="btn-cancel">NO, CONTINUA</button>
-        <button onclick="goHome()" class="btn-accept">SÌ, ESCI</button>
+  <!-- SCREEN 2: QUIZ -->
+  <div id="screen-quiz" class="screen hidden">
+    <header class="quiz-header">
+      <h1>📝 Quiz DigComp 2.2 - Area 1</h1>
+      <div class="quiz-controls">
+        <div class="timer" id="timer">20:00</div>
+        <button onclick="confirmBackHome()" class="btn-secondary small">🏠 Torna alla Home</button>
       </div>
-    </div>
+    </header>
+
+    <main class="quiz-main">
+      <!-- PROGRESS BAR -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p class="progress-text" id="progress-text">Domanda 1 di 15</p>
+
+      <!-- QUESTION CONTAINER -->
+      <div id="question-container" class="question-container">
+        <!-- Generato da script.js -->
+      </div>
+
+      <!-- ALERT TIMER -->
+      <div id="timer-alert" class="timer-alert hidden">
+        ⏰ Attenzione! Rimangono meno di 5 minuti!
+      </div>
+    </main>
+  </div>
+
+  <!-- SCREEN 3: RESULTS -->
+  <div id="screen-results" class="screen hidden">
+    <header class="results-header">
+      <h1>🎯 Risultati del Quiz</h1>
+    </header>
+
+    <main class="results-main">
+      <!-- SCORE CARD -->
+      <div id="score-card" class="score-card">
+        <!-- Generato da script.js -->
+      </div>
+
+      <!-- RIEPILOGO DOMANDE -->
+      <section class="results-review">
+        <h2>📋 Riepilogo Risposte</h2>
+        <div id="results-list">
+          <!-- Generato da script.js -->
+        </div>
+      </section>
+
+      <!-- BOTTONI -->
+      <div class="results-buttons">
+        <button onclick="restartQuiz()" class="btn-primary">🔄 Rifai il Test</button>
+        <a href="index.html" class="btn-secondary">🏠 Torna alla Home</a>
+      </div>
+    </main>
   </div>
 
   <script src="script.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
