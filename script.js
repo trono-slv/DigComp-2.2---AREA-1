@@ -1,1732 +1,1793 @@
 // ============================================
-// CONFIGURAZIONE
+// ⚙️ CONFIGURAZIONE
 // ============================================
-
 const CONFIG = {
   NUM_DOMANDE: 30,
-  DURATA_TIMER: 30 * 60, // 30 minuti = 1800 secondi
+  DURATA_TIMER: 30 * 60, // 30 minuti in secondi
   SOGLIA_ECCELLENTE: 80,
   SOGLIA_SUFFICIENTE: 60,
   ALERT_TIMER_SOGLIA: 300, // 5 minuti
   
-  // DIFFICOLTÀ
-  FILTRO_DIFFICOLTA: null, // null = tutte, oppure "facile" / "medio" / "difficile"
-  DISTRIBUZIONE_DIFFICOLTA: null // null = casuale, oppure { facile: 10, medio: 15, difficile: 5 }
+  FILTRO_DIFFICOLTA: null,
+  DISTRIBUZIONE_DIFFICOLTA: {
+    facile: 10,
+    medio: 10,
+    difficile: 10
+  }
 };
 
 // ============================================
-// PANIERE DOMANDE (180 domande)
+// 📚 PANIERE COMPLETO (180 DOMANDE)
 // ============================================
-
 const PANIERE = [
-  // ========== CAPITOLO 1.1 — NAVIGARE, RICERCARE E FILTRARE ==========
-  
-  // SEZIONE 1 — FACILE (1-20)
+  // ===== CAPITOLO 1.1 - FACILI =====
   {
     id: 1,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Che cos'è un browser?",
-    a: { A: "Un software che permette di accedere e navigare nel World Wide Web", B: "Un dispositivo fisico per collegarsi alla rete elettrica", C: "Un programma usato solo per scrivere testi", D: "Un archivio locale di immagini e video" },
+    q: "Cos'è un browser web?",
+    a: { A: "Un software per navigare internet", B: "Un motore di ricerca", C: "Un file manager", D: "Un editor di testo" },
     correct: "A",
-    exp: "Il browser è il software che consente di accedere e navigare sul web."
+    exp: "Un browser web è il software utilizzato per accedere e visualizzare pagine internet (Chrome, Firefox, Safari, Edge)."
   },
   {
     id: 2,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale tra i seguenti è un esempio di browser?",
-    a: { A: "Excel", B: "Google Chrome", C: "Windows", D: "Word" },
-    correct: "B",
-    exp: "Google Chrome è uno dei principali browser disponibili."
+    q: "Quale tra questi è un motore di ricerca?",
+    a: { A: "Google", B: "Windows", C: "Outlook", D: "Telegram" },
+    correct: "A",
+    exp: "Google è il motore di ricerca più utilizzato per trovare informazioni su internet."
   },
   {
     id: 3,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "A cosa serve principalmente un motore di ricerca?",
-    a: { A: "A modificare immagini digitali", B: "A proteggere il computer dai virus", C: "A trovare informazioni e contenuti disponibili online", D: "A creare cartelle sul computer" },
-    correct: "C",
-    exp: "Il motore di ricerca serve a individuare informazioni e contenuti online."
+    q: "Cosa significa 'URL'?",
+    a: { A: "L'indirizzo di una pagina web", B: "Un programma antivirus", C: "Una cartella del computer", D: "Un tipo di file" },
+    correct: "A",
+    exp: "URL (Uniform Resource Locator) è l'indirizzo completo di una pagina web, es: https://www.google.it"
   },
   {
     id: 4,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale attività è possibile svolgere tramite Internet?",
-    a: { A: "Solo stampare documenti", B: "Solo usare programmi offline", C: "Solo accendere il computer", D: "Effettuare acquisti online e comunicare in tempo reale" },
-    correct: "D",
-    exp: "Internet permette acquisti, comunicazioni, formazione e altri servizi digitali."
+    q: "Come si chiama il simbolo '@' in un indirizzo email?",
+    a: { A: "Chiocciola", B: "Asterisco", C: "Hashtag", D: "Cancelletto" },
+    correct: "A",
+    exp: "Il simbolo '@' si chiama 'chiocciola' ed è essenziale negli indirizzi email (es: mario@example.com)."
   },
   {
     id: 5,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Che cosa interpreta un browser per visualizzare una pagina web?",
-    a: { A: "Il codice HTML", B: "Il codice fiscale dell'utente", C: "Il numero seriale del computer", D: "Il codice PIN della rete Wi-Fi" },
+    q: "Cosa sono i 'bookmark'?",
+    a: { A: "Segnalibri per salvare pagine preferite", B: "Pubblicità online", C: "File temporanei", D: "Errori di sistema" },
     correct: "A",
-    exp: "Il browser interpreta il codice HTML e visualizza la pagina in forma leggibile."
+    exp: "I bookmark (segnalibri) permettono di salvare e accedere rapidamente alle pagine web preferite."
   },
   {
     id: 6,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale tra questi è un browser indicato nel capitolo?",
-    a: { A: "PowerPoint", B: "Safari", C: "Paint", D: "Calcolatrice" },
-    correct: "B",
-    exp: "Safari è un browser citato tra i principali."
+    q: "Quale funzione permette di cercare all'interno di una pagina web?",
+    a: { A: "Ctrl+F (o Cmd+F)", B: "Ctrl+S", C: "Ctrl+P", D: "Ctrl+X" },
+    correct: "A",
+    exp: "Ctrl+F (o Cmd+F su Mac) apre la ricerca all'interno della pagina web attuale."
   },
   {
     id: 7,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Che cosa indica generalmente un URL?",
-    a: { A: "La velocità della connessione Internet", B: "La dimensione di un file", C: "L'indirizzo di una risorsa sul web", D: "Il nome dell'utente collegato" },
-    correct: "C",
-    exp: "L'URL è l'indirizzo che identifica una risorsa sul web."
+    q: "Cos'è la 'cache' di un browser?",
+    a: { A: "Memoria che salva file temporanei di pagine visitate", B: "Un virus", C: "Un backup automatico", D: "Un antispyware" },
+    correct: "A",
+    exp: "La cache del browser salva temporaneamente file delle pagine visitate per caricamenti più veloci."
   },
   {
     id: 8,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "In un indirizzo web, cosa rappresenta il dominio?",
-    a: { A: "La password di accesso al sito", B: "Il tipo di dispositivo usato", C: "Il colore della pagina web", D: "L'indirizzo del server che ospita la risorsa" },
-    correct: "D",
-    exp: "Il dominio identifica il server che ospita la risorsa."
+    q: "Cosa significa 'logout'?",
+    a: { A: "Uscire da un account", B: "Entrare in un account", C: "Eliminare un account", D: "Cambiare password" },
+    correct: "A",
+    exp: "Logout significa disconnettersi/uscire da un account dopo aver effettuato l'accesso."
   },
   {
     id: 9,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "A cosa servono i segnalibri o preferiti del browser?",
-    a: { A: "A salvare pagine web per ritrovarle facilmente", B: "A cancellare automaticamente la cronologia", C: "A spegnere il computer", D: "A modificare il codice HTML dei siti" },
+    q: "Quale tra questi è un social media?",
+    a: { A: "Facebook", B: "Word", C: "Excel", D: "Photoshop" },
     correct: "A",
-    exp: "I segnalibri permettono di salvare e ritrovare facilmente pagine web."
+    exp: "Facebook è una piattaforma di social media per condividere contenuti e comunicare con altre persone."
   },
   {
     id: 10,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale icona viene spesso usata per aggiungere un sito ai preferiti?",
-    a: { A: "Una stampante", B: "Una stella", C: "Un lucchetto rotto", D: "Un cestino" },
-    correct: "B",
-    exp: "Nei browser l'icona della stella è comunemente usata per aggiungere preferiti."
+    q: "Cosa sono i 'cookie'?",
+    a: { A: "Piccoli file che salvano informazioni sul tuo browser", B: "Virus informatici", C: "Biscotti digitali", D: "Backdoor di sistema" },
+    correct: "A",
+    exp: "I cookie sono piccoli file di testo salvati dal browser che memorizzano preferenze e informazioni di sessione."
   },
   {
     id: 11,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Qual è il primo passo per fare una ricerca efficace online?",
-    a: { A: "Aprire casualmente molti siti", B: "Scaricare subito un file", C: "Identificare parole chiave pertinenti", D: "Eliminare la cronologia del browser" },
-    correct: "C",
-    exp: "Una ricerca efficace parte dall'identificazione di parole chiave pertinenti."
+    q: "Come funziona la ricerca booleana?",
+    a: { A: "Usa operatori AND, OR, NOT per raffinare ricerche", B: "Cerca solo immagini", C: "Traduce automaticamente", D: "Blocca i siti pericolosi" },
+    correct: "A",
+    exp: "La ricerca booleana usa operatori logici (AND, OR, NOT) per ottenere risultati più precisi e mirati."
   },
   {
     id: 12,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale tra questi è un motore di ricerca generalista?",
-    a: { A: "Photoshop", B: "Outlook", C: "VLC", D: "Google" },
-    correct: "D",
-    exp: "Google è un motore di ricerca generalista."
+    q: "Cosa significa 'phishing'?",
+    a: { A: "Truffe online per rubare dati personali", B: "Una tecnologia di ricerca", C: "Un tipo di file", D: "Una funzione del browser" },
+    correct: "A",
+    exp: "Il phishing è una truffa online dove malintenzionati cercano di rubare dati personali e password con email/siti falsi."
   },
   {
     id: 13,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Che cosa sono le parole chiave in una ricerca online?",
-    a: { A: "Termini specifici usati per cercare informazioni pertinenti", B: "Password personali da inserire nei siti web", C: "File temporanei del browser", D: "Immagini salvate sul computer" },
+    q: "Cosa sono i 'preferiti' in un browser?",
+    a: { A: "Pagine web salvate per accesso rapido", B: "Siti bloccati", C: "Estensioni", D: "Cronologia eliminata" },
     correct: "A",
-    exp: "Le parole chiave sono termini mirati che guidano la ricerca."
+    exp: "I preferiti (o segnalibri) sono pagine web che hai marcato per accedervi rapidamente in futuro."
   },
   {
     id: 14,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale strumento è indicato per cercare articoli accademici?",
-    a: { A: "Google Maps", B: "Google Scholar", C: "Blocco note", D: "Esplora file" },
-    correct: "B",
-    exp: "Google Scholar è indicato per fonti accademiche e scientifiche."
+    q: "Quale azione evita di salvare dati nella cronologia del browser?",
+    a: { A: "Navigare in modalità anonima/privata", B: "Cancellare i file", C: "Riavviare il computer", D: "Chiudere il browser" },
+    correct: "A",
+    exp: "La modalità privata/anonima del browser non salva cronologia, cookie e altri dati di navigazione."
   },
   {
     id: 15,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Perché è utile formulare domande chiare a un assistente virtuale?",
-    a: { A: "Per ridurre la luminosità dello schermo", B: "Per aumentare il volume del dispositivo", C: "Per ottenere risposte più precise", D: "Per eliminare i file temporanei" },
-    correct: "C",
-    exp: "Domande chiare migliorano la precisione delle risposte degli assistenti virtuali."
+    q: "Cosa indica il lucchetto 🔒 nella barra degli indirizzi?",
+    a: { A: "La connessione è protetta (HTTPS)", B: "Il sito è bloccato", C: "Hai salvato una password", D: "È un sito falso" },
+    correct: "A",
+    exp: "Il lucchetto verde indica che la pagina usa HTTPS, una connessione crittografata e sicura."
   },
   {
     id: 16,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Gli assistenti virtuali hanno bisogno di Internet per accedere a informazioni aggiornate?",
-    a: { A: "No, funzionano sempre solo offline", B: "No, usano solo dati salvati nel telefono", C: "No, non rispondono mai a domande online", D: "Sì, spesso dipendono dalla connessione online" },
-    correct: "D",
-    exp: "Gli assistenti virtuali spesso richiedono Internet per informazioni aggiornate."
+    q: "Cosa significa 'download'?",
+    a: { A: "Scaricare file da internet al tuo computer", B: "Caricare file online", C: "Copiare un testo", D: "Condividere un file" },
+    correct: "A",
+    exp: "Download significa scaricare/trasferire un file da internet al proprio computer."
   },
   {
     id: 17,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Quale tra queste è una buona pratica nella ricerca online?",
-    a: { A: "Usare parole chiave specifiche e pertinenti", B: "Cercare solo con frasi casuali", C: "Aprire il primo risultato senza valutarlo", D: "Usare sempre una sola parola generica" },
+    q: "Cosa significa 'upload'?",
+    a: { A: "Caricare file dal tuo computer a internet", B: "Scaricare file", C: "Eliminare file", D: "Spostare cartelle" },
     correct: "A",
-    exp: "Parole chiave specifiche aumentano la pertinenza dei risultati."
+    exp: "Upload significa caricare/trasferire un file dal proprio computer verso internet o una piattaforma."
   },
   {
     id: 18,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Che cosa consente di fare Internet in ambito formativo?",
-    a: { A: "Solo stampare dispense", B: "Seguire corsi online tramite piattaforme digitali", C: "Usare solo programmi installati localmente", D: "Evitare qualsiasi interazione con docenti e studenti" },
-    correct: "B",
-    exp: "Internet consente di seguire corsi online tramite piattaforme digitali."
+    q: "Quale è il comando per copiare testo?",
+    a: { A: "Ctrl+C (Cmd+C su Mac)", B: "Ctrl+X", C: "Ctrl+V", D: "Ctrl+Z" },
+    correct: "A",
+    exp: "Ctrl+C copia il testo/elemento selezionato nella clipboard per successiva incollatura."
   },
   {
     id: 19,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Che cosa può includere un indirizzo web oltre al dominio?",
-    a: { A: "Solo il nome del computer", B: "Solo il numero di telefono dell'utente", C: "Percorsi e parametri", D: "Solo immagini e video" },
-    correct: "C",
-    exp: "Un URL può includere percorsi e parametri oltre al dominio."
+    q: "Cosa sono i 'tab' in un browser?",
+    a: { A: "Schede separate per navigare più siti contemporaneamente", B: "Estensioni del browser", C: "Icone dei siti", D: "Cartelle di file" },
+    correct: "A",
+    exp: "I tab (schede) permettono di aprire multiple pagine web nello stesso browser, passando fra loro facilmente."
   },
   {
     id: 20,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "facile",
-    q: "Qual è un vantaggio dei corsi online?",
-    a: { A: "Richiedono sempre la presenza fisica", B: "Non permettono l'accesso ai materiali", C: "Non consentono interazione", D: "Offrono flessibilità di fruizione" },
-    correct: "D",
-    exp: "La formazione online offre flessibilità di accesso e fruizione."
+    q: "Cosa significa 'aggiornare' una pagina web?",
+    a: { A: "Ricaricare la pagina per vedere contenuti aggiornati (F5)", B: "Cambiarsi il browser", C: "Scaricare il sito", D: "Salvare la pagina" },
+    correct: "A",
+    exp: "Aggiornare (refresh) ricaricare la pagina corrente usando F5 o Ctrl+R per visualizzare contenuti aggiornati."
   },
-  
-  // SEZIONE 2 — MEDIO (21-40)
+
+  // ===== CAPITOLO 1.1 - MEDIE =====
   {
     id: 21,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale descrizione distingue correttamente browser e motore di ricerca?",
-    a: { A: "Browser e motore di ricerca hanno funzioni diverse ma complementari", B: "Sono esattamente la stessa cosa", C: "Il browser cerca e il motore visualizza", D: "Il motore di ricerca accede al web" },
+    q: "Cos'è un 'algoritmo di ricerca'?",
+    a: { A: "Un sistema che ordina risultati di ricerca per rilevanza", B: "Un virus", C: "Una password", D: "Un file di backup" },
     correct: "A",
-    exp: "Browser e motore di ricerca hanno funzioni diverse ma complementari."
+    exp: "Gli algoritmi di ricerca (es: PageRank di Google) ordinano i risultati per rilevanza in base a criteri specifici."
   },
   {
     id: 22,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "In un URL, cosa rappresentano i parametri dopo il '?'?",
-    a: { A: "Il nome del sito", B: "Dati aggiuntivi trasmessi al server", C: "Il tipo di browser usato", D: "La lingua della pagina" },
-    correct: "B",
-    exp: "I parametri trasmettono dati aggiuntivi al server."
+    q: "Cosa significa 'pop-up'?",
+    a: { A: "Una finestra che appare improvvisamente durante la navigazione", B: "Un tipo di file", C: "Una cartella nascosta", D: "Un antivirus" },
+    correct: "A",
+    exp: "Un pop-up è una piccola finestra che appare improvvisamente su una pagina web, spesso con pubblicità."
   },
   {
     id: 23,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "In https://www.google.com, qual è il dominio?",
-    a: { A: "https", B: "www", C: "google.com", D: "www.google.com" },
-    correct: "C",
-    exp: "In https://www.google.com, il dominio è google.com."
+    q: "Cos'è un 'ad blocker'?",
+    a: { A: "Un'estensione che blocca pubblicità online", B: "Un antivirus", C: "Un browser", D: "Un file manager" },
+    correct: "A",
+    exp: "Un ad blocker è un'estensione o software che blocca annunci pubblicitari durante la navigazione web."
   },
   {
     id: 24,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Come si organizzano meglio i preferiti nel browser?",
-    a: { A: "In ordine alfabetico casuale", B: "In cartelle per argomento", C: "Tutti nella barra principale", D: "Non si organizzano" },
-    correct: "B",
-    exp: "Le cartelle aiutano a organizzare e recuperare meglio i preferiti."
+    q: "Cosa significa 'web scraping'?",
+    a: { A: "Estrarre dati automaticamente da pagine web", B: "Pulire il disco rigido", C: "Cancellare la cronologia", D: "Comprimere file" },
+    correct: "A",
+    exp: "Il web scraping è l'estrazione automatica di dati da pagine web, utile per raccogliere informazioni strutturate."
   },
   {
     id: 25,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale è la procedura corretta per aggiungere un sito ai preferiti?",
-    a: { A: "Aprire il sito, cliccare la stella e scegliere una cartella", B: "Digitare l'URL due volte", C: "Stampare la pagina", D: "Modificare le impostazioni del browser" },
+    q: "Cosa sono i 'metadati'?",
+    a: { A: "Informazioni su altri dati (autore, data, dimensione)", B: "Dati criptati", C: "File temporanei", D: "Backup automatici" },
     correct: "A",
-    exp: "La procedura corretta prevede apertura sito, stella e scelta cartella."
+    exp: "I metadati sono informazioni che descrivono altri dati, come autore, data creazione, dimensione di un file."
   },
   {
     id: 26,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale browser è noto per l'attenzione alla privacy?",
-    a: { A: "Google Chrome", B: "Mozilla Firefox", C: "Microsoft Edge", D: "Safari" },
-    correct: "B",
-    exp: "DuckDuckGo è noto per l'attenzione alla privacy."
+    q: "Cosa significa 'DNS'?",
+    a: { A: "Sistema che traduce nomi di dominio in indirizzi IP", B: "Un tipo di malware", C: "Una cartella di sistema", D: "Un editor di testo" },
+    correct: "A",
+    exp: "Il DNS (Domain Name System) traduce i nomi di dominio (www.google.it) negli indirizzi IP numerici."
   },
   {
     id: 27,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Per quale tipo di ricerca è ideale Google Scholar?",
-    a: { A: "Ricerche generiche su Internet", B: "Ricerche di immagini", C: "Ricerche scientifiche e accademiche", D: "Ricerche di mappe geografiche" },
-    correct: "C",
-    exp: "Google Scholar è adatto a ricerche scientifiche e accademiche."
+    q: "Cosa indica 'http' e 'https'?",
+    a: { A: "Protocolli di comunicazione (https è più sicuro)", B: "Tipi di file", C: "Cartelle", D: "Programmi" },
+    correct: "A",
+    exp: "HTTP è il protocollo per trasmettere pagine web; HTTPS è la versione crittografata e sicura."
   },
   {
     id: 28,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Cosa rende una ricerca online efficace?",
-    a: { A: "Usare termini vaghi", B: "Usare molte parole senza ordine", C: "Avere un argomento definito e parole chiave mirate", D: "Cercare senza pianificazione" },
-    correct: "C",
-    exp: "Una ricerca efficace richiede argomento definito e parole chiave mirate."
+    q: "Cos'è un 'indirizzo IP'?",
+    a: { A: "Un identificativo numerico di un dispositivo in rete", B: "Una password", C: "Un tipo di file", D: "Un browser" },
+    correct: "A",
+    exp: "Un indirizzo IP (es: 192.168.1.1) è un identificativo numerico che contraddistingue ogni dispositivo in rete."
   },
   {
     id: 29,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Cosa caratterizza una ricerca ben definita?",
-    a: { A: "Obiettivo chiaro e termini pertinenti", B: "Molti termini casuali", C: "Parole molto generiche", D: "Nessun criterio specifico" },
+    q: "Cosa significa 'geolocalizzazione'?",
+    a: { A: "Identificare la posizione geografica di un dispositivo", B: "Criptare dati", C: "Scaricare mappe", D: "Condividere file" },
     correct: "A",
-    exp: "Una ricerca ben definita ha obiettivo chiaro e termini pertinenti."
+    exp: "La geolocalizzazione è la tecnologia che determina la posizione geografica di un dispositivo tramite GPS o IP."
   },
   {
     id: 30,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Perché una richiesta vaga a un assistente virtuale può essere inefficace?",
-    a: { A: "Genera sempre risposte corrette", B: "Produce risposte imprecise o non adatte all'intento", C: "Non produce alcuna risposta", D: "Aumenta la velocità della ricerca" },
-    correct: "B",
-    exp: "Richieste vaghe generano più facilmente risposte imprecise."
+    q: "Cosa sono i 'dati strutturati'?",
+    a: { A: "Dati organizzati in formato ordinato (tabelle, database)", B: "Documenti PDF", C: "File compressi", D: "Email criptate" },
+    correct: "A",
+    exp: "I dati strutturati sono informazioni organizzate in formati predefiniti come database e fogli di calcolo."
   },
   {
     id: 31,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale funzione principale ha il browser?",
-    a: { A: "Cercare file nel computer", B: "Modificare file locali", C: "Trasformare contenuti web in pagine leggibili e interattive", D: "Gestire email" },
-    correct: "C",
-    exp: "I browser trasformano contenuti web in pagine leggibili e interattive."
+    q: "Cosa significa 'indicizzazione'?",
+    a: { A: "Il processo di catalogazione di pagine web dai motori di ricerca", B: "Cancellare dati", C: "Comprimere file", D: "Creare cartelle" },
+    correct: "A",
+    exp: "L'indicizzazione è il processo con cui i motori di ricerca catalogano e classificano le pagine web."
   },
   {
     id: 32,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quali elementi può contenere un URL completo?",
-    a: { A: "Solo il dominio", B: "Solo il protocollo", C: "Protocollo, dominio, percorsi e parametri", D: "Solo il nome del file" },
-    correct: "C",
-    exp: "Gli URL possono contenere percorsi con cartelle e sottocartelle."
+    q: "Cosa sono i 'feed RSS'?",
+    a: { A: "Flussi di contenuti aggiornati da siti web", B: "Antivirus", C: "Estensioni del browser", D: "Backup" },
+    correct: "A",
+    exp: "RSS (Really Simple Syndication) permette di ricevere automaticamente aggiornamenti da siti web preferiti."
   },
   {
     id: 33,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "In quali attività quotidiane Internet è particolarmente utile?",
-    a: { A: "Solo intrattenimento", B: "Solo comunicazione", C: "Formazione, acquisti, banking, comunicazione e molte altre", D: "Solo lavoro" },
-    correct: "C",
-    exp: "Internet supporta molte attività quotidiane: formazione, acquisti, banking e comunicazione."
+    q: "Cosa significa 'SEO'?",
+    a: { A: "Ottimizzazione di siti per i motori di ricerca", B: "Un tipo di malware", C: "Un editor", D: "Un backup" },
+    correct: "A",
+    exp: "SEO (Search Engine Optimization) è l'insieme di tecniche per migliorare il posizionamento di un sito su Google."
   },
   {
     id: 34,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Che cosa consente di fare la barra dei preferiti?",
-    a: { A: "Di visualizzare rapidamente i segnalibri salvati", B: "Di cancellare automaticamente tutti i file", C: "Di modificare il sistema operativo", D: "Di disinstallare il browser" },
+    q: "Cosa sono i 'crawler'?",
+    a: { A: "Bot che scansionano le pagine web per indicizzarle", B: "Virus", C: "Estensioni", D: "File temporanei" },
     correct: "A",
-    exp: "La barra dei preferiti permette accesso rapido ai segnalibri."
+    exp: "I crawler (ragni web) sono bot automatici che scansionano pagine web per catalogarle nei motori di ricerca."
   },
   {
     id: 35,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Qual è un possibile limite degli algoritmi di IA nei servizi digitali?",
-    a: { A: "Sono sempre completamente trasparenti", B: "Non usano mai dati", C: "Possono funzionare come 'scatole nere' poco comprensibili", D: "Non influenzano mai i contenuti proposti" },
-    correct: "C",
-    exp: "Alcuni sistemi di IA sono poco trasparenti nel processo decisionale."
+    q: "Cosa significa 'proxy'?",
+    a: { A: "Un server intermedio che filtra/mascherara la connessione", B: "Un file", C: "Un antivirus", D: "Un database" },
+    correct: "A",
+    exp: "Un proxy è un server intermedio che funge da intermediario tra il client e il server, filtrandone il traffico."
   },
   {
     id: 36,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Che cosa si intende con 'scatola nera' riferita all'IA?",
-    a: { A: "Un computer fisico di colore nero", B: "Una cartella nascosta del browser", C: "Un errore della connessione Internet", D: "Un sistema il cui processo decisionale interno non è facilmente comprensibile" },
-    correct: "D",
-    exp: "La 'scatola nera' indica un processo interno non facilmente comprensibile."
+    q: "Cosa sono i 'deep web' e 'dark web'?",
+    a: { A: "Parti di internet non indicizzate dai motori di ricerca", B: "Siti virus", C: "Cartelle nascoste", D: "File criptati" },
+    correct: "A",
+    exp: "Deep web è la parte di internet non indicizzata; dark web è la parte intenzionalmente nascosta e anonima."
   },
   {
     id: 37,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale rischio può derivare da dati di addestramento squilibrati nei sistemi di IA?",
-    a: { A: "La produzione di risultati discriminatori o distorti", B: "L'aumento automatico della memoria del computer", C: "La riduzione del consumo elettrico del dispositivo", D: "La cancellazione dei preferiti del browser" },
+    q: "Cosa significa 'throughput'?",
+    a: { A: "La velocità di trasferimento dati in una rete", B: "Un tipo di file", C: "Un virus", D: "Una password" },
     correct: "A",
-    exp: "Dati squilibrati possono produrre risultati discriminatori o distorti."
+    exp: "Il throughput è la quantità di dati trasmessa in una unità di tempo, misurato in Mbps o Gbps."
   },
   {
     id: 38,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale strategia aiuta a ridurre i pregiudizi nei sistemi di IA?",
-    a: { A: "Usare dati sempre uguali e poco rappresentativi", B: "Utilizzare dataset diversificati e bilanciati", C: "Evitare ogni forma di monitoraggio", D: "Rimuovere tutte le fonti informative" },
-    correct: "B",
-    exp: "Dataset diversificati e bilanciati aiutano a ridurre i bias."
+    q: "Cosa sono i 'widget'?",
+    a: { A: "Piccoli applicativi incorporati in pagine web", B: "File di sistema", C: "Cartelle nascoste", D: "Backup automatici" },
+    correct: "A",
+    exp: "I widget sono piccole applicazioni incorporate in pagine web (orologio, meteo, calcolatrice, ecc)."
   },
   {
     id: 39,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Perché le piattaforme digitali possono influenzare ciò che vediamo online?",
-    a: { A: "Perché mostrano contenuti sempre in ordine alfabetico", B: "Perché non usano mai algoritmi", C: "Perché le nostre interazioni possono orientare i contenuti proposti", D: "Perché impediscono ogni personalizzazione" },
-    correct: "C",
-    exp: "Le interazioni dell'utente possono influenzare i contenuti proposti."
+    q: "Cosa significa 'bandwidth'?",
+    a: { A: "La capacità massima di trasferimento dati in una rete", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "La bandwidth è la capacità massima del canale di comunicazione, misurata in Mbps o Gbps."
   },
   {
     id: 40,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "medio",
-    q: "Quale comportamento è corretto quando si usa un assistente virtuale?",
-    a: { A: "Fare richieste multiple e confuse", B: "Non verificare mai la connessione Internet", C: "Usare domande ambigue e incomplete", D: "Formulare domande chiare e specifiche" },
-    correct: "D",
-    exp: "Domande chiare e specifiche migliorano l'interazione con assistenti virtuali."
+    q: "Cosa sono i 'plugin' del browser?",
+    a: { A: "Programmi che aggiungono funzioni al browser", B: "Virus", C: "File temporanei", D: "Cartelle" },
+    correct: "A",
+    exp: "I plugin sono programmi aggiuntivi che estendono le funzionalità del browser (Flash, PDF viewer, ecc)."
   },
-  
-  // SEZIONE 3 — DIFFICILE (41-60)
+
+  // ===== CAPITOLO 1.1 - DIFFICILI =====
   {
     id: 41,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale affermazione descrive meglio il rapporto tra algoritmo, dati e risultati nei sistemi di IA?",
-    a: { A: "Gli algoritmi analizzano dati e producono suggerimenti o decisioni, ma il processo può non essere trasparente", B: "Gli algoritmi producono risultati casuali senza usare dati", C: "Gli algoritmi sono sempre completamente comprensibili agli utenti", D: "Gli algoritmi non influenzano mai le informazioni visualizzate online" },
+    q: "Cosa significa 'operatore di ricerca avanzata'?",
+    a: { A: "Strumenti per raffinare ricerche (site:, filetype:, intitle:)", B: "Un algoritmo", C: "Un tipo di malware", D: "Un file" },
     correct: "A",
-    exp: "Gli algoritmi analizzano dati, ma il loro funzionamento può essere opaco."
+    exp: "Gli operatori avanzati (site:, filetype:, intitle:) permettono ricerche molto specifiche e precise su Google."
   },
   {
     id: 42,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Perché la natura 'opaca' di alcuni algoritmi di IA è rilevante per l'utente digitale?",
-    a: { A: "Non ha nessuna importanza", B: "Perché rende difficile capire perché un sistema produce certi risultati", C: "Perché aumenta la velocità di navigazione", D: "Perché migliora la grafica dei siti" },
-    correct: "B",
-    exp: "L'opacità rende difficile capire perché un sistema produce certi risultati."
+    q: "Cos'è il 'machine learning' nel contesto della ricerca?",
+    a: { A: "Algoritmi che imparano dai dati per migliorare risultati", B: "Un backup", C: "Un tipo di virus", D: "Un file" },
+    correct: "A",
+    exp: "Il machine learning permette ai motori di ricerca di apprendere dai comportamenti utenti e migliorare i risultati."
   },
   {
     id: 43,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale problema può derivare da un dataset non rappresentativo nei sistemi di apprendimento automatico?",
-    a: { A: "Migliora automaticamente la qualità", B: "Aumenta la velocità del server", C: "Possono verificarsi errori su gruppi poco presenti nei dati", D: "Riduce il costo computazionale" },
-    correct: "C",
-    exp: "Un dataset non rappresentativo può causare errori su gruppi poco presenti."
+    q: "Cosa significa 'query'?",
+    a: { A: "Una richiesta di ricerca formulata dall'utente", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "Una query è una ricerca/domanda formulata dall'utente ai motori di ricerca (es: 'migliori ristoranti Roma')."
   },
   {
     id: 44,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "A cosa serve il monitoraggio continuo dei sistemi di IA?",
-    a: { A: "A ridurre il consumo di energia", B: "A individuare e correggere bias e distorsioni", C: "A aumentare il numero di utenti", D: "A velocizzare la rete" },
-    correct: "B",
-    exp: "Il monitoraggio serve a individuare e correggere bias e distorsioni."
+    q: "Cosa sono i 'rich snippets'?",
+    a: { A: "Risultati di ricerca arricchiti con dati strutturati", B: "File compressi", C: "Cartelle nascoste", D: "Email criptate" },
+    correct: "A",
+    exp: "I rich snippets mostrano risultati di ricerca con informazioni strutturate (voti, prezzi, orari, ecc)."
   },
   {
     id: 45,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Una query di ricerca ben formulata dovrebbe essere:",
-    a: { A: "Generica e senza contesto", B: "Specifica, contestualizzata e orientata a una fonte ufficiale", C: "Ambigua per ottenere più risultati", D: "Composta da una sola parola" },
-    correct: "B",
-    exp: "Una query è specifica, contestualizzata e orientata a una fonte ufficiale."
+    q: "Cosa significa 'semantic web'?",
+    a: { A: "Web basato sulla comprensione semantica dei contenuti", B: "Un database", C: "Un antivirus", D: "Un file" },
+    correct: "A",
+    exp: "Il semantic web rende i dati comprensibili non solo agli umani ma anche alle macchine tramite ontologie."
   },
   {
     id: 46,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale approccio caratterizza una ricerca digitale davvero consapevole?",
-    a: { A: "Usare solo un motore di ricerca", B: "Combinare parole chiave specifiche, contesto e termini correlati", C: "Aprire i primi risultati senza valutarli", D: "Cercare senza criterio" },
-    correct: "B",
-    exp: "Una query mirata combina parole chiave specifiche, contesto e termini correlati."
+    q: "Cosa sono i 'KPI' in ambito digitale?",
+    a: { A: "Indicatori chiave di performance per misurare successo", B: "File di sistema", C: "Cartelle", D: "Backup" },
+    correct: "A",
+    exp: "I KPI (Key Performance Indicators) sono metriche che misurano l'efficacia di strategie digitali."
   },
   {
     id: 47,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale affermazione sui contenuti online proposti dalle piattaforme è più corretta?",
-    a: { A: "Sono sempre neutrali e identici per tutti gli utenti", B: "Dipendono solo dal caso", C: "Possono essere influenzati dalle interazioni dell'utente e da sistemi algoritmici", D: "Non dipendono mai da dati o comportamenti precedenti" },
-    correct: "C",
-    exp: "I contenuti possono essere personalizzati dagli algoritmi in base alle interazioni."
+    q: "Cosa significa 'crawl budget'?",
+    a: { A: "Il numero di pagine che un crawler può visitare", B: "Un file", C: "Una password", D: "Un backup" },
+    correct: "A",
+    exp: "Il crawl budget è il numero massimo di pagine che il crawler di Google visita per indicizzare un sito."
   },
   {
     id: 48,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale rischio è associato alla personalizzazione algoritmica dei contenuti?",
-    a: { A: "La possibilità di ricevere contenuti filtrati o orientati in base al comportamento precedente", B: "L'impossibilità di accedere a qualsiasi pagina web", C: "La cancellazione automatica dei motori di ricerca", D: "L'eliminazione dei browser dal dispositivo" },
+    q: "Cosa sono i 'microformat'?",
+    a: { A: "Standard per marcare dati nelle pagine web", B: "File piccoli", C: "Cartelle", D: "Backup" },
     correct: "A",
-    exp: "La personalizzazione può filtrare i contenuti mostrati all'utente."
+    exp: "I microformat (hCard, hEvent) sono standard per marcare informazioni strutturate in HTML."
   },
   {
     id: 49,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "In quale caso è più opportuno usare Google Scholar invece di un motore generalista?",
-    a: { A: "Quando si cercano paper scientifici o fonti accademiche", B: "Quando si vuole solo cambiare lo sfondo del desktop", C: "Quando si devono eliminare i contatti telefonici", D: "Quando si vuole spegnere il router" },
+    q: "Cosa significa 'natural language processing' (NLP)?",
+    a: { A: "Tecnologia che permette ai sistemi di comprendere il linguaggio umano", B: "Un file", C: "Una password", D: "Un backup" },
     correct: "A",
-    exp: "Google Scholar è adatto alla ricerca di fonti accademiche e paper scientifici."
+    exp: "L'NLP permette ai sistemi di comprendere, elaborare e rispondere al linguaggio naturale umano."
   },
   {
     id: 50,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale motore di ricerca è indicato per ricerche in area russa?",
-    a: { A: "OpenAlex", B: "Yandex", C: "Blocco note", D: "Edge come sistema operativo" },
-    correct: "B",
-    exp: "Yandex è indicato per ricerche in russo e nell'area collegata."
+    q: "Cosa sono i 'graph databases'?",
+    a: { A: "Database che modellano relazioni tra dati come grafi", B: "Grafici di Excel", C: "File immagine", D: "Cartelle" },
+    correct: "A",
+    exp: "I graph databases (come Neo4j) modellano dati come nodi e archi, ideali per relazioni complesse."
   },
   {
     id: 51,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale interpretazione dell'indirizzo https://www.example.com/cartella/sottocartella?a=7&b=5 è corretta?",
-    a: { A: "cartella/sottocartella rappresenta il browser usato", B: "a=7&b=5 rappresenta il nome del dominio", C: "cartella/sottocartella indica un percorso e a=7&b=5 sono parametri", D: "https indica il nome dell'autore della pagina" },
-    correct: "C",
-    exp: "Il percorso identifica la posizione della risorsa; i parametri passano dati."
+    q: "Cosa significa 'API' nel contesto web?",
+    a: { A: "Interfaccia che permette comunicazione tra applicazioni", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "Un'API (Application Programming Interface) permette a due software di comunicare e scambiarsi dati."
   },
   {
     id: 52,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale affermazione è corretta sul dominio di secondo livello e primo livello presi insieme?",
-    a: { A: "Rappresentano il colore grafico della pagina", B: "Identificano il tipo di tastiera utilizzata", C: "Coincidono sempre con il percorso del file", D: "Rappresentano l'indirizzo del server che ospita la risorsa" },
-    correct: "D",
-    exp: "Dominio di secondo livello e primo livello identificano il server della risorsa."
+    q: "Cosa sono i 'JSON' e 'XML'?",
+    a: { A: "Formati standard per strutturare e scambiare dati", B: "Tipi di file immagine", C: "Cartelle", D: "Backup" },
+    correct: "A",
+    exp: "JSON e XML sono formati standard leggibili e strutturati per memorizzare e trasmettere dati."
   },
   {
     id: 53,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale comportamento mostra competenza nella gestione dei preferiti?",
-    a: { A: "Salvare pagine utili in cartelle tematiche ed eliminare quelle non più necessarie", B: "Salvare ogni pagina visitata senza criterio", C: "Non usare mai la barra dei preferiti", D: "Confondere preferiti e cronologia" },
+    q: "Cosa significa 'REST architecture'?",
+    a: { A: "Stile architetturale per API web basato su HTTP", B: "Un database", C: "Un antivirus", D: "Un file" },
     correct: "A",
-    exp: "Gestire bene i preferiti significa organizzarli e mantenerli aggiornati."
+    exp: "REST (Representational State Transfer) è un'architettura per API che usa gli standard HTTP."
   },
   {
     id: 54,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale rischio può derivare da una richiesta troppo complessa e ambigua a un assistente virtuale?",
-    a: { A: "Il browser cambia automaticamente lingua", B: "La risposta può essere meno precisa o non aderente all'intento dell'utente", C: "Il computer elimina tutti i file locali", D: "Il motore di ricerca smette di funzionare" },
-    correct: "B",
-    exp: "Richieste ambigue rendono più difficile ottenere risposte precise."
+    q: "Cosa sono i 'metasearch engine'?",
+    a: { A: "Motori che aggregano risultati da altri motori", B: "File temporanei", C: "Cartelle nascoste", D: "Backup" },
+    correct: "A",
+    exp: "I metasearch engine (es: Metacrawler) cercano simultaneamente su più motori di ricerca."
   },
   {
     id: 55,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale frase rappresenta una richiesta ben formulata a un assistente virtuale?",
-    a: { A: "Cose Internet?", B: "Fammi tutto", C: "Spiegami in 5 punti la differenza tra browser e motore di ricerca con esempi", D: "Boh, cerca qualcosa" },
-    correct: "C",
-    exp: "La richiesta è chiara, delimitata e specifica nel formato desiderato."
+    q: "Cosa significa 'personalization engine'?",
+    a: { A: "Sistema che personalizza risultati in base al profilo utente", B: "Un backup", C: "Un antivirus", D: "Un file" },
+    correct: "A",
+    exp: "I personalization engine usano dati utente per offrire risultati di ricerca personalizzati."
   },
   {
     id: 56,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale aspetto rende gli algoritmi di apprendimento automatico difficili da comprendere per l'utente comune?",
-    a: { A: "Il fatto che usano solo carta stampata", B: "Il fatto che funzionano senza dati", C: "Il fatto che non producono risultati", D: "La complessità dei modelli statistici e delle reti neurali profonde" },
-    correct: "D",
-    exp: "Modelli complessi e reti neurali rendono l'IA difficile da interpretare."
+    q: "Cosa sono gli 'entity graphs'?",
+    a: { A: "Rappresentazioni di entità e loro relazioni (persone, luoghi, cose)", B: "Grafici", C: "File", D: "Cartelle" },
+    correct: "A",
+    exp: "Gli entity graphs mappano entità (persone, città, aziende) e i loro rapporti per ricerche semantiche."
   },
   {
     id: 57,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale approccio è coerente con una ricerca digitale consapevole?",
-    a: { A: "Definire obiettivo, parole chiave e fonte più adatta al tipo di informazione cercata", B: "Cercare sempre il primo risultato senza leggere il contesto", C: "Evitare motori specializzati anche quando servono", D: "Usare solo parole casuali e generiche" },
+    q: "Cosa significa 'intent-based search'?",
+    a: { A: "Ricerca basata sull'intento dell'utente, non solo su parole chiave", B: "Un file", C: "Un backup", D: "Una password" },
     correct: "A",
-    exp: "Una ricerca consapevole richiede obiettivo, parole chiave e scelta della fonte."
+    exp: "Le ricerche basate sull'intento capiscono cosa l'utente vuole davvero (non solo le parole digitate)."
   },
   {
     id: 58,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale affermazione chiarisce correttamente il ruolo dell'utente rispetto agli algoritmi digitali?",
-    a: { A: "L'utente non può mai essere influenzato dai contenuti proposti online", B: "L'utente dovrebbe essere consapevole che le proprie interazioni possono influenzare i contenuti visualizzati", C: "L'utente deve evitare sempre qualsiasi ricerca online", D: "L'utente non deve mai interrogarsi sulla provenienza dei contenuti" },
-    correct: "B",
-    exp: "L'utente deve sapere che le interazioni influenzano i contenuti visualizzati."
+    q: "Cosa sono i 'conversational interfaces'?",
+    a: { A: "Interfacce che permettono ricerche conversazionali (chatbot, assistenti vocali)", B: "File", C: "Cartelle", D: "Backup" },
+    correct: "A",
+    exp: "Le interfacce conversazionali (Alexa, Google Assistant) permettono ricerche e comandi in linguaggio naturale."
   },
   {
     id: 59,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Perché è importante diversificare i dataset usati nei sistemi di IA?",
-    a: { A: "Per aumentare il numero di schede del browser", B: "Per ridurre la velocità dei motori di ricerca", C: "Per rappresentare equamente gruppi diversi e ridurre possibili bias", D: "Per impedire l'uso degli assistenti virtuali" },
-    correct: "C",
-    exp: "Dataset diversificati favoriscono equità e riducono bias nei sistemi di IA."
+    q: "Cosa significa 'knowledge graph'?",
+    a: { A: "Grafo che rappresenta entità e relazioni per risultati semantici", B: "Un backup", C: "Un antivirus", D: "Un file" },
+    correct: "A",
+    exp: "Il knowledge graph (di Google) rappresenta entità e loro relazioni per fornire risultati più intelligenti."
   },
   {
     id: 60,
     category: "1.1 Navigare, ricercare e filtrare",
     difficulty: "difficile",
-    q: "Quale affermazione è più corretta sulla navigazione e ricerca online?",
-    a: { A: "Riguarda solo la memorizzazione meccanica degli indirizzi web", B: "Riguarda solo l'uso di un browser specifico", C: "Riguarda solo l'acquisto di prodotti online", D: "Include la capacità di navigare, cercare, filtrare e comprendere contenuti digitali in modo consapevole" },
-    correct: "D",
-    exp: "La competenza 1.1 riguarda navigazione, ricerca, filtro e comprensione dei contenuti digitali."
+    q: "Cosa sono i 'federated searches'?",
+    a: { A: "Ricerche simultanee su più basi dati federate", B: "File compressi", C: "Cartelle nascoste", D: "Email criptate" },
+    correct: "A",
+    exp: "Le federated searches interrogano contemporaneamente più database e banche dati federate."
   },
-  
-  // ========== CAPITOLO 1.2 — VALUTARE DATI, INFORMAZIONI E CONTENUTI ==========
-  
-  // SEZIONE 1 — FACILE (61-80)
+
+  // ===== CAPITOLO 1.2 - FACILI =====
   {
     id: 61,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Cosa significa valutare un contenuto digitale?",
-    a: { A: "Analizzare la sua affidabilità", B: "Copiarlo", C: "Stamparlo", D: "Condividerlo" },
+    q: "Cosa significa 'fake news'?",
+    a: { A: "Notizie false diffuse come vere", B: "Articoli di giornale", C: "Blog personali", D: "Post sui social" },
     correct: "A",
-    exp: "Valutare un contenuto significa analizzare la sua affidabilità."
+    exp: "Le fake news sono informazioni false e fuorvianti diffuse deliberatamente come se fossero vere."
   },
   {
     id: 62,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Qual è un elemento importante per valutare una fonte?",
-    a: { A: "Il colore del sito", B: "L'autore", C: "Il numero di immagini", D: "La lunghezza del testo" },
-    correct: "B",
-    exp: "L'autore è un elemento importante per valutare una fonte."
+    q: "Cosa sono i 'bias' informativi?",
+    a: { A: "Pregiudizi che influenzano la selezione e presentazione di informazioni", B: "Errori di sistema", C: "Virus", D: "File corrotti" },
+    correct: "A",
+    exp: "I bias sono pregiudizi inconsci che influenzano come selezioniamo e interpretiamo le informazioni."
   },
   {
     id: 63,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Una fonte è più affidabile se:",
-    a: { A: "È molto lunga", B: "È scritta in inglese", C: "Proviene da un ente autorevole", D: "Ha molte pubblicità" },
-    correct: "C",
-    exp: "Una fonte è affidabile se proviene da un ente autorevole."
+    q: "Cosa significa 'fact-checking'?",
+    a: { A: "Verificare l'accuratezza di un'informazione", B: "Leggere un articolo", C: "Commentare un post", D: "Condividere notizie" },
+    correct: "A",
+    exp: "Il fact-checking è il processo di verifica della veridicità e accuratezza di affermazioni e informazioni."
   },
   {
     id: 64,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Cosa indica la data di pubblicazione?",
-    a: { A: "Il costo", B: "L'autore", C: "Il formato", D: "L'aggiornamento" },
-    correct: "D",
-    exp: "La data di pubblicazione indica l'aggiornamento del contenuto."
+    q: "Come riconosci una fonte affidabile?",
+    a: { A: "Ha credenziali, trasparenza, citazioni verificabili", B: "Ha molti follower", C: "È popolare", D: "Ha molti like" },
+    correct: "A",
+    exp: "Una fonte affidabile mostra credenziali, chiarisce le fonti, cita esperti e è trasparente sui dati."
   },
   {
     id: 65,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Un contenuto promozionale ha lo scopo di:",
-    a: { A: "Informare in modo neutrale", B: "Vendere o promuovere", C: "Educare", D: "Riassumere" },
-    correct: "B",
-    exp: "Un contenuto promozionale ha lo scopo di vendere o promuovere."
+    q: "Cosa significa 'misinformation'?",
+    a: { A: "Informazioni false diffuse senza intento malevolo", B: "Dati criptati", C: "File temporanei", D: "Backup" },
+    correct: "A",
+    exp: "La misinformation è informazione falsa diffusa senza intento deliberato (diverso da disinformation)."
   },
   {
     id: 66,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Qual è un segnale di contenuto pubblicitario?",
-    a: { A: "Linguaggio neutro", B: "Obiettività", C: "Invito all'acquisto", D: "Fonti citate" },
-    correct: "C",
-    exp: "L'invito all'acquisto è un segnale di contenuto pubblicitario."
+    q: "Cosa significa 'disinformation'?",
+    a: { A: "Informazioni false diffuse deliberatamente per ingannare", B: "Dati mancanti", C: "File di sistema", D: "Backup" },
+    correct: "A",
+    exp: "La disinformation è informazione falsa diffusa volutamente e deliberatamente per fuorviare."
   },
   {
     id: 67,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Cosa significa 'fonte autorevole'?",
-    a: { A: "Molto lunga", B: "Scritta bene", C: "Popolare", D: "Affidabile e riconosciuta" },
-    correct: "D",
-    exp: "Una fonte autorevole è affidabile e riconosciuta."
+    q: "Cos'è una 'fonte primaria'?",
+    a: { A: "Documento originale (es: articolo di ricerca, documento storico)", B: "Un sommario", C: "Un'opinione", D: "Un commento" },
+    correct: "A",
+    exp: "Una fonte primaria è il documento originale (diario, articolo di ricerca) non rielaborato da altri."
   },
   {
     id: 68,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Un fatto è:",
-    a: { A: "Un'opinione personale", B: "Un'informazione verificabile", C: "Un'interpretazione", D: "Una supposizione" },
-    correct: "B",
-    exp: "Un fatto è un'informazione verificabile attraverso dati o fonti attendibili."
+    q: "Cos'è una 'fonte secondaria'?",
+    a: { A: "Analisi o commento su fonti primarie", B: "Un documento originale", C: "Un video", D: "Una foto" },
+    correct: "A",
+    exp: "Una fonte secondaria commenta o analizza fonti primarie (es: articolo che cita ricerche altrui)."
   },
   {
     id: 69,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Una opinione è:",
-    a: { A: "Sempre un fatto", B: "Un'informazione verificabile", C: "Un punto di vista personale", D: "Una prova scientifica" },
-    correct: "C",
-    exp: "Un'opinione esprime un punto di vista personale."
+    q: "Cosa significa 'credibilità'?",
+    a: { A: "Qualità di essere degno di fiducia e attendibile", B: "Popolarità", C: "Numero di condivisioni", D: "Numero di like" },
+    correct: "A",
+    exp: "La credibilità è la qualità di una fonte di essere affidabile, accurata e degna di fiducia."
   },
   {
     id: 70,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Un'interpretazione è:",
-    a: { A: "Una prova oggettiva", B: "Una spiegazione o lettura di un fatto", C: "Sempre falsa", D: "Sempre vera" },
-    correct: "B",
-    exp: "Un'interpretazione è una spiegazione o lettura di un fatto."
+    q: "Cosa significa 'autorità'?",
+    a: { A: "Competenza riconosciuta dell'autore su un argomento", B: "Potere politico", C: "Numero di articoli", D: "Numero di visualizzazioni" },
+    correct: "A",
+    exp: "L'autorità di una fonte riflette la competenza riconosciuta dell'autore nell'argomento trattato."
   },
   {
     id: 71,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "La pertinenza di un'informazione riguarda:",
-    a: { A: "La sua lunghezza", B: "Il grado di utilità rispetto all'obiettivo", C: "Il colore della pagina", D: "Il numero di lettori" },
-    correct: "B",
-    exp: "La pertinenza riguarda il grado di utilità di un contenuto rispetto all'obiettivo."
+    q: "Cosa significa 'conflitto di interessi'?",
+    a: { A: "Situazione dove chi diffonde info ha interesse personale nel risultato", B: "Disaccordo politico", C: "Incompatibilità legale", D: "Errore di sistema" },
+    correct: "A",
+    exp: "Un conflitto di interessi è quando chi diffonde informazioni ha interessi personali nel loro esito."
   },
   {
     id: 72,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Un deepfake è:",
-    a: { A: "Un errore di battitura", B: "Un contenuto falsificato tramite intelligenza artificiale", C: "Un tipo di virus", D: "Un file corrotto" },
-    correct: "B",
-    exp: "Un deepfake è un contenuto IA falsificato."
+    q: "Cosa significa 'satira' online?",
+    a: { A: "Contenuto che ridicolizza ironicamente un argomento", B: "Notizia vera", C: "Commento", D: "Condivisione" },
+    correct: "A",
+    exp: "La satira online usa ironia e esagerazione per ridicolizzare argomenti (spesso scambiata per vera notizia)."
   },
   {
     id: 73,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Il rischio principale dei deepfake è:",
-    a: { A: "Rallentare internet", B: "Ridurre la memoria del computer", C: "Diffondere disinformazione", D: "Aumentare la batteria del telefono" },
-    correct: "C",
-    exp: "Il rischio dei deepfake è diffondere disinformazione."
+    q: "Cosa significa 'deepfake'?",
+    a: { A: "Video falso creato con IA che imita una persona reale", B: "Foto di bassa qualità", C: "Video compresso", D: "File corrotto" },
+    correct: "A",
+    exp: "Un deepfake è un video falso creato con intelligenza artificiale che imita convincentemente una persona."
   },
   {
     id: 74,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "L'infodemia è:",
-    a: { A: "Una malattia virale", B: "Un errore informatico", C: "Un sovraccarico di informazioni", D: "Un tipo di malware" },
-    correct: "C",
-    exp: "L'infodemia è un sovraccarico informativo."
+    q: "Cosa significa 'clickbait'?",
+    a: { A: "Titolo sensazionalistico creato per attirare clic", B: "Un tipo di malware", C: "Un virus", D: "Un file temporaneo" },
+    correct: "A",
+    exp: "Il clickbait è un titolo volutamente sensazionalistico e fuorviante creato solo per attirare clic."
   },
   {
     id: 75,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Una filter bubble causa:",
-    a: { A: "Più accesso a informazioni diverse", B: "Visualizzazione di contenuti personalizzati", C: "Rallentamento della connessione", D: "Aumento della memoria" },
-    correct: "B",
-    exp: "La filter bubble comporta visualizzazione di contenuti personalizzati."
+    q: "Cosa significa 'echo chamber'?",
+    a: { A: "Ambiente dove vedi solo opinioni che condividi", B: "Una caverna", C: "Un evento", D: "Un'app" },
+    correct: "A",
+    exp: "Un'echo chamber è un ambiente (spesso social media) dove vedi principalmente opinioni simili alle tue."
   },
   {
     id: 76,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Una camera dell'eco è:",
-    a: { A: "Un dispositivo fisico", B: "Un software antivirus", C: "Una ripetizione delle stesse idee", D: "Un tipo di browser" },
-    correct: "C",
-    exp: "La camera dell'eco indica ripetizione delle stesse idee."
+    q: "Cosa significa 'filter bubble'?",
+    a: { A: "Personalizzazione che limita la varietà di informazioni viste", B: "Un errore del browser", C: "Un'estensione", D: "Un antivirus" },
+    correct: "A",
+    exp: "Un filter bubble è la personalizzazione algoritmica che limita le informazioni diverse che vedi."
   },
   {
     id: 77,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Gli algoritmi dei social media mostrano:",
-    a: { A: "Contenuti sempre uguali per tutti", B: "Contenuti casuali", C: "Contenuti personalizzati", D: "Solo pubblicità" },
-    correct: "C",
-    exp: "Gli algoritmi dei social mostrano contenuti personalizzati."
+    q: "Cosa significa 'sensazionalismo'?",
+    a: { A: "Presentare informazioni in modo esagerato per attirare attenzione", B: "Giornalismo serio", C: "Ricerca accademica", D: "Documento ufficiale" },
+    correct: "A",
+    exp: "Il sensazionalismo esagera e distorce le informazioni per attirare emotivamente l'attenzione."
   },
   {
     id: 78,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Una fonte primaria è:",
-    a: { A: "Un'opinione", B: "Un riassunto di altre fonti", C: "Un documento originale", D: "Un commento personale" },
-    correct: "C",
-    exp: "Una fonte primaria è un documento originale."
+    q: "Cosa significa 'fact opinion'?",
+    a: { A: "Presentare un'opinione come se fosse un fatto verificato", B: "Una ricerca", C: "Una teoria", D: "Un'analisi" },
+    correct: "A",
+    exp: "Confondere fatto e opinione significa presentare giudizi personali come se fossero fatti provati."
   },
   {
     id: 79,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "Il linguaggio neutrale in un testo indica:",
-    a: { A: "Manipolazione", B: "Emozione", C: "Oggettività", D: "Pubblicità" },
-    correct: "C",
-    exp: "Il linguaggio neutrale indica oggettività."
+    q: "Cosa significa 'manipolazione mediatica'?",
+    a: { A: "Alterare notizie per influenzare opinioni", B: "Notizia vera", C: "Articolo scientifico", D: "Documento pubblico" },
+    correct: "A",
+    exp: "La manipolazione mediatica altera informazioni e presenta prospettive distorte per influenzare opinioni."
   },
   {
     id: 80,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "facile",
-    q: "La trasparenza di una fonte significa:",
-    a: { A: "Assenza di autore", B: "Chiarezza delle informazioni", C: "Lunghezza del testo", D: "Velocità di caricamento" },
-    correct: "B",
-    exp: "La trasparenza indica chiarezza delle informazioni."
+    q: "Come valutare l'attualità di un'informazione?",
+    a: { A: "Controllando la data di pubblicazione e se aggiornata", B: "Contando i like", C: "Contando le condivisioni", D: "Leggendo i commenti" },
+    correct: "A",
+    exp: "L'attualità si valuta verificando la data di pubblicazione e se l'informazione è stata aggiornata."
   },
-  
-  // SEZIONE 2 — MEDIO (81-100)
+
+  // ===== CAPITOLO 1.2 - MEDIE =====
   {
     id: 81,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Qual è il primo passo nella valutazione di una fonte?",
-    a: { A: "Verificare l'autore", B: "Scaricare il file", C: "Condividerlo", D: "Stamparlo" },
+    q: "Cosa significa 'analisi critica di una fonte'?",
+    a: { A: "Esaminare sistematicamente origine, intento, credibilità e bias di una fonte", B: "Credere tutto", C: "Ignorare", D: "Condividere" },
     correct: "A",
-    exp: "La valutazione inizia con la verifica dell'autore."
+    exp: "L'analisi critica esamina sistematicamente chi pubblica, con quale intento, quali pregiudizi potrebbe avere."
   },
   {
     id: 82,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Una fonte accademica è:",
-    a: { A: "Un blog", B: "Una pubblicità", C: "Un social network", D: "Una pubblicazione scientifica" },
-    correct: "D",
-    exp: "Una fonte accademica è una pubblicazione scientifica."
+    q: "Cosa significa 'corroborazione'?",
+    a: { A: "Verificare un'informazione controllando più fonti indipendenti", B: "Copiare un testo", C: "Salvare un file", D: "Condividere un link" },
+    correct: "A",
+    exp: "La corroborazione verifica se un'informazione è confermata da altre fonti indipendenti e affidabili."
   },
   {
     id: 83,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "La presenza di pubblicità indica:",
-    a: { A: "Sempre falsità", B: "Possibile interesse commerciale", C: "Qualità elevata", D: "Veridicità" },
-    correct: "B",
-    exp: "La presenza di pubblicità indica possibile interesse commerciale."
+    q: "Cosa sono i 'segnali di qualità' di un articolo?",
+    a: { A: "Indicatori come citazioni, correzione di bozze, autorità autore, trasparenza", B: "Numero di visualizzazioni", C: "Numero di condivisioni", D: "Numero di commenti" },
+    correct: "A",
+    exp: "I segnali di qualità includono: ben scritto, citazioni, autore autorevole, date chiare, dichiarazioni fonti."
   },
   {
     id: 84,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Il dominio .gov indica:",
-    a: { A: "Sito personale", B: "Sito commerciale", C: "Sito governativo", D: "Sito anonimo" },
-    correct: "C",
-    exp: "Il dominio .gov indica un sito governativo."
+    q: "Cosa significa 'pubblicazione accademica peer-reviewed'?",
+    a: { A: "Articolo verificato da esperti della materia prima della pubblicazione", B: "Blog personale", C: "Commento online", D: "Post sui social" },
+    correct: "A",
+    exp: "Un articolo peer-reviewed è stato verificato e approvato da esperti indipendenti prima di pubblicarsi."
   },
   {
     id: 85,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "L'analisi comparativa di fonti serve a:",
-    a: { A: "Eliminare dati", B: "Confrontare fonti per individuare differenze", C: "Copiare contenuti", D: "Tradurre testi" },
-    correct: "B",
-    exp: "L'analisi comparativa serve a confrontare fonti diverse."
+    q: "Cosa significa 'ricerca primaria'?",
+    a: { A: "Studio originale che raccoglie e analizza dati diretti", B: "Rassegna di altri studi", C: "Opinione personale", D: "Commento" },
+    correct: "A",
+    exp: "La ricerca primaria è uno studio originale che raccoglie direttamente dati e li analizza (non rielaborazione)."
   },
   {
     id: 86,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Una fonte non aggiornata può essere:",
-    a: { A: "Più affidabile", B: "Irrilevante per il presente", C: "Più veloce", D: "Più completa" },
-    correct: "B",
-    exp: "Una fonte non aggiornata può essere irrilevante."
+    q: "Cosa sono i 'fallacies' logici?",
+    a: { A: "Errori di ragionamento che invalidano un argomento", B: "Malware", C: "Errori di sistema", D: "Bug" },
+    correct: "A",
+    exp: "Le fallacies sono errori logici che rendono un argomento non valido (ad hominem, straw man, ecc)."
   },
   {
     id: 87,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "L'accuratezza di una fonte indica:",
-    a: { A: "Velocità", B: "Precisione delle informazioni", C: "Lunghezza", D: "Grafica" },
-    correct: "B",
-    exp: "L'accuratezza indica precisione delle informazioni."
+    q: "Cosa significa 'conflitto ideologico'?",
+    a: { A: "Quando visioni opposte influenzano la presentazione di fatti", B: "Disaccordo personale", C: "Incompatibilità", D: "Errore" },
+    correct: "A",
+    exp: "Il conflitto ideologico si verifica quando le convinzioni di chi diffonde informazioni ne distorce la presentazione."
   },
   {
     id: 88,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un conflitto di interesse si ha quando:",
-    a: { A: "L'autore è anonimo", B: "Il contenuto è breve", C: "L'autore ha interessi personali nella questione", D: "Il sito è lento" },
-    correct: "C",
-    exp: "Un conflitto di interesse si verifica quando l'autore ha interessi personali."
+    q: "Cosa significa 'verifica incrociata'?",
+    a: { A: "Confrontare la stessa informazione su fonti multiple diverse", B: "Leggere due articoli", C: "Fare un backup", D: "Copiare un file" },
+    correct: "A",
+    exp: "La verifica incrociata confronta un'informazione su molteplici fonti indipendenti per validarla."
   },
   {
     id: 89,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "La diversificazione delle fonti permette:",
-    a: { A: "Riduzione delle informazioni", B: "Visione più completa e equilibrata", C: "Più confusione", D: "Più pubblicità" },
-    correct: "B",
-    exp: "La diversificazione riduce il rischio di bias."
+    q: "Cosa significa 'contesto'?",
+    a: { A: "Circostanze e informazioni che circondano un fatto, essenziali per comprenderlo pienamente", B: "Un'opinione", C: "Un commento", D: "Un post" },
+    correct: "A",
+    exp: "Il contesto fornisce le circostanze necessarie a comprendere pienamente il significato e l'importanza di un fatto."
   },
   {
     id: 90,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un contenuto aggiornato dimostra:",
-    a: { A: "Disinteresse dell'autore", B: "Impegno nel mantenere l'informazione valida", C: "Casualità", D: "Pubblicità" },
-    correct: "B",
-    exp: "Un contenuto aggiornato dimostra impegno dell'autore."
+    q: "Cosa significa 'source attribution'?",
+    a: { A: "Indicare chiaramente la fonte originale di un'informazione", B: "Copia non autorizzata", C: "Plagio", D: "Violazione" },
+    correct: "A",
+    exp: "L'attribution citare chiaramente la fonte originale di dati, quotes, immagini (essenziale per evitare plagio)."
   },
   {
     id: 91,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un sito affidabile cita:",
-    a: { A: "Solo opinioni", B: "Solo pubblicità", C: "Fonti verificabili e controllabili", D: "Solo commenti" },
-    correct: "C",
-    exp: "Un sito affidabile cita fonti verificabili."
+    q: "Cosa significa 'replicabilità'?",
+    a: { A: "La possibilità di ripetere uno studio e ottenere risultati simili", B: "Una copia", C: "Un file duplicato", D: "Un backup" },
+    correct: "A",
+    exp: "La replicabilità scientifica significa che uno studio può essere ripetuto indipendentemente con risultati simili."
   },
   {
     id: 92,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "La verifica incrociata consiste in:",
-    a: { A: "Copiare dati", B: "Confrontare dati tra fonti diverse", C: "Eliminare fonti", D: "Ignorare dati" },
-    correct: "B",
-    exp: "La verifica incrociata consiste nel confrontare fonti diverse."
+    q: "Cosa significa 'conflitto di credibilità'?",
+    a: { A: "Quando fonti affidabili danno informazioni contraddittorie", B: "Un errore di sistema", C: "Un bug", D: "Un malware" },
+    correct: "A",
+    exp: "Un conflitto di credibilità si verifica quando fonti autorevoli forniscono informazioni contradditorie."
   },
   {
     id: 93,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un contenuto virale è:",
-    a: { A: "Sempre vero", B: "Sempre falso", C: "Molto condiviso", D: "Sempre aggiornato" },
-    correct: "C",
-    exp: "Un contenuto virale è molto condiviso."
+    q: "Cosa significano 'statistiche fuorvianti'?",
+    a: { A: "Dati presentati in modo da alterare il significato reale", B: "Calcoli errati", C: "Numeri sbagliati", D: "Dati mancanti" },
+    correct: "A",
+    exp: "Statistiche fuorvianti sono presentate in modo che distorce il reale significato (scala inappropriata, selezione parziale)."
   },
   {
     id: 94,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "La reputazione della fonte indica:",
-    a: { A: "Grafica della pagina", B: "Credibilità e affidabilità", C: "Lunghezza del testo", D: "Colore dello sfondo" },
-    correct: "B",
-    exp: "La reputazione della fonte indica credibilità."
+    q: "Cosa significa 'correlazione vs causazione'?",
+    a: { A: "Due variabili correlate non significano una causa l'altra", B: "Sono la stessa cosa", C: "Sono opposte", D: "Non importa" },
+    correct: "A",
+    exp: "Correlazione significa due variabili variano insieme; causazione significa una causa l'altra (errore comune)."
   },
   {
     id: 95,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un contenuto manipolato può essere:",
-    a: { A: "Sempre chiaro", B: "Sempre completo", C: "Alterato per influenzare opinioni", D: "Sempre neutro" },
-    correct: "C",
-    exp: "Un contenuto manipolato è alterato."
+    q: "Cosa significa 'cherry picking'?",
+    a: { A: "Selezionare solo dati che supportano una conclusione desiderata", B: "Leggere tutto", C: "Analizzare bene", D: "Verificare" },
+    correct: "A",
+    exp: "Il cherry picking seleziona deliberatamente solo i dati che supportano la propria tesi, ignorando altri."
   },
   {
     id: 96,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "L'affidabilità si basa su:",
-    a: { A: "Emozioni", B: "Opinioni", C: "Fonti verificate e analisi critica", D: "Lunghezza del testo" },
-    correct: "C",
-    exp: "L'affidabilità si basa su fonti e verifiche."
+    q: "Cosa significa 'confirmation bias'?",
+    a: { A: "Tendenza a cercare informazioni che confermano le proprie credenze", B: "Un errore", C: "Un malware", D: "Un virus" },
+    correct: "A",
+    exp: "Il confirmation bias è la tendenza a cercare/interpretare informazioni per confermale le proprie credenze."
   },
   {
     id: 97,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un contenuto con bias è:",
-    a: { A: "Sempre obiettivo", B: "Sempre completo", C: "Parziale e orientato", D: "Sempre neutro" },
-    correct: "C",
-    exp: "Un contenuto con bias è parziale."
+    q: "Cosa significa 'peer opinion'?",
+    a: { A: "Valutazione da parte di pari (esperti della stessa disciplina)", B: "Opinione pubblica", C: "Commento online", D: "Post" },
+    correct: "A",
+    exp: "La peer opinion (revisione tra pari) è la valutazione da parte di esperti della stessa disciplina."
   },
   {
     id: 98,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "La valutazione critica richiede:",
-    a: { A: "Fiducia cieca", B: "Analisi e riflessione", C: "Velocità", D: "Condivisione immediata" },
-    correct: "B",
-    exp: "La valutazione critica richiede analisi."
+    q: "Cosa significa 'fact-versus-opinion article'?",
+    a: { A: "Un articolo che distingue chiaramente fatti verificati da opinioni", B: "Un blog", C: "Un commento", D: "Un post" },
+    correct: "A",
+    exp: "Un articolo di qualità distingue chiaramente tra fatti verificabili e opinioni editoriali dell'autore."
   },
   {
     id: 99,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "Un'informazione verificata è:",
-    a: { A: "Sempre condivisa", B: "Sempre popolare", C: "Confermata da fonti affidabili", D: "Sempre breve" },
-    correct: "C",
-    exp: "Un'informazione verificata è confermata da fonti affidabili."
+    q: "Cosa significano 'fonti trasparenti'?",
+    a: { A: "Fonti che chiariscono come arrivano alle conclusioni e dichiarano i limiti", B: "Fonte pubblica", C: "Sito web", D: "Social media" },
+    correct: "A",
+    exp: "Le fonti trasparenti spiegano metodologie, limiti, finanziamenti e potenziali conflitti di interesse."
   },
   {
     id: 100,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "medio",
-    q: "L'affidabilità aumenta con:",
-    a: { A: "Opinioni personali", B: "Pubblicità", C: "Uso di fonti multiple controllate", D: "Emozioni" },
-    correct: "C",
-    exp: "L'affidabilità aumenta con fonti multiple."
+    q: "Cosa significa 'authority check'?",
+    a: { A: "Verificare le credenziali e l'esperienza di chi afferma qualcosa", B: "Controllare un file", C: "Backup", D: "Antivirus" },
+    correct: "A",
+    exp: "Un authority check verifica se chi parla ha effettivamente competenze riconosciute nell'argomento."
   },
-  
-  // SEZIONE 3 — DIFFICILE (101-120)
+
+  // ===== CAPITOLO 1.2 - DIFFICILI =====
   {
     id: 101,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Un dataset sbilanciato nei sistemi IA può causare:",
-    a: { A: "Maggiore precisione", B: "Equità nei risultati", C: "Bias e risultati discriminatori", D: "Velocità aumentata" },
-    correct: "C",
-    exp: "Dataset sbilanciati generano bias nei sistemi IA."
+    q: "Cosa significa 'epistemologia'?",
+    a: { A: "Branca della filosofia che studia la natura della conoscenza", B: "Una malattia", C: "Un tipo di file", D: "Un programma" },
+    correct: "A",
+    exp: "L'epistemologia è la filosofia che studiacosa sia la conoscenza, come la otteniamo e come la validiamo."
   },
   {
     id: 102,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Per ridurre bias nei dati si deve:",
-    a: { A: "Ridurre i dati", B: "Diversificare i dati", C: "Eliminare i dati", D: "Copiare i dati" },
-    correct: "B",
-    exp: "L'equità richiede dati rappresentativi."
+    q: "Cosa significa 'triangolazione dati'?",
+    a: { A: "Usare 3+ metodi/fonti per validare un'informazione da angoli diversi", B: "Geometria", C: "Calcolo", D: "Misura" },
+    correct: "A",
+    exp: "La triangolazione usa più fonti e metodi indipendenti per validare un'informazione da prospettive diverse."
   },
   {
     id: 103,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La credibilità di una fonte si valuta anche tramite:",
-    a: { A: "Colore del sito", B: "Design grafico", C: "Autorevolezza e verificabilità", D: "Tipo di font" },
-    correct: "C",
-    exp: "La credibilità si basa su autorevolezza."
+    q: "Cosa significa 'falsificabilità'?",
+    a: { A: "La possibilità teorica di provare che un'affermazione è falsa", B: "Una bugia", C: "Un errore", D: "Un malware" },
+    correct: "A",
+    exp: "La falsificabilità è il principio che un'affermazione scientifica deve poter essere teoricamente provata falsa."
   },
   {
     id: 104,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Un contenuto aggiornato è importante perché:",
-    a: { A: "È lungo", B: "È recente e valido nel contesto attuale", C: "È grafico", D: "È semplice" },
-    correct: "B",
-    exp: "Un contenuto aggiornato è recente e valido."
+    q: "Cosa significa 'metanalisi'?",
+    a: { A: "Studio statistico che combina risultati di molteplici ricerche", B: "Una ricerca", C: "Un articolo", D: "Un'opinione" },
+    correct: "A",
+    exp: "La metanalisi è una tecnica statistica che combina i risultati di molti studi per trarre conclusioni più robuste."
   },
   {
     id: 105,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "L'obiettività richiede:",
-    a: { A: "Opinioni personali", B: "Emozioni forti", C: "Neutralità e basarsi su fatti", D: "Pubblicità" },
-    correct: "C",
-    exp: "L'obiettività richiede neutralità."
+    q: "Cosa significa 'positivismo'?",
+    a: { A: "Filosofia che ammette solo conoscenza empiricamente verificabile", B: "Un'opinione", C: "Un sentimento", D: "Un'emozione" },
+    correct: "A",
+    exp: "Il positivismo è una corrente filosofica che accetta solo conoscenza verificabile empiricamente (misurabile)."
   },
-  {
+    {
     id: 106,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La valutazione delle fonti evita:",
-    a: { A: "Velocità nella ricerca", B: "Accesso alle informazioni", C: "Diffusione di disinformazione", D: "Condivisione di contenuti" },
-    correct: "C",
-    exp: "La valutazione delle fonti evita disinformazione."
+    q: "Cosa significa 'relativismo epistemico'?",
+    a: { A: "Teoria che la verità è relativa e non assoluta", B: "Una malattia", C: "Un virus", D: "Un file" },
+    correct: "A",
+    exp: "Il relativismo epistemico sostiene che la verità sia relativa al contesto, cultura o osservatore."
   },
-  {    id: 107,
+  {
+    id: 107,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Un contenuto completo è:",
-    a: { A: "Parziale e superficiale", B: "Dettagliato e esauriente", C: "Breve", D: "Promozionale" },
-    correct: "B",
-    exp: "Un contenuto completo è dettagliato e esauriente."
+    q: "Cosa significa 'effetto Dunning-Kruger'?",
+    a: { A: "Tendenza a sopravvalutare la propria competenza", B: "Un malware", C: "Un virus", D: "Un errore" },
+    correct: "A",
+    exp: "L'effetto Dunning-Kruger è quando persone incompetenti sopravvalutano la propria conoscenza."
   },
   {
     id: 108,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "L'analisi critica serve a:",
-    a: { A: "Copiare contenuti", B: "Salvare file", C: "Condividere senza pensare", D: "Comprendere e valutare consapevolmente" },
-    correct: "D",
-    exp: "L'analisi critica serve a comprendere e valutare."
+    q: "Cosa significa 'burden of proof'?",
+    a: { A: "Responsabilità di chi fa un'affermazione di provarne la veridicità", B: "Un peso", C: "Un debito", D: "Un'obbligazione" },
+    correct: "A",
+    exp: "Il burden of proof assegna a chi fa un'affermazione straordinaria la responsabilità di provarla."
   },
   {
     id: 109,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Una fonte attendibile si riconosce da:",
-    a: { A: "Numero di lettori", B: "Trasparenza, citazioni e verificabilità", C: "Lunghezza del testo", D: "Facilità di condivisione" },
-    correct: "B",
-    exp: "Una fonte attendibile è trasparente e verificabile."
+    q: "Cosa significa 'principio di parsimonia'?",
+    a: { A: "La spiegazione più semplice è di solito la più giusta (Rasoio di Occam)", B: "Una legge", C: "Una regola", D: "Un principio morale" },
+    correct: "A",
+    exp: "Il principio di parsimonia (Rasoio di Occam) afferma che la spiegazione più semplice è spesso la migliore."
   },
   {
     id: 110,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Il NLP (Natural Language Processing) serve a:",
-    a: { A: "Comprimere file", B: "Analizzare e elaborare il linguaggio umano", C: "Salvare dati", D: "Eliminare contenuti" },
-    correct: "B",
-    exp: "Il NLP analizza il linguaggio naturale."
+    q: "Cosa significano 'intervalli di confidenza'?",
+    a: { A: "Range statistico dove è probabile cada il valore reale", B: "Sicurezza personale", C: "Fiducia", D: "Convinzione" },
+    correct: "A",
+    exp: "L'intervallo di confidenza è il range statistico dove è probabile cada il vero valore di un parametro."
   },
   {
     id: 111,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Il machine learning permette ai sistemi di:",
-    a: { A: "Stampare dati", B: "Apprendere e migliorare dai dati", C: "Eliminare errori automaticamente", D: "Ridurre memoria" },
-    correct: "B",
-    exp: "Il machine learning permette apprendimento dai dati."
+    q: "Cosa significa 'p-value'?",
+    a: { A: "Probabilità che un risultato sia dovuto al caso", B: "Un valore", C: "Un numero", D: "Una misura" },
+    correct: "A",
+    exp: "Il p-value misura la probabilità che un risultato sperimentale sia dovuto al caso (non a un effetto reale)."
   },
   {
     id: 112,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "L'opacità algoritmica rappresenta:",
-    a: { A: "Una caratteristica positiva", B: "Un'impossibilità tecnica", C: "Una sfida per la comprensione e la responsabilità", D: "Non esiste" },
-    correct: "C",
-    exp: "L'opacità algoritmica limita la trasparenza decisionale."
+    q: "Cosa significa 'publication bias'?",
+    a: { A: "Tendenza a pubblicare preferibilmente risultati positivi vs negativi", B: "Un errore", C: "Un malware", D: "Un virus" },
+    correct: "A",
+    exp: "Il publication bias favorisce la pubblicazione di studi con risultati significativi vs risultati nulli/negativi."
   },
   {
     id: 113,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La personalizzazione algoritmica può causare:",
-    a: { A: "Accesso a tutte le informazioni", B: "Filter bubble e echo chamber", C: "Riduzione delle informazioni disponibili", D: "Nessun effetto sulla visione" },
-    correct: "B",
-    exp: "La personalizzazione può creare filter bubble."
+    q: "Cosa significa 'regressione verso la media'?",
+    a: { A: "Tendenza di valori estremi a tornare verso la media nei tentativi successivi", B: "Un errore", C: "Un malware", D: "Un virus" },
+    correct: "A",
+    exp: "La regressione verso la media è la tendenza di valori estremi a tornare verso il valore medio successivamente."
   },
   {
     id: 114,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La verifica della fonte implica:",
-    a: { A: "Leggere una volta il contenuto", B: "Controllare autore, data, citazioni e reputazione", C: "Condividerlo immediatamente", D: "Ignorare le fonti" },
-    correct: "B",
-    exp: "La verifica implica controllo multiplo della fonte."
+    q: "Cosa significa 'effetto placebo'?",
+    a: { A: "Miglioramento dovuto all'aspettativa, non al trattamento reale", B: "Una medicina", C: "Un farmaco", D: "Una cura" },
+    correct: "A",
+    exp: "L'effetto placebo è il miglioramento osservato anche con trattamenti fittizi, dovuto all'aspettativa del paziente."
   },
   {
     id: 115,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Un approccio critico verso i media digitali implica:",
-    a: { A: "Fiducia totale", B: "Rifiuto completo", C: "Analisi consapevole e verifica delle informazioni", D: "Ignorare la provenienza" },
-    correct: "C",
-    exp: "Un approccio critico richiede analisi consapevole."
+    q: "Cosa significa 'doppio cieco'?",
+    a: { A: "Studio dove né ricercatori né partecipanti sanno chi riceve il vero trattamento", B: "Una cecità", C: "Un difetto visivo", D: "Una malattia" },
+    correct: "A",
+    exp: "Uno studio in doppio cieco nasconde al ricercatore e al partecipante chi riceve il vero trattamento vs placebo."
   },
   {
     id: 116,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "L'infodemia può causare:",
-    a: { A: "Maggiore conoscenza", B: "Confusione e difficoltà decisionale", C: "Meno informazioni disponibili", D: "Miglioramento automatico" },
-    correct: "B",
-    exp: "L'infodemia causa confusione e stress cognitivo."
+    q: "Cosa significa 'campionamento stratificato'?",
+    a: { A: "Divisione della popolazione in strati e campionamento proporzionale da ogni strato", B: "Un errore", C: "Un malware", D: "Un virus" },
+    correct: "A",
+    exp: "Il campionamento stratificato divide la popolazione in gruppi omogenei (strati) e campiona proporzionalmente."
   },
   {
     id: 117,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La disinformazione si differenzia dalla misinformazione per:",
-    a: { A: "Non esiste differenza", B: "È intenzionalmente falsa vs. erroneamente falsa", C: "Ha lo stesso significato", D: "Non è rilevante" },
-    correct: "B",
-    exp: "La disinformazione è intenzionale, la misinformazione accidentale."
+    q: "Cosa significa 'margine di errore'?",
+    a: { A: "Range di variazione accettabile in sondaggi/stime statistiche", B: "Un errore di sistema", C: "Un bug", D: "Un malware" },
+    correct: "A",
+    exp: "Il margine di errore è il range di variazione accettabile in sondaggi e stime statistiche."
   },
   {
     id: 118,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La valutazione di una fonte académica implica:",
-    a: { A: "Nessun controllo", B: "Fiducia automatica", C: "Verifica della revisione paritaria e della reputazione", D: "Solo leggere il titolo" },
-    correct: "C",
-    exp: "Le fonti accademiche vanno verificate per revisione paritaria."
+    q: "Cosa significa 'distribuzione normale'?",
+    a: { A: "Curva a campana dove i dati si distribuiscono simmetricamente attorno alla media", B: "Una retta", C: "Un'onda", D: "Un'ellisse" },
+    correct: "A",
+    exp: "La distribuzione normale (gaussiana) è la curva a campana dove dati si distribuiscono simmetricamente."
   },
   {
     id: 119,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "Un bias cognitivo nel consumo di media digitali è:",
-    a: { A: "La ricerca consapevole di fonti diverse", B: "La tendenza a credere info che confermano idee esistenti", C: "La verifica delle fonti", D: "L'analisi critica" },
-    correct: "B",
-    exp: "Un bias cognitivo porta a cercare conferme delle proprie idee."
+    q: "Cosa significa 'outlier'?",
+    a: { A: "Dato anomalo che si discosta molto dalla media", B: "Una misura", C: "Un numero", D: "Un valore" },
+    correct: "A",
+    exp: "Un outlier è un dato anomalo che si discosta significativamente dalla media e può distorcere l'analisi."
   },
   {
     id: 120,
     category: "1.2 Valutare dati, informazioni e contenuti",
     difficulty: "difficile",
-    q: "La competenza nell'area 1.2 riguarda principalmente:",
-    a: { A: "Solo memorizzare fatti", B: "La capacità di valutare criticamente la credibilità e l'affidabilità", C: "Condividere tutto rapidamente", D: "Ignorare le fonti" },
-    correct: "B",
-    exp: "La competenza 1.2 riguarda valutazione critica e affidabilità."
+    q: "Cosa significa 'validità interna'?",
+    a: { A: "Capacità di uno studio di misurare effettivamente ciò che propone di misurare", B: "Un errore", C: "Un malware", D: "Un virus" },
+    correct: "A",
+    exp: "La validità interna è la capacità di uno studio di misurare realmente il fenomeno che intende misurate."
   },
 
-  // ========== CAPITOLO 1.3 — GESTIRE E ARCHIVIARE DATI E CONTENUTI ==========
-  
-  // SEZIONE 1 — FACILE (121-140)
+  // ===== CAPITOLO 1.3 - FACILI =====
   {
     id: 121,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Cosa serve una chiavetta USB?",
-    a: { A: "Stampare documenti", B: "Archiviare dati portatili", C: "Navigare online", D: "Scrivere testi" },
-    correct: "B",
-    exp: "Una chiavetta USB serve a archiviare dati."
+    q: "Cosa significa 'gestione file'?",
+    a: { A: "Organizzazione e archiviazione di file in cartelle", B: "Leggere file", C: "Stampare", D: "Condividere online" },
+    correct: "A",
+    exp: "La gestione file è l'organizzazione e archiviazione strutturata di file in cartelle e sottocartelle."
   },
   {
     id: 122,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un file PDF è:",
-    a: { A: "Un video", B: "Un audio", C: "Un documento", D: "Un programma eseguibile" },
-    correct: "C",
-    exp: "Un file PDF è un documento."
+    q: "Cosa significa 'backup'?",
+    a: { A: "Copia di sicurezza di file importanti", B: "Un file", C: "Una cartella", D: "Un programma" },
+    correct: "A",
+    exp: "Un backup è una copia di sicurezza di file e dati importanti per recuperarli in caso di perdita."
   },
   {
     id: 123,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Cos'è un backup?",
-    a: { A: "Eliminazione di dati", B: "Copia di sicurezza dei dati", C: "Condivisione di file", D: "Compressione di dati" },
-    correct: "B",
-    exp: "Un backup è una copia di sicurezza."
+    q: "Cosa significa 'cloud storage'?",
+    a: { A: "Archiviazione dati su server online accessibili da qualsiasi dispositivo", B: "Disco fisso", C: "Memoria RAM", D: "Chiavetta USB" },
+    correct: "A",
+    exp: "Il cloud storage salva dati su server remoti online (es: Google Drive, Dropbox) accessibili ovunque."
   },
   {
     id: 124,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Il desktop di un computer è:",
-    a: { A: "Una stampante", B: "Un file", C: "L'area principale del sistema operativo", D: "Un servizio cloud" },
-    correct: "C",
-    exp: "Il desktop è l'area principale del sistema."
+    q: "Cosa significa 'privacy'?",
+    a: { A: "Diritto di controllare i propri dati personali", B: "Segretezza", C: "Isolamento", D: "Solitudine" },
+    correct: "A",
+    exp: "La privacy è il diritto di controllare come vengono raccolti, usati e condivisi i propri dati personali."
   },
   {
     id: 125,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un file immagine può avere estensione:",
-    a: { A: "MP3", B: "JPEG", C: "TXT", D: "EXE" },
-    correct: "B",
-    exp: "JPEG è un'estensione di file immagine."
+    q: "Cosa significa 'GDPR'?",
+    a: { A: "Regolamento europeo sulla protezione dei dati personali", B: "Un software", C: "Un browser", D: "Un'app" },
+    correct: "A",
+    exp: "Il GDPR (General Data Protection Regulation) è la legge UE che protegge i dati personali dei cittadini."
   },
   {
     id: 126,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Salvare un file significa:",
-    a: { A: "Eliminarlo", B: "Modificarlo", C: "Chiuderlo", D: "Memorizzarlo su disco" },
-    correct: "D",
-    exp: "Salvare significa memorizzare il file."
+    q: "Cosa significano 'dati sensibili'?",
+    a: { A: "Dati personali che meritano protezione maggiore (salute, finanza, identità)", B: "Dati pubblici", C: "Statistiche", D: "Numeri" },
+    correct: "A",
+    exp: "I dati sensibili sono informazioni personali che richiedono protezione speciale (SSN, salute, finanza)."
   },
   {
     id: 127,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Una cartella può contenere:",
-    a: { A: "Solo immagini", B: "Solo testi", C: "Solo video", D: "Diversi tipi di file" },
-    correct: "D",
-    exp: "Una cartella contiene file di vari tipi."
+    q: "Cosa significa 'consenso informato'?",
+    a: { A: "Permesso esplicito dell'utente per raccogliere/usare i suoi dati", B: "Un contratto", C: "Una firma", D: "Un documento" },
+    correct: "A",
+    exp: "Il consenso informato è il permesso esplicito e libero di una persona per raccogliere/usare i suoi dati."
   },
   {
     id: 128,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "La ricerca file serve a:",
-    a: { A: "Eliminare file", B: "Trovare file nel sistema", C: "Stampare", D: "Copiare" },
-    correct: "B",
-    exp: "La ricerca file serve a trovare file."
+    q: "Cosa significa 'crittografia'?",
+    a: { A: "Tecnica per rendere dati illeggibili a chi non ha la chiave", B: "Compressione file", C: "Backup", D: "Condivisione" },
+    correct: "A",
+    exp: "La crittografia trasforma dati in forma illeggibile senza una chiave speciale, protegge la privacy."
   },
   {
     id: 129,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un file video ha estensione:",
-    a: { A: "JPG", B: "MP3", C: "MP4", D: "TXT" },
-    correct: "C",
-    exp: "MP4 è un formato video comune."
+    q: "Cosa significa 'password forte'?",
+    a: { A: "Password lungo con maiuscole, numeri, simboli (almeno 12 caratteri)", B: "Password semplice", C: "Una parola", D: "Una data" },
+    correct: "A",
+    exp: "Una password forte è lunga (12+ caratteri) e contiene maiuscole, minuscole, numeri e simboli."
   },
   {
     id: 130,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "La gestione dei file serve a:",
-    a: { A: "Confondere l'utente", B: "Accelerare l'accesso ai dati", C: "Disordinare il sistema", D: "Organizzare i dati" },
-    correct: "D",
-    exp: "La gestione organizza i file."
+    q: "Cosa significa 'autenticazione a due fattori (2FA)'?",
+    a: { A: "Verifica in due passaggi (password + codice/SMS/app) per accedere", B: "Una sola password", C: "Un'impronta", D: "Un volto" },
+    correct: "A",
+    exp: "La 2FA richiede due forme di verifica (password + codice SMS/app) per accedere a un account."
   },
   {
     id: 131,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Il cloud è:",
-    a: { A: "Un dispositivo fisico", B: "Un software locale", C: "Uno spazio di archiviazione online", D: "Un tipo di browser" },
-    correct: "C",
-    exp: "Il cloud è archiviazione online."
+    q: "Cosa significa 'virus informatico'?",
+    a: { A: "Software malevolo che si replica e infetta file/sistemi", B: "Una malattia", C: "Un'infezione", D: "Una febbre" },
+    correct: "A",
+    exp: "Un virus informatico è un software malevolo che si replica automaticamente infettando file e sistemi."
   },
   {
     id: 132,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un vantaggio del cloud è:",
-    a: { A: "Non richiede internet", B: "Accesso da qualsiasi dispositivo", C: "Non permette sincronizzazione", D: "Elimina automaticamente i file" },
-    correct: "B",
-    exp: "Il cloud consente accesso remoto."
+    q: "Cosa significa 'malware'?",
+    a: { A: "Software malevolo generico (virus, trojans, spyware, ransomware)", B: "Un file", C: "Un programma buono", D: "Un'app sicura" },
+    correct: "A",
+    exp: "Malware è il termine generico per software malevolo (virus, trojans, ransomware, spyware)."
   },
   {
     id: 133,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un file audio ha solitamente estensione:",
-    a: { A: "JPG", B: "MP3", C: "AVI", D: "DOC" },
-    correct: "B",
-    exp: "MP3 è un formato audio comune."
+    q: "Cosa significa 'ransomware'?",
+    a: { A: "Malware che cripta file e chiede riscatto per decifrarli", B: "Un virus", C: "Una password", D: "Un backup" },
+    correct: "A",
+    exp: "Il ransomware cripta i file della vittima e richiede il pagamento di un riscatto per decifrarli."
   },
   {
     id: 134,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "La sincronizzazione nel cloud significa:",
-    a: { A: "Eliminazione automatica", B: "Aggiornamento automatico dei file su tutti i dispositivi", C: "Compressione dei dati", D: "Blocco dei file" },
-    correct: "B",
-    exp: "La sincronizzazione aggiorna i file su tutti i dispositivi."
+    q: "Cosa significa 'firewall'?",
+    a: { A: "Software/hardware che filtra il traffico di rete per bloccare accessi non autorizzati", B: "Un muro", C: "Un fuoco", D: "Un'arma" },
+    correct: "A",
+    exp: "Un firewall è un sistema di sicurezza che filtra il traffico di rete e blocca accessi pericolosi."
   },
   {
     id: 135,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un file compresso ha solitamente estensione:",
-    a: { A: "TXT", B: "ZIP", C: "JPG", D: "PDF" },
-    correct: "B",
-    exp: "ZIP è un formato compresso."
+    q: "Cosa significa 'antivirus'?",
+    a: { A: "Software che rileva e rimuove virus e malware", B: "Un virus", C: "Un file", D: "Un backup" },
+    correct: "A",
+    exp: "Un antivirus è un software che rileva, isola e rimuove virus e malware dal computer."
   },
   {
     id: 136,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "La compressione serve a:",
-    a: { A: "Eliminare dati", B: "Ridurre la dimensione dei file", C: "Aumentare il tempo di download", D: "Cambiare il formato" },
-    correct: "B",
-    exp: "La compressione riduce la dimensione."
+    q: "Cosa significa 'metadati di un file'?",
+    a: { A: "Informazioni su un file (autore, data, dimensione)", B: "Il contenuto del file", C: "Il codice", D: "Il testo" },
+    correct: "A",
+    exp: "I metadati di un file registrano info su di esso: autore, data creazione, dimensione, permessi."
   },
   {
     id: 137,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "I metadati di un file sono:",
-    a: { A: "Il contenuto vero del file", B: "Informazioni su autore, data, dimensione", C: "La password", D: "L'estensione del file" },
-    correct: "B",
-    exp: "I metadati contengono info su autore e data."
+    q: "Cosa significa 'compressione file'?",
+    a: { A: "Ridurre la dimensione di un file utilizzando algoritmi", B: "Dividere un file", C: "Copiare un file", D: "Spostare un file" },
+    correct: "A",
+    exp: "La compressione riduce la dimensione di un file tramite algoritmi (ZIP, RAR, 7z)."
   },
   {
     id: 138,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "La versione di un file indica:",
-    a: { A: "Il colore del documento", B: "L'aggiornamento o la variante del file", C: "La lingua", D: "Il tipo di stampante" },
-    correct: "B",
-    exp: "La versione indica aggiornamenti del file."
+    q: "Cosa significano i 'permessi di file'?",
+    a: { A: "Regole che controllano chi può leggere, modificare, eseguire un file", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "I permessi controllano chi può accedere (lettura), modificare (scrittura) o eseguire un file."
   },
   {
     id: 139,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "Un backup esterno è:",
-    a: { A: "Una copia sui server", B: "Una copia su dispositivo esterno", C: "Una stampa del file", D: "Un collegamento al file" },
-    correct: "B",
-    exp: "Un backup esterno è su dispositivo fisico."
+    q: "Cosa significa 'sincronizzazione cloud'?",
+    a: { A: "Aggiornamento automatico di file su più dispositivi tramite cloud", B: "Una copia", C: "Un backup manuale", D: "Una condivisione" },
+    correct: "A",
+    exp: "La sincronizzazione cloud aggiorna automaticamente file su tutti i tuoi dispositivi (PC, telefono, tablet)."
   },
   {
     id: 140,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "facile",
-    q: "La struttura di cartelle serve a:",
-    a: { A: "Rallentare il computer", B: "Organizzare i file logicamente", C: "Aumentare la memoria", D: "Eliminare file automaticamente" },
-    correct: "B",
-    exp: "La struttura organizza i file logicamente."
+    q: "Cosa significa 'account personale'?",
+    a: { A: "Profilo utente protetto da password con dati e preferenze proprie", B: "Un'azienda", C: "Un negozio", D: "Un'istituzione" },
+    correct: "A",
+    exp: "Un account personale è il tuo profilo online protetto da password che salva dati e preferenze."
   },
-  
-  // SEZIONE 2 — MEDIO (141-160)
+
+  // ===== CAPITOLO 1.3 - MEDIE =====
   {
     id: 141,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Una buona struttura di cartelle deve essere:",
-    a: { A: "Casuale", B: "Complessa", C: "Logica e intuitiva", D: "Disordinata" },
-    correct: "C",
-    exp: "Una buona struttura è logica e intuitiva."
+    q: "Cosa significa 'architettura dell'informazione'?",
+    a: { A: "Struttura organizzativa di dati in un sistema (cartelle, tag, metadati)", B: "Un edificio", C: "Una casa", D: "Un piano" },
+    correct: "A",
+    exp: "L'architettura dell'informazione organizza dati in sistemi logici (cartelle, tag, metatag) per facilitare accesso."
   },
   {
     id: 142,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "L'archiviazione locale avviene su:",
-    a: { A: "Server remoti", B: "Internet", C: "Dispositivi fisici locali", D: "Cloud pubblico" },
-    correct: "C",
-    exp: "L'archiviazione locale è su dispositivi fisici."
+    q: "Cosa significano 'standard di sicurezza'?",
+    a: { A: "Protocolli e best practices per proteggere dati (es: SSL, TLS, OAuth)", B: "Un'opinione", C: "Una regola", D: "Una legge" },
+    correct: "A",
+    exp: "Gli standard di sicurezza sono protocolli e pratiche (SSL, TLS, OAuth, 2FA) per proteggere dati e sistemi."
   },
   {
     id: 143,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Il cloud permette di:",
-    a: { A: "Stampare file", B: "Accedere ai dati online", C: "Eliminare completamente i dati", D: "Bloccare i file" },
-    correct: "B",
-    exp: "Il cloud permette accesso online ai dati."
+    q: "Cosa significa 'deduplicazione'?",
+    a: { A: "Processo di rimozione di copie duplicate di dati", B: "Copia", C: "Duplicazione", D: "Moltiplicazione" },
+    correct: "A",
+    exp: "La deduplicazione rileva e rimuove copie identiche di dati, risparmiando spazio di archiviazione."
   },
   {
     id: 144,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Uno svantaggio del cloud è:",
-    a: { A: "Accesso remoto", B: "Condivisione facile", C: "Dipendenza dalla connessione Internet", D: "Backup automatico" },
-    correct: "C",
-    exp: "Il cloud richiede connessione Internet."
+    q: "Cosa significa 'archiviazione a livelli'?",
+    a: { A: "Usare diversi tipi di storage (rapido/costoso per accesso frequente, lento/economico per archivio)", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "L'archiviazione a livelli usa storage rapido per dati frequenti e lento per dati archiviati."
   },
   {
     id: 145,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Un vantaggio dell'archiviazione locale è:",
-    a: { A: "Accesso offline", B: "Accesso globale", C: "Condivisione facile", D: "Collaborazione remota" },
+    q: "Cosa significa 'versioning'?",
+    a: { A: "Mantenere multiple versioni di uno stesso file per tracciare cambiamenti", B: "Una copia", C: "Un backup", D: "Un aggiornamento" },
     correct: "A",
-    exp: "L'archiviazione locale permette accesso offline."
+    exp: "Il versioning mantiene più versioni di un file tracciandone i cambiamenti (Git, Google Docs history)."
   },
   {
     id: 146,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Un file RAW è:",
-    a: { A: "Compresso", B: "Non compresso e grezzo", C: "Un audio", D: "Un testo" },
-    correct: "B",
-    exp: "RAW è non compresso."
+    q: "Cosa significa 'disaster recovery'?",
+    a: { A: "Piano e processi per ripristinare sistemi dopo un disastro/interruzione", B: "Un incidente", C: "Un errore", D: "Un malware" },
+    correct: "A",
+    exp: "Il disaster recovery è il piano per ripristinare rapidamente dati e sistemi dopo un disastro."
   },
   {
     id: 147,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La dimensione dei file dipende da:",
-    a: { A: "Colore della copertina", B: "Nome del file", C: "Risoluzione e qualità", D: "Cartella contenitore" },
-    correct: "C",
-    exp: "La dimensione dipende dalla risoluzione."
+    q: "Cosa significa 'compliance'?",
+    a: { A: "Conformità a leggi, regolamenti e standard (GDPR, HIPAA, ISO)", B: "Un accordo", C: "Un contratto", D: "Una firma" },
+    correct: "A",
+    exp: "La compliance è l'aderenza a leggi e standard (GDPR, HIPAA, ISO) per la protezione dei dati."
   },
   {
     id: 148,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Il backup incrementale è:",
-    a: { A: "Una copia di tutto", B: "Una copia solo dei file modificati", C: "Non esiste", D: "Uguale al backup completo" },
-    correct: "B",
-    exp: "Il backup incrementale copia solo le modifiche."
+    q: "Cosa significa 'audit trail'?",
+    a: { A: "Registro che registra chi accede a quali dati e quando", B: "Un sentiero", C: "Una strada", D: "Un percorso" },
+    correct: "A",
+    exp: "L'audit trail registra tutte le azioni su dati (chi, cosa, quando) per tracciamento e sicurezza."
   },
   {
     id: 149,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La condivisione di file può avvenire via:",
-    a: { A: "Solo email", B: "Solo cloud", C: "Email, cloud, chiavetta USB e altre modalità", D: "Solo telefono" },
-    correct: "C",
-    exp: "La condivisione ha molti canali."
+    q: "Cosa significa 'tokenization'?",
+    a: { A: "Sostituzione di dati sensibili con token non sensibili", B: "Un gettone", C: "Una moneta", D: "Un simbolo" },
+    correct: "A",
+    exp: "La tokenization sostituisce dati sensibili (numeri carta) con token innocui per proteggere privacy."
   },
   {
     id: 150,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La gestione delle versioni significa:",
-    a: { A: "Eliminare le versioni vecchie", B: "Tracciare i cambiamenti nel tempo", C: "Stampare ogni versione", D: "Non è importante" },
-    correct: "B",
-    exp: "La versioning traccia le modifiche."
+    q: "Cosa significa 'anonymization'?",
+    a: { A: "Rimozione di identificatori per rendere dati anonimizzati", B: "Nascondimento", C: "Occultamento", D: "Segreto" },
+    correct: "A",
+    exp: "L'anonimizzazione rimuove identificatori (nomi, numeri) dai dati per protegger la privacy individuale."
   },
   {
     id: 151,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La crittografia dei dati serve a:",
-    a: { A: "Eliminare i dati", B: "Proteggere i dati da accessi non autorizzati", C: "Aumentare la dimensione", D: "Rallentare il computer" },
-    correct: "B",
-    exp: "La crittografia protegge i dati."
+    q: "Cosa significa 'pseudonymization'?",
+    a: { A: "Sostituzione di identificatori con pseudonimi mantenendo tracciabilità potenziale", B: "Anonimato", C: "Segretezza", D: "Occultamento" },
+    correct: "A",
+    exp: "La pseudonimizzazione sostituisce identificatori con pseudonimi ma mantiene possibilità di tracciare."
   },
   {
     id: 152,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Un permission di file determinano:",
-    a: { A: "La dimensione del file", B: "Chi può accedere e modificare il file", C: "Il colore dell'icona", D: "La data di creazione" },
-    correct: "B",
-    exp: "Le permission controllano l'accesso ai file."
+    q: "Cosa significa 'data minimization'?",
+    a: { A: "Raccogliere solo dati necessari per uno scopo specifico", B: "Riduzione", C: "Compressione", D: "Minimizzazione" },
+    correct: "A",
+    exp: "La minimizzazione raccoglie solo dati strettamente necessari, riduce rischi privacy."
   },
   {
     id: 153,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La ricerca avanzata serve a:",
-    a: { A: "Eliminare file", B: "Trovare file con criteri specifici", C: "Comprimere file", D: "Stampare file" },
-    correct: "B",
-    exp: "La ricerca avanzata usa filtri specifici."
+    q: "Cosa significa 'data retention'?",
+    a: { A: "Politica che specifica quanto tempo conservare dati prima di eliminarli", B: "Conservazione", C: "Archiviazione", D: "Salvataggio" },
+    correct: "A",
+    exp: "La data retention policy specifica il periodo di conservazione dati prima della loro eliminazione."
   },
   {
     id: 154,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Il recupero dei dati cancellati è:",
-    a: { A: "Sempre impossibile", B: "Sempre possibile", C: "Possibile in alcuni casi", D: "Non esiste" },
-    correct: "C",
-    exp: "Il recupero è possibile se i dati non sono sovrascritti."
+    q: "Cosa significa 'right to be forgotten'?",
+    a: { A: "Diritto GDPR di richiedere l'eliminazione dei propri dati personali", B: "Amnesia", C: "Oblio", D: "Dimenticanza" },
+    correct: "A",
+    exp: "Il right to be forgotten (GDPR) consente alle persone di richiedere l'eliminazione dei loro dati personali."
   },
   {
     id: 155,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La pulizia dei file temporanei serve a:",
-    a: { A: "Eliminare dati importanti", B: "Liberare spazio di archiviazione", C: "Aumentare il tempo", D: "Danneggiare il sistema" },
-    correct: "B",
-    exp: "Pulire i temporanei libera spazio."
+    q: "Cosa significa 'data portability'?",
+    a: { A: "Diritto di ottenere e trasferire i propri dati da un servizio a un altro", B: "Mobilità", C: "Trasporto", D: "Movimento" },
+    correct: "A",
+    exp: "La data portability (GDPR) consente di scaricare i propri dati e trasferirli a un altro servizio."
   },
   {
     id: 156,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Lo spazio su disco si visualizza in:",
-    a: { A: "Byte solo", B: "KB, MB, GB, TB", C: "Litri", D: "Chilometri" },
-    correct: "B",
-    exp: "Lo spazio si misura in unità di byte."
+    q: "Cosa significa 'data governance'?",
+    a: { A: "Framework di regole e processi per gestire dati e qualità", B: "Un governo", C: "Un'amministrazione", D: "Una gestione" },
+    correct: "A",
+    exp: "La data governance definisce regole, responsabilità e processi per gestire qualità e sicurezza dati."
   },
   {
     id: 157,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Il trasferimento di file tra dispositivi può avvenire via:",
-    a: { A: "Solo cavo USB", B: "Cavo, wireless, cloud e altre modalità", C: "Solo Bluetooth", D: "Solo email" },
-    correct: "B",
-    exp: "Il trasferimento ha molte modalità."
+    q: "Cosa significa 'data quality'?",
+    a: { A: "Misura di accuratezza, completezza e coerenza dei dati", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "La data quality misura l'accuratezza, completezza, coerenza e affidabilità dei dati."
   },
   {
     id: 158,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "L'organizzazione di file secondo date è:",
-    a: { A: "Non utile", B: "Utile per archivi cronologici", C: "Impossibile", D: "Non consigliato" },
-    correct: "B",
-    exp: "L'ordine cronologico è utile per certi archivi."
+    q: "Cosa significa 'data integration'?",
+    a: { A: "Combinazione di dati da fonti multiple in un sistema unificato", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "L'integrazione dati combina informazioni da fonti diverse in un sistema unificato e coerente."
   },
   {
     id: 159,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "Il nome significativo dei file aiuta a:",
-    a: { A: "Rallentare la ricerca", B: "Identificare rapidamente il contenuto", C: "Occupare più spazio", D: "Non serve" },
-    correct: "B",
-    exp: "Nomi significativi aiutano l'identificazione."
+    q: "Cosa significa 'master data'?",
+    a: { A: "Dati fondamentali e critici di un'organizzazione (clienti, prodotti, conti)", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "Il master data è l'insieme di dati fondamentali di un'azienda (clienti, prodotti, transazioni)."
   },
   {
     id: 160,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "medio",
-    q: "La sincronizzazione bidirezionale nel cloud significa:",
-    a: { A: "I file non si aggiornano", B: "I file si aggiornano solo sul cloud", C: "I file si aggiornano su tutti i dispositivi collegati", D: "Non è possibile" },
-    correct: "C",
-    exp: "La sincronizzazione bidirezionale aggiorna ovunque."
+    q: "Cosa significa 'ETL'?",
+    a: { A: "Extract, Transform, Load - processo di trasferimento dati fra sistemi", B: "Un file", C: "Un backup", D: "Una cartella" },
+    correct: "A",
+    exp: "ETL (Extract, Transform, Load) estrae dati, li trasforma e li carica in un sistema nuovo."
   },
-  
-  // SEZIONE 3 — DIFFICILE (161-180)
+
+  // ===== CAPITOLO 1.3 - DIFFICILI =====
   {
     id: 161,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Quale strategia garantisce la migliore protezione dei dati?",
-    a: { A: "Un solo backup", B: "Backup multipli, crittografia e accesso limitato", C: "Nessun backup", D: "Archiviazione pubblica" },
-    correct: "B",
-    exp: "La protezione richiede backup multipli e crittografia."
+    q: "Cosa significa 'homomorphic encryption'?",
+    a: { A: "Crittografia che permette operazioni su dati cifrati senza decifrarli", B: "Una semplice crittografia", C: "Un backup", D: "Una cartella" },
+    correct: "A",
+    exp: "L'homomorphic encryption permette di eseguire calcoli su dati cifrati senza doverli decifrare."
   },
   {
     id: 162,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La regola 3-2-1 nel backup significa:",
-    a: { A: "3 copie, 2 formati, 1 offsite", B: "3 file, 2 cartelle, 1 copia", C: "Non esiste", D: "3 backup, 2 dispositivi, 1 cloud" },
+    q: "Cosa significa 'zero-trust model'?",
+    a: { A: "Architettura di sicurezza che non fidata nessuno, verifica tutto", B: "Fiducia totale", C: "Nessuna verifica", D: "Apertura totale" },
     correct: "A",
-    exp: "La regola 3-2-1 è: 3 copie, 2 formati, 1 offsite."
+    exp: "Lo zero-trust model non fidata automaticamente nessuno (interno o esterno), verifica sempre."
   },
   {
     id: 163,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Un sistema di file system RAID serve a:",
-    a: { A: "Ralentare l'accesso", B: "Fornire ridondanza e prestazioni", C: "Eliminare file", D: "Non serve" },
-    correct: "B",
-    exp: "RAID fornisce ridondanza e prestazioni."
+    q: "Cosa significa 'differential privacy'?",
+    a: { A: "Tecnica che aggiunge rumore ai dati per proteggere privacy individuale", B: "Privacy totale", C: "Anonimato", D: "Segretezza" },
+    correct: "A",
+    exp: "La differential privacy aggiunge rumore statistico ai dati mantenendo utilità ma proteggendo privacy."
   },
   {
     id: 164,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La verifica dell'integrità dei file consiste in:",
-    a: { A: "Cancellare il file", B: "Calcolare un hash per rilevare modifiche", C: "Non è importante", D: "Stampare il file" },
-    correct: "B",
-    exp: "L'integrità si verifica con hash."
+    q: "Cosa significa 'federated learning'?",
+    a: { A: "Addestrare modelli IA su dati decentralizzati senza centralizzare i dati", B: "Un'app", C: "Un software", D: "Un programma" },
+    correct: "A",
+    exp: "Il federated learning addestra modelli IA usando dati distribuiti senza raccoglierli in un luogo."
   },
   {
     id: 165,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La compressione senza perdita (lossless) significa:",
-    a: { A: "Si perdono dati", B: "Non si perdono dati", C: "I dati sono eliminati", D: "Non esiste" },
-    correct: "B",
-    exp: "Lossless comprime senza perdere dati."
+    q: "Cosa significa 'blockchain'?",
+    a: { A: "Tecnologia che usa catene di blocchi cifrati per registrare transazioni immutabili", B: "Una catena", C: "Un blocco", D: "Un file" },
+    correct: "A",
+    exp: "La blockchain registra transazioni in blocchi cifrati legati insieme, creando un registro immutabile."
   },
   {
     id: 166,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La compressione con perdita (lossy) è utile per:",
-    a: { A: "Documenti di testo", B: "Immagini e video di grandi dimensioni", C: "Database", D: "Codice sorgente" },
-    correct: "B",
-    exp: "Lossy è ideale per media file."
+    q: "Cosa significa 'distributed ledger'?",
+    a: { A: "Registro distribuito su più nodi senza autorità centrale", B: "Un file", C: "Una cartella", D: "Un backup" },
+    correct: "A",
+    exp: "Un distributed ledger è un registro (come blockchain) mantenuto in copie su più nodi indipendenti."
   },
   {
     id: 167,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La migrazione dei dati verso nuovi sistemi richiede:",
-    a: { A: "Nessuna pianificazione", B: "Pianificazione, test e verifica", C: "Eliminare i dati vecchi", D: "Non è importante" },
-    correct: "B",
-    exp: "La migrazione richiede pianificazione e test."
+    q: "Cosa significa 'smart contracts'?",
+    a: { A: "Contratti autoeseguibili su blockchain quando condizioni sono soddisfatte", B: "Un contratto normale", C: "Un accordo", D: "Un documento" },
+    correct: "A",
+    exp: "Gli smart contracts eseguono automaticamente azioni su blockchain quando condizioni specifiche sono met."
   },
   {
     id: 168,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "L'archivio a freddo (cold storage) serve a:",
-    a: { A: "Accesso frequente", B: "Archiviazione a lungo termine di dati non frequenti", C: "Non serve", D: "Eliminare dati" },
-    correct: "B",
-    exp: "Cold storage per dati non frequenti."
+    q: "Cosa significa 'consensus mechanism'?",
+    a: { A: "Protocollo per far accordare nodi distribuiti su validità di dati", B: "Un accordo", C: "Una decisione", D: "Un voto" },
+    correct: "A",
+    exp: "Un consensus mechanism (PoW, PoS) fa accordare nodi distribuiti sulla validità dei dati senza centro."
   },
   {
     id: 169,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La quota di spazio disco serve a:",
-    a: { A: "Elimina automaticamente file", B: "Limita lo spazio usabile per utente", C: "Aumenta la velocità", D: "Non serve" },
-    correct: "B",
-    exp: "La quota limita lo spazio per utente."
+    q: "Cosa significa 'cold storage'?",
+    a: { A: "Archiviazione offline di dati sensibili per sicurezza massima", B: "Un freddo", C: "Una temperatura", D: "Un'aria" },
+    correct: "A",
+    exp: "Il cold storage mantiene dati offline (prive di accesso internet) per protezione massima da attacchi."
   },
   {
     id: 170,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Il versionamento dei dati permette di:",
-    a: { A: "Perdere le versioni precedenti", B: "Recuperare versioni precedenti", C: "Eliminare tutto", D: "Non serve" },
-    correct: "B",
-    exp: "Il versionamento consente ripristino."
+    q: "Cosa significa 'hot storage'?",
+    a: { A: "Archiviazione online di dati frequentemente accessibili", B: "Un caldo", C: "Una temperatura", D: "Un'aria" },
+    correct: "A",
+    exp: "L'hot storage mantiene dati online e facilmente accessibili per utilizzo frequente e rapido."
   },
   {
     id: 171,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La deduplicazione dei dati serve a:",
-    a: { A: "Duplicare i dati", B: "Eliminare copie duplicate", C: "Non serve", D: "Creare backup" },
-    correct: "B",
-    exp: "La deduplicazione riduce lo spazio."
+    q: "Cosa significa 'RAID'?",
+    a: { A: "Redundant Array of Independent Disks - tecnologia per ridondanza e velocità storage", B: "Un attacco", C: "Un raid", D: "Un'incursione" },
+    correct: "A",
+    exp: "RAID usa dischi multipli per ridondanza (backup automatico) e velocità di accesso ai dati."
   },
   {
     id: 172,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Un approccio corretto alla gestione dei dati implica:",
-    a: { A: "Nessuna organizzazione", B: "Pianificazione, backup e monitoraggio", C: "Solo eliminare i dati", D: "Non è importante" },
-    correct: "B",
-    exp: "La gestione richiede pianificazione e backup."
+    q: "Cosa significa 'replication'?",
+    a: { A: "Copiatura automatica di dati su più server per disponibilità", B: "Una copia", C: "Un duplicato", D: "Una clone" },
+    correct: "A",
+    exp: "La replication mantiene copie identiche di dati su server multipli per continuità e disponibilità."
   },
   {
     id: 173,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La privacy dei dati nel cloud dipende da:",
-    a: { A: "Nulla", B: "Provider, crittografia e policy", C: "Non è possibile", D: "Non è importante" },
-    correct: "B",
-    exp: "La privacy dipende da provider e crittografia."
+    q: "Cosa significa 'failover'?",
+    a: { A: "Cambio automatico a sistema di backup quando il principale fallisce", B: "Un errore", C: "Un fallimento", D: "Un disastro" },
+    correct: "A",
+    exp: "Il failover commuta automaticamente a un sistema di backup quando il principale subisce un guasto."
   },
   {
     id: 174,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La conformità GDPR nella gestione dati significa:",
-    a: { A: "Non è importante", B: "Rispetto della privacy e diritti dell'utente", C: "Eliminare tutti i dati", D: "Non esiste" },
-    correct: "B",
-    exp: "GDPR protegge la privacy dell'utente."
+    q: "Cosa significa 'API'?",
+    a: { A: "Application Programming Interface - strumento per far comunicare software diversi", B: "Un'app", C: "Un software", D: "Un programma" },
+    correct: "A",
+    exp: "Un'API è un'interfaccia che permette a software diversi di comunicare e scambiarsi dati."
   },
   {
     id: 175,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La pianificazione della capacità server riguarda:",
-    a: { A: "Non è rilevante", B: "Prevedere le esigenze di spazio future", C: "Eliminare server", D: "Non serve" },
-    correct: "B",
-    exp: "La pianificazione previene saturazione."
+    q: "Cosa significa 'JSON'?",
+    a: { A: "JavaScript Object Notation - formato testuale per scambiare dati strutturati", B: "Un file", C: "Un programma", D: "Un'app" },
+    correct: "A",
+    exp: "JSON è un formato leggibile per scambiare dati strutturati fra sistemi (alternativa a XML)."
   },
   {
     id: 176,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Un sistema di backup automatico garantisce:",
-    a: { A: "Protezione continuativa", B: "Nulla", C: "Eliminazione dei file", D: "Non serve" },
+    q: "Cosa significa 'REST API'?",
+    a: { A: "API che usa HTTP per operazioni CRUD su risorse identificate da URL", B: "Un'api", C: "Un'app", D: "Un software" },
     correct: "A",
-    exp: "I backup automatici proteggono i dati."
+    exp: "Una REST API usa HTTP (GET, POST, PUT, DELETE) per operazioni su risorse identificate da URL."
   },
   {
     id: 177,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La gestione della memoria (RAM) nel computer è:",
-    a: { A: "Non importante", B: "Essenziale per le prestazioni", C: "Non è possibile", D: "Non serve" },
-    correct: "B",
-    exp: "La RAM impatta sulle prestazioni."
+    q: "Cosa significa 'SOAP'?",
+    a: { A: "Simple Object Access Protocol - protocollo XML per web services", B: "Un sapone", C: "Una schiuma", D: "Un detergente" },
+    correct: "A",
+    exp: "SOAP è un protocollo XML per messaggi web service complessi (più pesante di REST)."
   },
   {
     id: 178,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Il monitoraggio del disco rigido serve a:",
-    a: { A: "Nulla", B: "Prevenire guasti e perdita di dati", C: "Eliminare file", D: "Non serve" },
-    correct: "B",
-    exp: "Il monitoraggio previene guasti."
+    q: "Cosa significa 'sharding'?",
+    a: { A: "Partizione di dati grandi in sottoinsiemi (shards) distribuiti su server multipli", B: "Un frammento", C: "Un pezzo", D: "Una parte" },
+    correct: "A",
+    exp: "Lo sharding divide dati grandi in parti (shards) distribuite su server per scalabilità."
   },
   {
     id: 179,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "La competenza 1.3 riguarda principalmente:",
-    a: { A: "Solo memorizzare nomi di file", B: "La gestione consapevole e sicura dei dati", C: "Eliminare file", D: "Non è importante" },
-    correct: "B",
-    exp: "La competenza 1.3 è su gestione sicura dei dati."
+    q: "Cosa significa 'caching'?",
+    a: { A: "Memorizzazione temporanea di dati acceduti frequentemente per velocità", B: "Un nascondiglio", C: "Un rifugio", D: "Un riparo" },
+    correct: "A",
+    exp: "Il caching memorizza temporaneamente dati frequenti in memoria veloce per accesso più rapido."
   },
   {
     id: 180,
-    category: "1.3 Gestire e archiviare dati e contenuti",
+    category: "1.3 Gestire dati e contenuti",
     difficulty: "difficile",
-    q: "Una strategia di archiviazione moderna combina:",
-    a: { A: "Solo cloud", B: "Solo disco locale", C: "Local + cloud + backup offsite", D: "Nessun metodo" },
-    correct: "C",
-    exp: "La strategia moderna combina più metodi."
+    q: "Cosa significa 'database normalization'?",
+    a: { A: "Processo di organizzazione dati per ridurre ridondanza e migliorare integrità", B: "Un'organizzazione", C: "Un ordine", D: "Una struttura" },
+    correct: "A",
+    exp: "La normalizzazione organizza i dati in tabelle relazionali per eliminare ridondanza e garantire coerenza."
   }
 ];
 
 // ============================================
-// FUNZIONI DI FILTRAGGIO PER DIFFICOLTÀ
+// 🎯 VARIABILI GLOBALI
 // ============================================
-
-function filterPaniereByDifficulty() {
-  let filtered = [...PANIERE];
-  
-  if (CONFIG.FILTRO_DIFFICOLTA) {
-    filtered = filtered.filter(q => q.difficulty === CONFIG.FILTRO_DIFFICOLTA);
-  }
-  
-  return filtered;
-}
-
-function selectQuestionsByDistribution() {
-  if (!CONFIG.DISTRIBUZIONE_DIFFICOLTA) {
-    return filterPaniereByDifficulty();
-  }
-  
-  const distribution = CONFIG.DISTRIBUZIONE_DIFFICOLTA;
-  const selected = [];
-  
-  ['facile', 'medio', 'difficile'].forEach(difficulty => {
-    const count = distribution[difficulty] || 0;
-    const byDifficulty = PANIERE.filter(q => q.difficulty === difficulty);
-    const shuffled = shuffleArray(byDifficulty);
-    selected.push(...shuffled.slice(0, count));
-  });
-  
-  return selected;
-}
-
-// ============================================
-// STATE
-// ============================================
-
-let currentScreen = 'welcome';
-let quizQuestions = [];
+let currentScreen = 'welcome'; // 'welcome' | 'chapter-select' | 'quiz' | 'results'
+let selectedChapter = null; // '1.1' | '1.2' | '1.3' | 'all'
 let currentQuestionIndex = 0;
-let userAnswers = [];
+let userAnswers = []; // [{questionId, userAnswer, isCorrect}, ...]
+let quizQuestions = []; // Domande estratte per il quiz corrente
 let timerInterval = null;
 let timeRemaining = CONFIG.DURATA_TIMER;
 
 // ============================================
-// DOM Elements
+// 🎮 INIZIALIZZAZIONE
 // ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  initScreen();
+});
 
-const screens = {
-  welcome: document.getElementById('screen-welcome'),
-  quiz: document.getElementById('screen-quiz'),
-  results: document.getElementById('screen-results')
-};
-
-const modalLegal = document.getElementById('modal-legal');
-const modalConfirm = document.getElementById('modal-confirm');
-const timerDisplay = document.getElementById('timer-display');
-const timerAlert = document.getElementById('timer-alert');
-const progressBar = document.getElementById('progress-bar');
-const progressText = document.getElementById('progress-text');
-const questionContainer = document.getElementById('question-container');
+function initScreen() {
+  showScreen('welcome');
+}
 
 // ============================================
-// Utility Functions
+// 📱 GESTIONE SCHERMATE
 // ============================================
+function showScreen(screenName) {
+  // Nascondi tutte le schermate
+  document.querySelectorAll('.screen').forEach(el => el.classList.add('hidden'));
+  
+  // Mostra la schermata richiesta
+  const screenEl = document.getElementById(`screen-${screenName}`);
+  if (screenEl) {
+    screenEl.classList.remove('hidden');
+    currentScreen = screenName;
+  }
+}
+
+// ============================================
+// 🚨 MODAL WARNING
+// ============================================
+function openModalWarning() {
+  const modal = document.getElementById('modal-overlay');
+  modal.classList.remove('hidden');
+}
+
+function closeModalWarning() {
+  const modal = document.getElementById('modal-overlay');
+  modal.classList.add('hidden');
+  showScreen('welcome');
+}
+
+function startQuiz() {
+  const modal = document.getElementById('modal-overlay');
+  modal.classList.add('hidden');
+  showScreen('chapter-select');
+}
+
+// ============================================
+// 📚 SELEZIONE CAPITOLO
+// ============================================
+function selectChapter(chapter) {
+  selectedChapter = chapter; // '1.1' | '1.2' | '1.3' | 'all'
+  loadQuiz();
+}
+
+// ============================================
+// 🎲 CARICAMENTO E ESTRAZIONE QUIZ
+// ============================================
+function loadQuiz() {
+  // RESET
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  timeRemaining = CONFIG.DURATA_TIMER;
+
+  // FILTRA domande per capitolo
+  let filteredByChapter = PANIERE;
+  if (selectedChapter && selectedChapter !== 'all') {
+    filteredByChapter = PANIERE.filter(q => q.category.startsWith(selectedChapter));
+  }
+
+  // ESTRAE N domande con distribuzione per difficoltà
+  quizQuestions = extractQuestions(filteredByChapter, CONFIG.DISTRIBUZIONE_DIFFICOLTA);
+
+  // RIMESCOLA opzioni per ogni domanda
+  quizQuestions.forEach(q => {
+    shuffleOptions(q);
+  });
+
+  // MOSTRA la prima domanda
+  showScreen('quiz');
+  displayQuestion();
+  startTimer();
+}
+
+function extractQuestions(questions, distribution) {
+  if (!distribution) {
+    // Estrazione casuale semplice
+    return shuffleArray(questions).slice(0, CONFIG.NUM_DOMANDE);
+  }
+
+  // Estrazione con distribuzione controllata
+  const result = [];
+  for (const [difficulty, count] of Object.entries(distribution)) {
+    const byDifficulty = questions.filter(q => q.difficulty === difficulty);
+    const extracted = shuffleArray(byDifficulty).slice(0, count);
+    result.push(...extracted);
+  }
+  return shuffleArray(result);
+}
+
+function shuffleOptions(question) {
+  const options = ['A', 'B', 'C', 'D'];
+  const shuffled = shuffleArray(options);
+  
+  // Rimappa le opzioni
+  const newOptions = {};
+  shuffled.forEach((newLetter, oldIndex) => {
+    const oldLetter = options[oldIndex];
+    newOptions[newLetter] = question.a[oldLetter];
+  });
+  
+  // Aggiorna la risposta corretta in base al rimescolamento
+  const oldCorrectLetter = question.correct;
+  const oldCorrectIndex = options.indexOf(oldCorrectLetter);
+  const newCorrectLetter = shuffled[oldCorrectIndex];
+  
+  question.a = newOptions;
+  question.correct = newCorrectLetter;
+}
 
 function shuffleArray(array) {
   const arr = [...array];
@@ -1737,282 +1798,176 @@ function shuffleArray(array) {
   return arr;
 }
 
-function shuffleOptions(question) {
-  const options = ['A', 'B', 'C', 'D'];
-  const shuffled = shuffleArray(options);
-  const newOptions = {};
-  let newCorrect = question.correct;
+// ============================================
+// ❓ VISUALIZZAZIONE DOMANDE
+// ============================================
+function displayQuestion() {
+  if (currentQuestionIndex >= quizQuestions.length) {
+    showResults();
+    return;
+  }
+
+  const question = quizQuestions[currentQuestionIndex];
+  const container = document.getElementById('question-container');
   
-  shuffled.forEach((key, index) => {
-    const letter = ['A', 'B', 'C', 'D'][index];
-    newOptions[letter] = question.a[key];
-    if (key === question.correct) {
-      newCorrect = letter;
+  // Progress
+  document.getElementById('progress-text').textContent = 
+    `Domanda ${currentQuestionIndex + 1} di ${quizQuestions.length}`;
+  const progress = ((currentQuestionIndex) / quizQuestions.length) * 100;
+  document.getElementById('progress-bar').style.width = `${progress}%`;
+
+  // Domanda
+  let html = `
+    <div class="question-box">
+      <h2>${question.q}</h2>
+      <div class="options">
+  `;
+
+  // Opzioni
+  ['A', 'B', 'C', 'D'].forEach(letter => {
+    html += `
+      <button class="option-btn" onclick="selectAnswer('${letter}')">
+        <span class="option-letter">${letter}</span>
+        <span class="option-text">${question.a[letter]}</span>
+      </button>
+    `;
+  });
+
+  html += `</div></div>`;
+  container.innerHTML = html;
+}
+
+function selectAnswer(letter) {
+  const question = quizQuestions[currentQuestionIndex];
+  const isCorrect = (letter === question.correct);
+  
+  userAnswers.push({
+    questionId: question.id,
+    question: question.q,
+    userAnswer: question.a[letter],
+    userLetter: letter,
+    correct: question.correct,
+    correctAnswer: question.a[question.correct],
+    isCorrect: isCorrect,
+    category: question.category,
+    exp: question.exp
+  });
+
+  // Avanza alla domanda successiva
+  currentQuestionIndex++;
+  setTimeout(() => displayQuestion(), 500);
+}
+
+// ============================================
+// ⏱️ TIMER
+// ============================================
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerDisplay();
+
+    if (timeRemaining <= CONFIG.ALERT_TIMER_SOGLIA && timeRemaining > CONFIG.ALERT_TIMER_SOGLIA - 1) {
+      showTimerAlert();
     }
-  });
-  
-  return { options: newOptions, correct: newCorrect };
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      showResults();
+    }
+  }, 1000);
 }
 
-function formatTime(seconds) {
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+function updateTimerDisplay() {
+  const mins = Math.floor(timeRemaining / 60);
+  const secs = timeRemaining % 60;
+  document.getElementById('timer').textContent = 
+    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
 
-// ============================================
-// Screen Management
-// ============================================
-
-function showScreen(screenName) {
-  Object.values(screens).forEach(screen => {
-    screen.classList.add('hidden');
-    screen.classList.remove('fade-in');
-  });
-  screens[screenName].classList.remove('hidden');
-  screens[screenName].classList.add('fade-in');
-  currentScreen = screenName;
+function showTimerAlert() {
+  const alert = document.getElementById('timer-alert');
+  alert.classList.remove('hidden');
 }
 
 // ============================================
-// Modal Functions
+// 🔙 TORNA ALLA HOME
 // ============================================
-
-function openModal() {
-  modalLegal.classList.remove('hidden');
-  modalLegal.classList.add('fade-in');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  modalLegal.classList.add('hidden');
-  modalLegal.classList.remove('fade-in');
-  document.body.style.overflow = '';
-}
-
-function openConfirmModal() {
-  modalConfirm.classList.remove('hidden');
-  modalConfirm.classList.add('fade-in');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeConfirmModal() {
-  modalConfirm.classList.add('hidden');
-  modalConfirm.classList.remove('fade-in');
-  document.body.style.overflow = '';
+function confirmBackHome() {
+  if (confirm('Torna alla schermata iniziale (welcome screen)? Il test in corso sarà cancellato.')) {
+    clearInterval(timerInterval);
+    showScreen('welcome');
+  }
 }
 
 // ============================================
-// Quiz Functions
+// 🎯 RISULTATI
 // ============================================
+function showResults() {
+  clearInterval(timerInterval);
+  
+  const correct = userAnswers.filter(a => a.isCorrect).length;
+  const total = userAnswers.length;
+  const percentage = Math.round((correct / total) * 100);
 
-function startQuiz() {
-  closeModal();
-  
-  // Seleziona domande in base a CONFIG
-  let candidateQuestions = CONFIG.DISTRIBUZIONE_DIFFICOLTA 
-    ? selectQuestionsByDistribution() 
-    : filterPaniereByDifficulty();
-  
-  const shuffledQuestions = shuffleArray(candidateQuestions);
-  quizQuestions = shuffledQuestions.slice(0, CONFIG.NUM_DOMANDE).map(q => {
-    const { options, correct } = shuffleOptions(q);
-    return { ...q, a: options, correct };
-  });
-  
-  currentQuestionIndex = 0;
-  userAnswers = [];
-  timeRemaining = CONFIG.DURATA_TIMER;
-  
-  showScreen('quiz');
-  renderQuestion();
-  startTimer();
-}
+  // Determina badge
+  let badge = '📚';
+  let badgeName = 'Insufficiente';
+  if (percentage >= CONFIG.SOGLIA_ECCELLENTE) {
+    badge = '🏆';
+    badgeName = 'Eccellente';
+  } else if (percentage >= CONFIG.SOGLIA_SUFFICIENTE) {
+    badge = '👍';
+    badgeName = 'Sufficiente';
+  }
 
-function renderQuestion() {
-  const q = quizQuestions[currentQuestionIndex];
-  
-  questionContainer.innerHTML = `
-    <div class="question-card">
-      <div class="question-header">
-        <span class="question-category">${q.category}</span>
-        <span class="question-difficulty difficulty-${q.difficulty}">${q.difficulty}</span>
-      </div>
-      <div class="question-text">${q.q}</div>
-      <div class="options-grid">
-        ${Object.entries(q.a).map(([key, value]) => `
-          <button class="option-btn" data-answer="${key}" onclick="handleAnswer('${key}')">
-            <span class="option-letter">${key}</span>
-            <span class="option-text">${value}</span>
-          </button>
-        `).join('')}
+  // Score card
+  const scoreCard = document.getElementById('score-card');
+  scoreCard.innerHTML = `
+    <div class="score-display">
+      <div class="score-badge">${badge}</div>
+      <div class="score-info">
+        <h2>${badgeName}</h2>
+        <p class="score-text">${correct} / ${total} risposte corrette</p>
+        <p class="score-percentage">${percentage}%</p>
       </div>
     </div>
   `;
-  
-  // Update progress
-  progressText.textContent = `${currentQuestionIndex + 1} / ${quizQuestions.length}`;
-  progressBar.style.width = `${((currentQuestionIndex + 1) / quizQuestions.length) * 100}%`;
-}
 
-function handleAnswer(answer) {
-  const q = quizQuestions[currentQuestionIndex];
-  const isCorrect = answer === q.correct;
-  
-  userAnswers.push({
-    question: q,
-    userAnswer: answer,
-    correctAnswer: q.correct,
-    isCorrect: isCorrect
+  // Riepilogo
+  const resultsList = document.getElementById('results-list');
+  resultsList.innerHTML = '';
+  userAnswers.forEach((answer, index) => {
+    const itemClass = answer.isCorrect ? 'correct' : 'incorrect';
+    resultsList.innerHTML += `
+      <div class="result-item ${itemClass}">
+        <h4>${index + 1}. ${answer.question}</h4>
+        <p><strong>Tua risposta:</strong> ${answer.userLetter} - ${answer.userAnswer}</p>
+        ${!answer.isCorrect ? `<p><strong style="color:green;">Risposta corretta:</strong> ${answer.correct} - ${answer.correctAnswer}</p>` : ''}
+        <p><strong>Spiegazione:</strong> ${answer.exp}</p>
+      </div>
+    `;
   });
-  
-  // Visual feedback
-  const buttons = document.querySelectorAll('.option-btn');
-  buttons.forEach(btn => {
-    btn.disabled = true;
-    if (btn.dataset.answer === q.correct) {
-      btn.classList.add('correct');
-    } else if (btn.dataset.answer === answer && !isCorrect) {
-      btn.classList.add('wrong');
-    }
-  });
-  
-  setTimeout(() => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < quizQuestions.length) {
-      renderQuestion();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      endQuiz();
-    }
-  }, 1000);
-}
 
-function startTimer() {
-  timerDisplay.textContent = formatTime(timeRemaining);
-  
-  timerInterval = setInterval(() => {
-    timeRemaining--;
-    timerDisplay.textContent = formatTime(timeRemaining);
-    
-    // Alert under 5 minutes
-    if (timeRemaining <= CONFIG.ALERT_TIMER_SOGLIA && timeRemaining > 0) {
-      timerAlert.classList.remove('hidden');
-      timerAlert.classList.add('show');
-    }
-    
-    if (timeRemaining <= 0) {
-      clearInterval(timerInterval);
-      endQuiz();
-    }
-  }, 1000);
-}
-
-function endQuiz() {
-  clearInterval(timerInterval);
-  timerAlert.classList.add('hidden');
-  showResults();
-}
-
-function showResults() {
   showScreen('results');
-  
-  const correctCount = userAnswers.filter(a => a.isCorrect).length;
-  const percentage = Math.round((correctCount / userAnswers.length) * 100);
-  
-  let resultClass, resultIcon, resultText;
-  if (percentage >= CONFIG.SOGLIA_ECCELLENTE) {
-    resultClass = 'excellent';
-    resultIcon = '🏆';
-    resultText = 'Eccellente!';
-  } else if (percentage >= CONFIG.SOGLIA_SUFFICIENTE) {
-    resultClass = 'sufficient';
-    resultIcon = '👍';
-    resultText = 'Sufficiente';
-  } else {
-    resultClass = 'insufficient';
-    resultIcon = '📚';
-    resultText = 'Insufficiente';
-  }
-  
-  document.getElementById('result-icon').textContent = resultIcon;
-  document.getElementById('result-text').textContent = resultText;
-  document.getElementById('result-percentage').textContent = `${percentage}%`;
-  document.getElementById('result-score').textContent = `${correctCount} / ${userAnswers.length}`;
-  document.getElementById('result-container').className = `result-box ${resultClass}`;
-  
-  // Recap
-  document.getElementById('recap-container').innerHTML = userAnswers.map((answer, index) => `
-    <div class="recap-question">
-      <div class="recap-header">
-        <span class="recap-number">${index + 1}.</span>
-        <span class="recap-category">${answer.question.category}</span>
-        <span class="recap-difficulty difficulty-${answer.question.difficulty}">${answer.question.difficulty}</span>
-      </div>
-      <div class="recap-text">${answer.question.q}</div>
-      <div class="recap-answers">
-        <div class="recap-user-answer ${answer.isCorrect ? 'correct' : 'wrong'}">
-          La tua risposta: ${answer.userAnswer} ${answer.isCorrect ? '✓' : '✗'}
-        </div>
-        ${!answer.isCorrect ? `
-          <div class="recap-correct-answer">
-            Risposta corretta: ${answer.correctAnswer}
-          </div>
-          <div class="recap-explanation">
-            ${answer.question.exp}
-          </div>
-        ` : ''}
-      </div>
-    </div>
-  `).join('');
 }
 
+// ============================================
+// 🔄 RIFAI TEST
+// ============================================
 function restartQuiz() {
-  showScreen('welcome');
-}
-
-function goHome() {
-  closeConfirmModal();
-  clearInterval(timerInterval);
-  showScreen('welcome');
+  // Nuova estrazione casuale (stesso capitolo)
+  loadQuiz();
 }
 
 // ============================================
-// Event Listeners
+// 🛠️ UTILITY
 // ============================================
-
-document.getElementById('modal-legal').addEventListener('click', function(e) {
-  // Do nothing on overlay click
-});
-
-document.getElementById('modal-confirm').addEventListener('click', function(e) {
-  // Do nothing on overlay click
-});
-
-// ============================================
-// INITIALIZATION
-// ============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('✅ Quiz Loaded');
-  console.log(`📊 Paniere Totale: ${PANIERE.length} domande`);
-  
-  // Conta domande per difficoltà
-  const byDiff = {
-    facile: PANIERE.filter(q => q.difficulty === 'facile').length,
-    medio: PANIERE.filter(q => q.difficulty === 'medio').length,
-    difficile: PANIERE.filter(q => q.difficulty === 'difficile').length
-  };
-  
-  console.log(`📚 Distribuzione: Facili=${byDiff.facile}, Medie=${byDiff.medio}, Difficili=${byDiff.difficile}`);
-  console.log(`⚙️ Config: ${CONFIG.NUM_DOMANDE} domande, ${formatTime(CONFIG.DURATA_TIMER)}`);
-  
-  // Verifica integrità
-  const missing = PANIERE.filter(q => !q.difficulty || !q.q || !q.a.A || !q.a.B || !q.a.C || !q.a.D || !q.correct || !q.exp);
-  if (missing.length > 0) {
-    console.warn(`⚠️ ATTENZIONE: ${missing.length} domande incomplete!`);
-    missing.forEach(q => console.warn(`  - ID ${q.id}: mancano campi`));
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-});
-
-    
+  return arr;
+}
