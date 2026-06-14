@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teoria DigComp 2.2 - Area 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <h1>📚 DigComp 2.2 - Area 1</h1>
+    <p class="breadcrumb">
+      <a href="index.html">🏠 Home</a> / 
+      <span>Teoria: Alfabetizzazione su Informazione e Dati</span>
+    </p>
+  </header>
+
+  <!-- TAB NAVIGATION -->
+  <div class="tab-container">
+    <button class="tab-btn active" onclick="switchTab('tab-1-1')">
+      1.1 Navigare, ricercare e filtrare
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-1-2')">
+      1.2 Valutare dati e informazioni
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-1-3')">
+      1.3 Gestire dati e contenuti
+    </button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="teoria-main">
+    <!-- SEZIONE 1.1 -->
+    <section id="tab-1-1" class="teoria-section active">
+      <div class="teoria-content">
+        <h1>1.1 Navigare, ricercare e filtrare dati, informazioni e contenuti digitali</h1>
+        
+        <div class="intro-box">
+          <p>La capacità di navigare efficacemente in Internet, ricercare informazioni e filtrare i risultati è fondamentale nell'era digitale. Questa sezione affronta i concetti di base per orientarsi nella vastità del web e trovare ciò che serve.</p>
+        </div>
+
+        <!-- CONTENUTI 1.1 -->
+        <article>
+          <h2>Internet e World Wide Web</h2>
+          <p>Internet è l'infrastruttura globale di reti di computer interconnesse che permette la trasmissione di dati, informazioni e comunicazioni tra milioni di dispositivi in tutto il mondo.</p>
+          <p>Il <strong>World Wide Web (WWW)</strong> è un servizio costruito su Internet che utilizza il protocollo HTTP/HTTPS per condividere documenti ipertestuali, immagini, video e altri contenuti.</p>
+          <p><strong>Distinzione importante:</strong></p>
+          <ul>
+            <li><strong>Internet</strong> = infrastruttura fisica (hardware e protocolli di rete)</li>
+            <li><strong>Web</strong> = servizio informativo basato su Internet (documenti collegati tramite link)</li>
+          </ul>
+          <p>Altre tecnologie su Internet: email, FTP, videoconferenza, streaming video.</p>
+        </article>
+
+        <article>
+          <h2>Browser: cos'è e principali tipi</h2>
+          <p>Un <strong>browser</strong> è un'applicazione software che permette di accedere al World Wide Web e visualizzare pagine web, immagini, video e altri contenuti digitali.</p>
+          <p>Il browser interpreta il codice delle pagine (HTML, CSS, JavaScript) e lo trasforma in contenuti visibili e interattivi per l'utente.</p>
+          
+          <h3>Principali browser:</h3>
+          <ul>
+            <li><strong>Google Chrome</strong> - Browser più utilizzato, sviluppato da Google, sincronizzazione con account Google</li>
+            <li><strong>Microsoft Edge</strong> - Browser predefinito di Windows, sviluppato da Microsoft, basato su Chromium</li>
+            <li><strong>Mozilla Firefox</strong> - Browser open source, noto per privacy e trasparenza</li>
+            <li><strong>Safari</strong> - Browser predefinito su dispositivi Apple (Mac, iPhone, iPad)</li>
+            <li><strong>Opera</strong> - Browser con funzionalità integrate per privacy e gestione schede</li>
+          </ul>
+          <p>La scelta del browser dipende dalle preferenze personali, dalla compatibilità con il dispositivo e dalle priorità (velocità, privacy, sincronizzazione).</p>
+        </article>
+
+        <article>
+          <h2>URL, indirizzi web e navigazione</h2>
+          <p>L'<strong>URL (Uniform Resource Locator)</strong> è l'indirizzo che identifica univocamente una risorsa su Internet.</p>
+          
+          <h3>Struttura di un URL:</h3>
+          <p><code>https://www.esempio.com:8080/pagina/risorsa?parametro=valore#sezione</code></p>
+          <ul>
+            <li><strong>Protocollo</strong> (https://) - Specifica come comunicare con il server</li>
+            <li><strong>Dominio</strong> (www.esempio.com) - Indirizzo del server web</li>
+            <li><strong>Porta</strong> (:8080) - Canale di comunicazione (opzionale, default 80 per HTTP, 443 per HTTPS)</li>
+            <li><strong>Percorso</strong> (/pagina/risorsa) - Struttura cartelle del server</li>
+            <li><strong>Query string</strong> (?parametro=valore) - Parametri di ricerca</li>
+            <li><strong>Frammento</strong> (#sezione) - Ancoraggio a una sezione della pagina</li>
+          </ul>
+          
+          <h3>Navigazione web:</h3>
+          <ul>
+            <li><strong>Barra degli indirizzi</strong> - Digitare URL o fare ricerche</li>
+            <li><strong>Link ipertestuali</strong> - Clickare su parole/immagini per navigare</li>
+            <li><strong>Pulsanti back/forward</strong> - Muoversi nella cronologia</li>
+            <li><strong>Bookmark/Preferiti</strong> - Salvare pagine importanti</li>
+            <li><strong>Cronologia</strong> - Ripercorrere pagine visitate</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Motori di ricerca e operatori di ricerca</h2>
+          <p>Un <strong>motore di ricerca</strong> è uno strumento online che permette di cercare informazioni su Internet attraverso parole chiave.</p>
+          
+          <h3>Principali motori di ricerca:</h3>
+          <ul>
+            <li><strong>Google</strong> - Motore più usato a livello mondiale</li>
+            <li><strong>Bing</strong> - Motore di Microsoft, integrato in Windows</li>
+            <li><strong>DuckDuckGo</strong> - Focalizzato su privacy, non traccia gli utenti</li>
+            <li><strong>Yahoo</strong> - Storico portale, ora utilizza motore Bing</li>
+          </ul>
+          
+          <h3>Operatori di ricerca avanzata:</h3>
+          <ul>
+            <li><strong>"frase esatta"</strong> - Cerca la frase esattamente come scritta (tra virgolette)</li>
+            <li><strong>-parola</strong> - Esclude una parola dai risultati</li>
+            <li><strong>site:dominio.com</strong> - Cerca solo all'interno di un sito specifico</li>
+            <li><strong>filetype:pdf</strong> - Cerca solo file di un tipo specifico</li>
+            <li><strong>intitle:parola</strong> - Cerca parole nel titolo della pagina</li>
+            <li><strong>OR</strong> - Cerca una parola OPPURE l'altra</li>
+          </ul>
+          
+          <h3>Suggerimenti per ricerche efficaci:</h3>
+          <ul>
+            <li>Usare parole chiave specifiche, non troppo generiche</li>
+            <li>Valutare i risultati dalle prime posizioni (di solito più rilevanti)</li>
+            <li>Leggere il titolo e l'anteprima prima di cliccare</li>
+            <li>Usare operatori avanzati per raffinare la ricerca</li>
+            <li>Confrontare risultati da più motori di ricerca</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Filtraggio e personalizzazione dei risultati</h2>
+          <p>I motori di ricerca offrono strumenti per <strong>filtrare i risultati</strong> e adattarli alle necessità specifiche.</p>
+          
+          <h3>Opzioni di filtro comuni:</h3>
+          <ul>
+            <li><strong>Data</strong> - Mostrare risultati degli ultimi giorni, mesi, anni</li>
+            <li><strong>Tipo</strong> - Filtrare per immagini, video, notizie, articoli</li>
+            <li><strong>Lingua</strong> - Limitare a un'idioma specifico</li>
+            <li><strong>Paese</strong> - Risultati da una zona geografica</li>
+            <li><strong>Dominio</strong> - Risultati da siti specifici</li>
+          </ul>
+          
+          <h3>Personalizzazione della ricerca:</h3>
+          <p>I motori di ricerca personalizzano i risultati in base a:</p>
+          <ul>
+            <li>Cronologia di navigazione personale</li>
+            <li>Localizzazione geografica</li>
+            <li>Account utente (se logged in)</li>
+            <li>Dispositivo utilizzato</li>
+          </ul>
+          
+          <p><strong>Nota sulla privacy:</strong> Questa personalizzazione migliora la rilevanza ma comporta tracciamento dei dati. È possibile disabilitare la personalizzazione nelle impostazioni di privacy del motore di ricerca.</p>
+        </article>
+
+        <article>
+          <h2>Gestire il sovraccarico informativo e l'infodemia</h2>
+          <p>In rete è disponibile una quantità enorme di informazioni. Questa abbondanza può generare confusione, soprattutto quando le notizie sono numerose, contraddittorie o difficili da verificare.</p>
+          <p>Il termine <strong>infodemia</strong> indica una diffusione eccessiva di informazioni, spesso non sempre accurate, che può rendere difficile distinguere i contenuti affidabili da quelli fuorvianti.</p>
+          
+          <h3>Strategie per gestire il sovraccarico informativo:</h3>
+          <ol>
+            <li>Selezionare fonti autorevoli e riconosciute</li>
+            <li>Confrontare più fonti prima di condividere</li>
+            <li>Evitare condivisioni impulsive di notizie</li>
+            <li>Usare strategie personali di ricerca e filtro</li>
+            <li>Verificare le informazioni prima di diffonderle</li>
+            <li>Limitare il tempo di esposizione a notizie se genera ansia</li>
+            <li>Riconoscere le proprie bias cognitive</li>
+                    </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEZIONE 1.2 -->
+    <section id="tab-1-2" class="teoria-section hidden">
+      <div class="teoria-content">
+        <h1>1.2 Valutare dati, informazioni e contenuti digitali</h1>
+        
+        <div class="intro-box">
+          <p>Ogni giorno gli utenti entrano in contatto con una grande quantità di contenuti: articoli, post sui social media, video, recensioni, dati statistici e documenti. Tuttavia, non tutti questi contenuti hanno lo stesso livello di affidabilità. Per questo è importante sviluppare un atteggiamento critico basato su domande fondamentali.</p>
+        </div>
+
+        <!-- CONTENUTI 1.2 -->
+        <article>
+          <h2>Distinguere fatti, opinioni e interpretazioni</h2>
+          <p>Una competenza importante nella valutazione delle informazioni consiste nel distinguere tra tre categorie diverse:</p>
+          
+          <h3>Fatti</h3>
+          <p>Un <strong>fatto</strong> è un'informazione verificabile attraverso dati, documenti o fonti attendibili. I fatti sono oggettivi e non cambiano in base alle opinioni personali.</p>
+          <p><strong>Esempio:</strong> "Il sito indica che il documento è stato aggiornato nel 2024" — questo è controllabile osservando il sito.</p>
+          
+          <h3>Opinioni</h3>
+          <p>Un'<strong>opinione</strong> esprime un punto di vista personale. Le opinioni sono soggettive e variano da persona a persona.</p>
+          <p><strong>Esempio:</strong> "Questo servizio è il migliore disponibile online" — questa affermazione può essere soggettiva, soprattutto se non è accompagnata da criteri di valutazione specifici.</p>
+          
+          <h3>Interpretazioni</h3>
+          <p>Un'<strong>interpretazione</strong> è una spiegazione o lettura di un fatto. Le interpretazioni possono essere utili, ma devono essere distinte dal dato oggettivo.</p>
+          <p><strong>Esempio:</strong> "L'aumento delle ricerche online dimostra che gli utenti sono più consapevoli" — questa frase interpreta un dato, ma richiede prove e contesto per essere considerata affidabile.</p>
+          
+          <h3>Come riconoscerli:</h3>
+          <ul>
+            <li><strong>Fatti</strong> - Verificabili, supportati da dati, documentati</li>
+            <li><strong>Opinioni</strong> - Contengono parole come "penso", "credo", "a mio parere", giudizi soggettivi</li>
+            <li><strong>Interpretazioni</strong> - Spiegano un fatto ma richiedono contesto e prove aggiuntive</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Autore, autorevolezza e competenza</h2>
+          <p>Valutare chi ha prodotto un'informazione è il primo passo per determinarne l'affidabilità.</p>
+          
+          <h3>Domande da porsi:</h3>
+          <ul>
+            <li><strong>Chi ha scritto?</strong> Una persona? Un'organizzazione? Un bot?</li>
+            <li><strong>È identificabile?</strong> Nome e contatti forniti?</li>
+            <li><strong>Ha credibilità?</strong> Biografia, qualifiche, esperienze?</li>
+            <li><strong>Ha conflitti di interesse?</strong> Benefici economici dall'informazione?</li>
+            <li><strong>È specializzato nell'argomento?</strong> Esperienza rilevante?</li>
+          </ul>
+          
+          <h3>Verifica delle competenze</h3>
+          <p>Un autore può essere esperto in un campo ma non in tutti:</p>
+          <ul>
+            <li><strong>Medico</strong> - Qualificato per temi sanitari</li>
+            <li><strong>Giurista</strong> - Competente su questioni normative</li>
+            <li><strong>Ricercatore</strong> - Affidabile su temi scientifici</li>
+            <li><strong>Tecnico informatico</strong> - Indicato per contenuti tecnologici</li>
+          </ul>
+          
+          <p><strong>Attenzione:</strong> Una persona famosa non è necessariamente esperta in tutti gli argomenti su cui parla.</p>
+        </article>
+
+        <article>
+          <h2>Riconoscere contenuti promozionali e pubblicitari</h2>
+          <p>Online molti contenuti hanno finalità promozionali. Alcuni annunci sono chiaramente riconoscibili, mentre altri possono essere presentati come articoli, recensioni o post informativi.</p>
+          
+          <h3>Contenuti promozionali espliciti</h3>
+          <p>Sono facilmente riconoscibili perché dichiarati chiaramente come pubblicità:</p>
+          <ul>
+            <li>Annunci nei motori di ricerca (etichettati "Annuncio")</li>
+            <li>Banner pubblicitari sui siti web</li>
+            <li>Post sponsorizzati sui social media (etichettati "Sponsorizzato")</li>
+            <li>Video promozionali chiaramente identificati</li>
+            <li>Pubblicità televisive e radiofoniche</li>
+          </ul>
+          
+          <h3>Contenuti promozionali non espliciti</h3>
+          <p>Più difficili da riconoscere, possono apparire come:</p>
+          <ul>
+            <li><strong>Recensioni positive</strong> senza indicare sponsorizzazioni</li>
+            <li><strong>Articoli</strong> che presentano un prodotto come "migliore scelta" senza criteri</li>
+            <li><strong>Post di influencer</strong> con prodotti senza dichiarare la collaborazione commerciale</li>
+            <li><strong>Video apparentemente informativi</strong> che promuovono indirettamente un servizio</li>
+            <li><strong>Blog articles</strong> che consigliano un prodotto senza dichiarare l'affiliazione</li>
+          </ul>
+          
+          <h3>Come riconoscere i contenuti promozionali:</h3>
+          <ul>
+            <li>Cercare l'etichetta "Sponsorizzato", "Annuncio" o "Annuncio pubblicitario"</li>
+            <li>Verificare se c'è un link di affiliazione (che guadagna commissioni)</li>
+            <li>Leggere la dichiarazione di divulgazione (spesso in piccolo in fondo)</li>
+            <li>Osservare se il contenuto promuove solo una marca senza confronti</li>
+            <li>Verificare se l'autore ha conflitti di interesse economici</li>
+            <li>Confrontare con altre fonti indipendenti</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Fonte autorevole vs fonte debole</h2>
+          <p>Non tutte le fonti hanno lo stesso peso e affidabilità.</p>
+          
+          <h3>Caratteristiche di una fonte autorevole:</h3>
+          <ul>
+            <li><strong>Istituzione riconosciuta</strong> (università, enti pubblici, media storici)</li>
+            <li><strong>Trasparenza</strong> (indica fonti, metodologie, autori)</li>
+            <li><strong>Esperienza</strong> nell'argomento (decenni di operatività)</li>
+            <li><strong>Certificazioni</strong> e riconoscimenti professionali</li>
+            <li><strong>Accuratezza storica</strong> (ha pubblicato informazioni corrette in passato)</li>
+            <li><strong>Correzione degli errori</strong> (rettifica e aggiorna quando necessario)</li>
+            <li><strong>Indipendenza editoriale</strong> (non controllata da interessi commerciali)</li>
+          </ul>
+          
+          <h3>Segnali di fonte debole o inaffidabile:</h3>
+          <ul>
+            <li>Sito web mal progettato o pieno di errori grammaticali</li>
+            <li>Nessun autore identificabile o contatti non disponibili</li>
+            <li>Affermazioni senza fonti o riferimenti</li>
+            <li>Tono estremista, sensazionalistico o manipolativo</li>
+            <li>Pubblicità invadente o comportamento sospetto</li>
+            <li>Storia di informazioni false o parziali</li>
+            <li>Nessun aggiornamento da mesi o anni</li>
+            <li>Copiare contenuti da altre fonti senza attribuzione</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Attualità, data di pubblicazione e aggiornamento</h2>
+          <p>Non tutte le informazioni rimangono valide nel tempo. Alcuni contenuti, come normative, dati sanitari, statistiche, tecnologie e procedure, possono cambiare rapidamente.</p>
+          
+          <h3>Quando verificare la data è essenziale:</h3>
+          <ul>
+            <li><strong>Notizie e attualità</strong> - Importanza della tempestività</li>
+            <li><strong>Leggi e normative</strong> - Frequentemente aggiornate</li>
+            <li><strong>Dati sanitari</strong> - Ricerca continua porta a cambiamenti</li>
+            <li><strong>Statistiche e sondaggi</strong> - Perdono validità nel tempo</li>
+            <li><strong>Tecnologie</strong> - Diventano rapidamente obsolete</li>
+            <li><strong>Procedure digitali</strong> - Interfacce e metodi cambiano</li>
+          </ul>
+          
+          <h3>Come verificare l'attualità:</h3>
+          <ul>
+            <li>Cercare la data di pubblicazione (generalmente in alto o in basso)</li>
+            <li>Verificare se c'è stata una data di aggiornamento</li>
+            <li>Controllare la data dell'ultima modifica sul sito</li>
+            <li>Leggere i commenti per scoprire se le informazioni sono ancora valide</li>
+            <li>Confrontare con fonti più recenti</li>
+          </ul>
+          
+          <p><strong>Importante:</strong> Un contenuto senza data non è automaticamente falso, ma risulta più difficile da valutare. La mancanza di data può essere deliberata per nascondere informazioni obsolete.</p>
+        </article>
+
+        <article>
+          <h2>Bias, conflitti di interesse e distorsioni</h2>
+          <p>Un'informazione può essere formalmente corretta ma comunque parziale, perché seleziona solo alcuni dati, omette informazioni importanti o usa un linguaggio orientato a influenzare il lettore.</p>
+          
+          <h3>Che cosa sono i bias</h3>
+          <p>I <strong>bias</strong> sono forme di parzialità che possono influenzare la produzione o l'interpretazione delle informazioni. Possono derivare da:</p>
+          <ul>
+            <li><strong>Opinioni personali</strong> dell'autore</li>
+            <li><strong>Interessi economici</strong> (vendere un prodotto)</li>
+            <li><strong>Appartenenze politiche</strong> o ideologiche</li>
+            <li><strong>Strategie commerciali</strong> di aziende o media</li>
+            <li><strong>Convinzioni culturali</strong> o religiose</li>
+            <li><strong>Selezione incompleta dei dati</strong> (mostrare solo quelli favorevoli)</li>
+            <li><strong>Uso di fonti non equilibrate</strong> (intervistare solo una parte)</li>
+          </ul>
+          
+          <h3>Conflitti di interesse</h3>
+          <p>Un <strong>conflitto di interesse</strong> si verifica quando chi produce un contenuto potrebbe avere un vantaggio personale, economico o professionale nel presentare l'informazione in un certo modo.</p>
+          <p><strong>Esempi:</strong></p>
+          <ul>
+            <li>Una recensione positiva scritta da chi riceve una commissione sulla vendita</li>
+            <li>Un articolo finanziato da un'azienda citata nel testo</li>
+            <li>Un esperto che promuove un prodotto collegato alla propria attività</li>
+            <li>Un giornalista che scrive su un tema collegato ai suoi interessi finanziari</li>
+            <li>Uno studio scientifico finanziato dall'industria che ne beneficia</li>
+          </ul>
+          
+          <h3>Come riconoscere bias e distorsioni:</h3>
+          <ul>
+            <li><strong>Confrontare fonti diverse</strong> su uno stesso argomento</li>
+            <li><strong>Osservare il linguaggio usato</strong> - è neutrale o carico emotivamente?</li>
+            <li><strong>Verificare se vengono citate fonti primarie</strong> o solo altre opinioni</li>
+            <li><strong>Individuare eventuali differenze o omissioni</strong> rispetto ad altre fonti</li>
+            <li><strong>Cercare la dichiarazione dei conflitti di interesse</strong></li>
+            <li><strong>Valutare il finanziamento</strong> della ricerca o del contenuto</li>
+            <li><strong>Leggere i commenti</strong> di persone che hanno contestato il contenuto</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Confrontare fonti e verifica incrociata</h2>
+          <p>Una delle strategie più importanti per valutare un'informazione è il <strong>confronto tra più fonti</strong>.</p>
+          
+          <h3>Perché confrontare le fonti</h3>
+          <p>Se un'informazione è corretta e rilevante, di solito può essere verificata anche attraverso altre fonti affidabili.</p>
+          <p>Il confronto permette di:</p>
+          <ul>
+            <li>Verificare la correttezza dei dati</li>
+            <li>Individuare eventuali errori</li>
+            <li>Riconoscere omissioni importanti</li>
+            <li>Rilevare punti di vista parziali</li>
+            <li>Distinguere fatti da opinioni</li>
+            <li>Capire se una notizia è confermata da più fonti indipendenti</li>
+            <li>Evitare di basarsi su un'unica fonte</li>
+          </ul>
+          
+          <h3>Metodo di verifica incrociata:</h3>
+          <ol>
+            <li>Trovare la notizia/informazione da verificare</li>
+            <li>Cercare la stessa informazione su fonti diverse e indipendenti</li>
+            <li>Confrontare i dettagli - sono coerenti?</li>
+            <li>Verificare se le fonti citano studi o documenti primari</li>
+            <li>Controllare se le date e i numeri coincidono</li>
+            <li>Valutare se la notizia ha un contesto completo</li>
+          </ol>
+          
+          <p><strong>Questa pratica è particolarmente importante quando l'informazione riguarda temi delicati:</strong> salute, sicurezza, economia, lavoro, normativa o tecnologia.</p>
+        </article>
+
+        <article>
+          <h2>Valutare la pertinenza delle informazioni</h2>
+          <p>Un'informazione può essere corretta ma non pertinente rispetto alla ricerca o al bisogno dell'utente.</p>
+          
+          <h3>Domande sulla pertinenza:</h3>
+          <ul>
+            <li><strong>È rilevante per il mio bisogno?</strong> Risponde alla mia domanda?</li>
+            <li><strong>È del livello di dettaglio giusto?</strong> Troppo tecnica o troppo semplice?</li>
+            <li><strong>È aggiornata per il mio contesto?</strong> Vale ancora oggi?</li>
+            <li><strong>È nell'idioma che capisco?</strong> Se in lingua straniera, la capisco?</li>
+            <li><strong>È nel formato che mi serve?</strong> Articolo, video, infografica?</li>
+            <li><strong>Mi fornisce nuove informazioni?</strong> O è già conosciuta?</li>
+          </ul>
+          
+          <p><strong>Esempio:</strong> Un articolo su come proteggere i dati online può essere autorevole e aggiornato, ma se cerchi come formattare un'unità USB, non è pertinente.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEZIONE 1.3 -->
+    <section id="tab-1-3" class="teoria-section hidden">
+      <div class="teoria-content">
+        <h1>1.3 Gestire dati, informazioni e contenuti digitali</h1>
+        
+        <div class="intro-box">
+          <p>Gestire dati significa saperli organizzare, conservare, recuperare e utilizzare in modo efficiente. Con l'aumento dei contenuti digitali, diventa fondamentale adottare metodi per evitare disordine, perdita di informazioni e difficoltà di accesso.</p>
+        </div>
+
+        <!-- CONTENUTI 1.3 -->
+        <article>
+          <h2>Organizzazione di file e cartelle</h2>
+          <p>Una buona gestione dei file richiede una struttura organizzata e coerente.</p>
+          
+          <h3>Principi di organizzazione</h3>
+          <ul>
+            <li><strong>Gerarchia logica</strong> - Cartelle e sottocartelle in ordine logico</li>
+            <li><strong>Nomi descrittivi</strong> - Titoli chiari che indicano il contenuto</li>
+            <li><strong>Coerenza nel tempo</strong> - Mantenere lo stesso sistema</li>
+            <li><strong>Evitare duplicati</strong> - Non salvare due volte lo stesso file</li>
+            <li><strong>Ripulitura periodica</strong> - Eliminare file inutili</li>
+          </ul>
+          
+          <h3>Struttura raccomandata</h3>
+          <pre>
+Documenti/
+├── Lavoro/
+│   ├── Progetti/
+│   │   ├── Progetto_A/
+│   │   └── Progetto_B/
+│   └── Report/
+├── Personale/
+│   ├── Finanze/
+│   └── Salute/
+└── Hobby/
+          </pre>
+          
+          <h3>Buone pratiche di denominazione</h3>
+          <ul>
+            <li><strong>Usare nomi descrittivi:</strong> "fattura_marzo_2026.pdf" ✓</li>
+            <li><strong>Evitare nomi generici:</strong> "documento1" ✗</li>
+            <li><strong>Includere date quando rilevante:</strong> "report_2026-03-15.docx" ✓</li>
+            <li><strong>Usare underscore o trattini:</strong> "relazione_progetto_A" ✓</li>
+            <li><strong>Evitare spazi e caratteri speciali:</strong> "relazione progetto A!" ✗</li>
+            <li><strong>Usare minuscole per coerenza:</strong> "documento_importante.pdf" ✓</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Tipi di file e loro caratteristiche</h2>
+          <p>I file digitali hanno dimensioni diverse a seconda del tipo di contenuto e della qualità.</p>
+          
+          <h3>File di testo</h3>
+          <ul>
+            <li><strong>PDF</strong> - Formato universale, dimensioni piccole (100 KB - 2 MB)</li>
+            <li><strong>DOCX</strong> - Word document, dimensioni moderate (50 KB - 500 KB)</li>
+            <li><strong>TXT</strong> - Testo semplice, dimensioni molto piccole (1-10 KB)</li>
+            <li><strong>ODT</strong> - OpenDocument, formato open source</li>
+          </ul>
+          
+          <h3>Immagini digitali</h3>
+          <p><strong>Fattori che influenzano la dimensione:</strong></p>
+          <ul>
+            <li><strong>Risoluzione</strong> - Numero di pixel (larghezza × altezza)</li>
+            <li><strong>Qualità</strong> - Livello di compressione</li>
+            <li><strong>Formato</strong> - JPEG, PNG, BMP, RAW</li>
+          </ul>
+          
+          <p><strong>Formati comuni:</strong></p>
+          <ul>
+            <li><strong>JPEG</strong> - Compresso, adatto al web (100 KB - 2 MB)</li>
+            <li><strong>PNG</strong> - Buona qualità, transparenza, ideale per grafiche (200 KB - 3 MB)</li>
+            <li><strong>BMP</strong> - Poco compresso, più pesante (2 MB - 10 MB)</li>
+            <li><strong>RAW</strong> - Formato fotografico professionale, molto pesante (20 MB - 80 MB)</li>
+            <li><strong>GIF</strong> - Animazioni, qualità ridotta</li>
+          </ul>
+          
+          <h3>Video digitali</h3>
+          <p>I video sono tra i file più pesanti. Dimensione dipende da:</p>
+          <ul>
+            <li><strong>Risoluzione</strong> - 480p, 720p, 1080p, 4K</li>
+            <li><strong>Durata</strong> - In minuti o ore</li>
+            <li><strong>Bitrate</strong> - Qualità della compressione</li>
+            <li><strong>Formato</strong> - MP4, AVI, WebM, MOV, ProRes</li>
+          </ul>
+          
+          <p><strong>Esempio di dimensioni:</strong></p>
+          <ul>
+            <li>Video 1 minuto, 720p, MP4: 50-150 MB</li>
+            <li>Video 1 minuto, 1080p, MP4: 100-300 MB</li>
+            <li>Video 1 minuto, 4K, MP4: 300-800 MB</li>
+            <li>Video 1 minuto, ProRes (professionale): 1-3 GB</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Archiviazione locale e cloud storage</h2>
+          <p>Existono due principali modalità di archiviazione dei dati: locale e cloud.</p>
+          
+          <h3>Archiviazione locale</h3>
+          <p><strong>Definizione:</strong> Salvare i dati su dispositivi fisici collegati direttamente al computer.</p>
+          
+          <p><strong>Tipi di dispositivi:</strong></p>
+          <ul>
+            <li><strong>Hard Disk (HDD)</strong> - Meccanico, capacità grande, più lento (1-4 TB)</li>
+            <li><strong>SSD (Solid State Drive)</strong> - Più veloce, affidabile (256 GB - 2 TB)</li>
+            <li><strong>Chiavette USB</strong> - Portatili, piccole (16 GB - 1 TB)</li>
+            <li><strong>Schede SD</strong> - Per fotocamere e smartphone (32 GB - 512 GB)</li>
+            <li><strong>Dischi esterni</strong> - Portabili, collegati via USB (1-4 TB)</li>
+          </ul>
+          
+          <p><strong>Vantaggi:</strong></p>
+          <ul>
+            <li>Accesso rapido ai file</li>
+            <li>Utilizzo anche senza connessione Internet</li>
+            <li>Maggiore controllo diretto sui dati</li>
+            <li>Nessun abbonamento ricorrente</li>
+          </ul>
+          
+          <p><strong>Svantaggi:</strong></p>
+          <ul>
+            <li>Rischio di perdita (guasti hardware, furti, danni)</li>
+            <li>Difficoltà di accesso da altri dispositivi</li>
+            <li>Necessità di backup manuali</li>
+            <li>Limite di spazio fisico</li>
+          </ul>
+          
+          <h3>Archiviazione cloud</h3>
+          <p><strong>Definizione:</strong> Salvare i dati su server remoti accessibili via Internet.</p>
+          
+          <p><strong>Servizi comuni:</strong></p>
+          <ul>
+            <li><strong>Google Drive</strong> - Gratuito 15 GB, integrato con Google Suite</li>
+            <li><strong>OneDrive</strong> - Microsoft, integrato con Windows e Office 365</li>
+            <li><strong>Dropbox</strong> - Specializzato in sincronizzazione, 2 GB gratuito</li>
+            <li><strong>iCloud</strong> - Apple, 5 GB gratuito per dispositivi Apple</li>
+            <li><strong>Nextcloud</strong> - Open source, auto-hosted</li>
+          </ul>
+          
+          <p><strong>Vantaggi:</strong></p>
+          <ul>
+            <li>Accesso da qualsiasi dispositivo ovunque</li>
+            <li>Sincronizzazione automatica tra dispositivi</li>
+            <li>Facilità di condivisione con altri</li>
+            <li>Supporto alla collaborazione in tempo reale</li>
+            <li>Backup automatico e protezione da guasti</li>
+          </ul>
+          
+          <p><strong>Svantaggi:</strong></p>
+          <ul>
+            <li>Dipendenza dalla connessione Internet</li>
+            <li>Possibili rischi legati alla privacy e sicurezza</li>
+            <li>Necessità di scegliere servizi affidabili</li>
+            <li>Spesso richiede abbonamento per spazio illimitato</li>
+            <li>Meno controllo diretto sui dati</li>
+          </ul>
+          
+          <h3>Quando usare locale o cloud</h3>
+          <ul>
+            <li><strong>Locale:</strong> Quando serve accesso veloce o offline, file sensibili, grande volume di dati</li>
+            <li><strong>Cloud:</strong> Quando serve accesso remoto, condivisione, collaborazione, sincronizzazione</li>
+            <li><strong>Soluzione ibrida:</strong> Usare entrambi per massima sicurezza e flessibilità</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Backup e protezione dati</h2>
+          <p>Un <strong>backup</strong> è una copia di sicurezza dei dati per proteggere da guasti hardware, malware, attacchi informatici o cancellazioni accidentali.</p>
+          
+          <h3>Regola 3-2-1 per i backup</h3>
+          <ul>
+            <li><strong>3 copie</strong> dei dati (originale + 2 backup)</li>
+            <li><strong>2 supporti diversi</strong> (es. HDD + cloud, non 2 HDD uguali)</li>
+            <li><strong>1 copia offline</strong> (non sempre collegata a Internet)</li>
+          </ul>
+          
+          <h3>Strategie di backup</h3>
+          <ul>
+            <li><strong>Backup completo</strong> - Copia di tutti i file (occupa più spazio)</li>
+            <li><strong>Backup incrementale</strong> - Copia solo i file che sono cambiati</li>
+            <li><strong>Backup programmato</strong> - Automatico a intervalli regolari (giornaliero, settimanale)</li>
+            <li><strong>Backup manuale</strong> - Effettuato quando necessario</li>
+          </ul>
+          
+          <h3>Strumenti di backup</h3>
+          <ul>
+            <li><strong>Sistema operativo</strong> - Windows (File History), macOS (Time Machine), Linux (rsync)</li>
+            <li><strong>Cloud storage</strong> - Backup automatico via cloud</li>
+            <li><strong>Software dedicato</strong> - Acronis, AOMEI, Macrium Reflect</li>
+            <li><strong>Backup online</strong> - Backblaze, Carbonite, IDrive</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Condivisione consapevole di file e dati</h2>
+          <p>Condividere file digitali comporta rischi legati a privacy, sicurezza e copyright. È importante farlo consapevolmente.</p>
+          
+          <h3>Opzioni di condivisione</h3>
+          <ul>
+            <li><strong>Link pubblico</strong> - Accessibile a chiunque abbia il link</li>
+            <li><strong>Condivisione con persone specifiche</strong> - Solo chi invitato</li>
+            <li><strong>Con password</strong> - Link + password per accedere</li>
+            <li><strong>Con scadenza</strong> - Link attivo solo per un periodo</li>
+            <li><strong>Sola lettura</strong> - Chi accede non può modificare</li>
+            <li><strong>Permessi limitati</strong> - Chi legge? Chi modifica?</li>
+          </ul>
+          
+          <h3>Buone pratiche di condivisione:</h3>
+          <ul>
+            <li>Non condividere file con informazioni sensibili via email</li>
+            <li>Limitare i permessi al minimo necessario</li>
+            <li>Controllare periodicamente chi ha accesso ai tuoi file</li>
+            <li>Revocare accesso quando non più necessario</li>
+            <li>Non usare link pubblici per informazioni riservate</li>
+            <li>Informare gli altri di eventuali restrizioni d'uso (copyright)</li>
+            <li>Usare crittografia per dati sensibili</li>
+          </ul>
+          
+          <h3>Copyright e consenso</h3>
+          <ul>
+            <li>Chiedere permesso prima di condividere contenuti di altri</li>
+            <li>Rispettare licenze Creative Commons</li>
+            <li>Attribuire il credito all'autore originale</li>
+            <li>Non condividere contenuti personali altrui senza consenso</li>
+            <li>Leggere i termini di servizio della piattaforma di condivisione</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Big Data e Open Data</h2>
+          <p><strong>Big Data:</strong> Grandi quantità di dati generati da attività digitali, dispositivi connessi, immagini, video, dati di posizione, audio e dati biometrici.</p>
+          
+          <h3>Caratteristiche dei Big Data (le 5 V)</h3>
+          <ul>
+            <li><strong>Volume</strong> - Quantità enormes di dati</li>
+            <li><strong>Velocità</strong> - Generati e processati rapidamente</li>
+            <li><strong>Varietà</strong> - Diversi tipi e formati</li>
+            <li><strong>Veridicità</strong> - Qualità e affidabilità variabile</li>
+            <li><strong>Valore</strong> - Utilità per decisioni e miglioramenti</li>
+          </ul>
+          
+          <h3>Uso dei Big Data</h3>
+          <ul>
+            <li>Analizzare comportamenti utenti</li>
+            <li>Migliorare servizi digitali</li>
+            <li>Supportare decisioni strategiche</li>
+            <li>Addestrare sistemi di intelligenza artificiale</li>
+            <li>Previsioni e trend analysis</li>
+          </ul>
+          
+          <h3>Questioni di privacy e sicurezza</h3>
+          <p>La raccolta e l'uso dei Big Data solleva questioni importanti:</p>
+          <ul>
+            <li>Consenso informato - Gli utenti sanno che i dati vengono raccolti?</li>
+            <li>Protezione dei dati - Sono al sicuro da furti e usi impropri?</li>
+            <li>Trasparenza - Come vengono usati i dati?</li>
+            <li>Diritti - Gli utenti possono accedere, correggere o eliminare i dati?</li>
+          </ul>
+          
+          <h3>Open Data</h3>
+          <p><strong>Open Data:</strong> Dati resi disponibili liberamente da enti pubblici, istituzioni o organizzazioni, consultabili e riutilizzabili secondo licenze specifiche.</p>
+          
+          <p><strong>Caratteristiche:</strong></p>
+          <ul>
+            <li>Accesso libero e gratuito</li>
+            <li>Formati aperti e standard</li>
+            <li>Licenze che permettono il riuso</li>
+            <li>Disponibili online</li>
+            <li>Spesso dataset pubblici (statistiche, bilanci, dati ambientali)</li>
+          </ul>
+          
+          <p><strong>Differenza tra Open Data e Open Source:</strong></p>
+          <ul>
+            <li><strong>Open Data</strong> = Dataset accessibili e riutilizzabili</li>
+            <li><strong>Open Source</strong> = Software il cui codice sorgente è pubblico</li>
+          </ul>
+          
+          <p><strong>Esempi di Open Data:</strong></p>
+          <ul>
+            <li>Dati statistici ISTAT</li>
+            <li>Dati ambientali EU</li>
+            <li>Dataset pubblici su Kaggle</li>
+            <li>Dati meteorologici</li>
+            <li>Bilanci pubblici delle amministrazioni</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Analizzare e rappresentare dati</h2>
+          <p>Una volta organizzati, i dati possono essere analizzati per ricavarne informazioni utili.</p>
+          
+          <h3>Strumenti per l'analisi</h3>
+          <ul>
+            <li><strong>Fogli di calcolo</strong> (Excel, Google Fogli) - Formule, statistiche, grafici</li>
+            <li><strong>Database</strong> (SQL) - Gestire grandi volumi organizzati</li>
+            <li><strong>Software di analisi</strong> (Python, R) - Elaborazioni complesse</li>
+            <li><strong>Business Intelligence</strong> (Power BI, Tableau) - Dashboard e visualizzazioni</li>
+          </ul>
+          
+          <h3>Statistiche di base</h3>
+          <p><strong>Esempi di formule in fogli di calcolo:</strong></p>
+          <ul>
+            <li><code>=MEDIA(C1:C3)</code> - Calcola la media aritmetica</li>
+            <li><code>=SOMMA(C1:C5)</code> - Somma i valori</li>
+            <li><code>=CONTA(C1:C10)</code> - Conta gli elementi</li>
+            <li><code>=MAX(C1:C5)</code> - Trova il valore massimo</li>
+            <li><code>=MIN(C1:C5)</code> - Trova il valore minimo</li>
+          </ul>
+          
+          <p><strong>Le statistiche aiutano a:</strong></p>
+          <ul>
+            <li>Sintetizzare informazioni</li>
+            <li>Facilitare la comprensione</li>
+            <li>Supportare decisioni</li>
+            <li>Comunicare dati in modo chiaro</li>
+          </ul>
+          
+          <h3>Rappresentazione dei dati con grafici</h3>
+          <p>I grafici permettono di visualizzare dati in modo immediato. La scelta del grafico dipende dal tipo di informazione.</p>
+          
+          <p><strong>Tipi di grafico:</strong></p>
+          <ul>
+            <li><strong>Grafico a linee</strong> - Andamento nel tempo</li>
+            <li><strong>Grafico a barre</strong> - Confronto tra categorie</li>
+            <li><strong>Grafico a torta</strong> - Proporzioni rispetto a un totale</li>
+            <li><strong>Scatter plot</strong> - Relazione tra due variabili</li>
+            <li><strong>Istogramma</strong> - Distribuzione di frequenze</li>
+          </ul>
+          
+          <h3>Come scegliere il grafico giusto</h3>
+          <ul>
+            <li><strong>Mostrare un trend nel tempo?</strong> → Grafico a linee</li>
+            <li><strong>Confrontare valori tra categorie?</strong> → Grafico a barre</li>
+            <li><strong>Mostrare proporzioni di un totale?</strong> → Grafico a torta</li>
+            <li><strong>Cercare correlazioni?</strong> → Scatter plot</li>
+            <li><strong>Mostrare distribuzioni?</strong> → Istogramma</li>
+          </ul>
+          
+          <p><strong>Errori da evitare:</strong></p>
+          <ul>
+            <li>Usare grafico a torta per valori che non possono essere sommati (es. temperature)</li>
+            <li>Distorcere le scale per esagerare differenze</li>
+            <li>Usare colori fuorvianti o poco accessibili</li>
+            <li>Aggiungere decorazioni che distraggono dai dati</li>
+            <li>Omettere legenda o etichette chiare</li>
+          </ul>
+        </article>
+
+        <article>
+          <h2>Sintesi finale - Capitolo 1.3</h2>
+          <p>La gestione efficace dei dati digitali è essenziale nell'era dell'informazione. Competenze chiave:</p>
+          <ul>
+            <li>✓ Organizzare file e cartelle in modo logico</li>
+            <li>✓ Comprendere tipi di file e loro caratteristiche</li>
+            <li>✓ Scegliere tra archiviazione locale e cloud</li>
+            <li>✓ Proteggere dati con backup e crittografia</li>
+            <li>✓ Condividere consapevolmente rispettando privacy e copyright</li>
+            <li>✓ Comprendere Big Data e Open Data</li>
+            <li>✓ Analizzare e rappresentare dati con grafici</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-btn secondary">🏠 Torna alla Home</a>
+      <a href="index.html" onclick="document.getElementById('modal-overlay').style.display='flex'" class="nav-btn primary">📝 Vai al Quiz</a>
+    </div>
+    <p class="mt-4">Credits: Dott. Salvatore Trono - Laureato in Servizi Giuridici per l'Impresa • Formatore • Esperto in Sicurezza sui Luoghi di Lavoro</p>
+  </footer>
+
+  <script src="teoria.js"></script>
+</body>
+</html>
+
