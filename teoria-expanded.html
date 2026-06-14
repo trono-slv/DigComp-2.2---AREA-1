@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teoria DigComp 2.2 - Area 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --accent-orange: #f97316;
+      --accent-yellow: #eab308;
+      --bg-dark: #0a0e1a;
+      --bg-card: rgba(15, 20, 40, 0.95);
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.7;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    
+    /* Tab Navigation */
+    .tab-container {
+      display: flex;
+      gap: 4px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 2px solid var(--accent-orange);
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-orange) #1e293b;
+    }
+    
+    .tab-btn {
+      padding: 0.75rem 1.25rem;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .tab-btn:hover {
+      background: rgba(249, 115, 22, 0.1);
+      color: var(--text-primary);
+    }
+    
+    .tab-btn.active {
+      background: var(--accent-orange);
+      color: #fff;
+      border-bottom-color: var(--accent-yellow);
+    }
+    
+    /* Module Content */
+    .module {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .module.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Content Styling */
+    .module h2 {
+      color: var(--accent-orange);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(249,115,22,0.3);
+    }
+    
+    .module h3 {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+    }
+    
+    .module h4 {
+      color: var(--accent-yellow);
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1rem 0 0.5rem;
+    }
+    
+    .module p {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    
+    .module ul {
+      margin: 0.75rem 0 1rem 1.5rem;
+      list-style: disc;
+    }
+    
+    .module li {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .module ol {
+      margin: 0.75rem 0 1rem 1.5rem;
+      list-style: decimal;
+    }
+    
+    .module li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Key Points */
+    .key-points {
+      background: rgba(249,115,22,0.1);
+      border-left: 4px solid var(--accent-orange);
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .key-points h4 {
+      color: var(--accent-orange);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .key-points ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    
+    .key-points li {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Examples */
+    .examples {
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(234,179,8,0.3);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    
+    .examples h4 {
+      color: var(--accent-yellow);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .examples ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    
+    .examples li {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Header & Footer */
+    .site-header {
+      border-bottom: 3px solid var(--accent-orange);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .site-header h1 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .breadcrumb {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--accent-orange);
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .site-footer {
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(249,115,22,0.2);
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .nav-btn.primary {
+      background: var(--accent-orange);
+      color: #fff;
+    }
+    
+    .nav-btn.primary:hover {
+      background: #ea580c;
+    }
+    
+    .nav-btn.secondary {
+      background: rgba(249,115,22,0.2);
+      color: var(--text-primary);
+    }
+    
+    .nav-btn.secondary:hover {
+      background: rgba(249,115,22,0.3);
+    }
+    
+    .nav-btn.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    
+    /* Content Container */
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    
+    .intro-box {
+      background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(234,179,8,0.1));
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-box p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    
+    @media (max-width: 640px) {
+      .module h2 { font-size: 1.4rem; }
+      .content-container { padding: 1rem; }
+      .nav-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <h1>📚 Teoria DigComp 2.2 - Area 1</h1>
+    <p class="breadcrumb"><a href="index.html">← Torna al corso</a></p>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tab-container" role="tablist" id="tabNav">
+    <button class="tab-btn active" data-module="1" onclick="switchModule(1)">1.1 Navigare e ricercare</button>
+    <button class="tab-btn" data-module="2" onclick="switchModule(2)">1.2 Valutare</button>
+    <button class="tab-btn" data-module="3" onclick="switchModule(3)">1.3 Gestire</button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content-container">
+    
+    <!-- MODULO 1.1 -->
+    <article id="mod-1-1" class="module active">
+      <h2>1.1 Navigare, ricercare e filtrare dati, informazioni e contenuti digitali</h2>
+      
+      <div class="intro-box">
+        <p>Questa sezione introduce le competenze necessarie per muoversi consapevolmente negli ambienti digitali. L'obiettivo è saper accedere alle informazioni online, utilizzare browser e motori di ricerca, formulare ricerche efficaci e comprendere il ruolo degli algoritmi e dell'intelligenza artificiale nella selezione dei contenuti.</p>
+      </div>
+
+      <h3>Che cos'è un browser e quali sono i principali browser</h3>
+      <p>Un browser è un programma che permette di accedere al World Wide Web e visualizzare pagine, immagini, video e altri contenuti digitali. Il browser interpreta il codice delle pagine web, come l'HTML, e lo trasforma in contenuti leggibili e interattivi per l'utente.</p>
+      
+      <h4>Principali browser</h4>
+      <ul>
+        <li><strong>Google Chrome</strong> - Il browser più utilizzato al mondo, sviluppato da Google</li>
+        <li><strong>Microsoft Edge</strong> - Browser predefinito di Windows, sviluppato da Microsoft</li>
+        <li><strong>Mozilla Firefox</strong> - Browser open source, noto per la privacy</li>
+        <li><strong>Safari</strong> - Browser predefinito dei dispositivi Apple</li>
+        <li><strong>Opera</strong> - Browser con funzionalità integrate per la privacy</li>
+      </ul>
+      <p>Il browser rappresenta lo strumento principale per navigare in Internet.</p>
+
+      <h3>Struttura degli indirizzi web e degli URL</h3>
+      <p>Un indirizzo web, o URL, identifica una risorsa disponibile online. È composto da diversi elementi:</p>
+      <ul>
+        <li><strong>Protocollo</strong>: indica il metodo di accesso (es. https)</li>
+        <li><strong>Dominio</strong>: l'indirizzo del server che ospita la risorsa</li>
+        <li><strong>Percorso</strong>: la posizione specifica della risorsa nel server</li>
+        <li><strong>Parametri</strong>: informazioni aggiuntive trasmesse al server</li>
+      </ul>
+      <p>Comprendere la struttura di un URL aiuta a navigare con maggiore consapevolezza e a riconoscere le risorse online.</p>
+
+      <h3>Contenuti gratuiti, contenuti con licenza e contenuti a pagamento</h3>
+      <p>I contenuti disponibili online possono avere condizioni d'uso differenti. Alcuni sono liberamente accessibili, altri sono distribuiti con licenze specifiche, mentre altri richiedono un pagamento o un abbonamento.</p>
+      
+      <h4>Licenze Creative Commons</h4>
+      <p>Le licenze Creative Commons permettono l'uso e la condivisione dei contenuti, ma possono prevedere condizioni come:</p>
+      <ul>
+        <li><strong>BY</strong>: citare l'autore</li>
+        <li><strong>NC</strong>: non usare il contenuto per scopi commerciali</li>
+        <li><strong>ND</strong>: non modificare l'opera originale</li>
+        <li><strong>SA</strong>: condividere con la stessa licenza</li>
+      </ul>
+      <p>È importante distinguere tra contenuti realmente liberi e contenuti protetti da diritto d'autore.</p>
+
+      <h3>Algoritmi di intelligenza artificiale e "scatola nera"</h3>
+      <p>Gli algoritmi di intelligenza artificiale analizzano grandi quantità di dati per produrre suggerimenti, previsioni o decisioni. Tuttavia, il loro funzionamento interno non è sempre visibile o facilmente comprensibile dagli utenti.</p>
+      <p>Questo fenomeno viene definito "scatola nera", perché l'utente può osservare l'input e il risultato finale, ma non sempre riesce a comprendere il processo che ha portato a quella conclusione.</p>
+
+      <div class="examples">
+        <h4>💡 Esempi Pratici</h4>
+        <ul>
+          <li>Quando cerchi un prodotto online, gli algoritmi suggeriscono articoli simili basandosi sulle tue ricerche precedenti</li>
+          <li>I feed dei social media mostrano contenuti selezionati da algoritmi che prediligono ciò che potrebbe coinvolgerti</li>
+        </ul>
+      </div>
+
+      <h3>Pregiudizi e bias nei sistemi di intelligenza artificiale</h3>
+      <p>I sistemi di intelligenza artificiale possono produrre risultati distorti se vengono addestrati con dati incompleti, squilibrati o non rappresentativi. Questo fenomeno è noto come bias algoritmico.</p>
+      
+      <div class="key-points">
+        <h4>📌 Per ridurre i rischi di bias:</h4>
+        <ol>
+          <li>Usare dataset diversificati e rappresentativi</li>
+          <li>Controllare periodicamente i risultati</li>
+          <li>Promuovere responsabilità e consapevolezza tra chi sviluppa sistemi di IA</li>
+          <li>Verificare le fonti usate per l'addestramento</li>
+        </ol>
+      </div>
+
+      <h3>Segnalibri o preferiti del browser</h3>
+      <p>I segnalibri, chiamati anche preferiti, permettono di salvare pagine web utili per ritrovarle facilmente in futuro.</p>
+      
+      <div class="key-points">
+        <h4>📌 Vantaggi dei segnalibri:</h4>
+        <ol>
+          <li>Risparmiare tempo nella ricerca di siti frequenti</li>
+          <li>Organizzare le risorse digitali per argomento</li>
+          <li>Recuperare rapidamente siti importanti</li>
+          <li>Creare cartelle tematiche per studio o lavoro</li>
+        </ol>
+      </div>
+
+      <h3>Uso degli assistenti virtuali</h3>
+      <p>Gli assistenti virtuali permettono di ottenere informazioni o svolgere azioni attraverso comandi vocali o testuali. Per ottenere risposte utili è necessario formulare richieste chiare, semplici e non ambigue.</p>
+      
+      <div class="examples">
+        <h4>💡 Consigli pratici</h4>
+        <ul>
+          <li>Una domanda troppo generica produce una risposta imprecisa</li>
+          <li>Una richiesta ben definita aiuta l'assistente a comprendere meglio l'intenzione dell'utente</li>
+          <li>Molti assistenti virtuali dipendono da una connessione Internet per informazioni aggiornate</li>
+        </ul>
+      </div>
+
+      <h3>Ricerche ben definite negli ambienti digitali</h3>
+      <p>Per trovare informazioni online in modo efficace è necessario seguire un metodo ordinato:</p>
+      
+      <div class="key-points">
+        <h4>📌 Passi per una ricerca efficace:</h4>
+        <ol>
+          <li><strong>Definire l'obiettivo</strong>: cosa devi trovare esattamente?</li>
+          <li><strong>Scegliere le parole chiave</strong>: termini specifici e pertinenti</li>
+          <li><strong>Utilizzare un motore di ricerca</strong>: scegliere lo strumento adatto</li>
+          <li><strong>Analizzare i risultati</strong>: valutare titoli e descrizioni</li>
+          <li><strong>Selezionare le fonti</strong>: scegliere le più pertinenti</li>
+        </ol>
+      </div>
+      <p>Usare parole chiave specifiche permette di ottenere risultati più precisi e ridurre il tempo necessario.</p>
+
+      <h3>Motori di ricerca generalisti e specializzati</h3>
+      <p>I motori di ricerca consentono di individuare contenuti disponibili online.</p>
+      
+      <h4>Motori generalisti</h4>
+      <ul>
+        <li><strong>Google</strong>: il più utilizzato, adatto alla maggior parte delle ricerche quotidiane</li>
+        <li><strong>Bing</strong>: motore Microsoft con risultati di qualità</li>
+      </ul>
+      
+      <h4>Motori specializzati</h4>
+      <ul>
+        <li><strong>Google Scholar</strong>: articoli accademici e tesi</li>
+        <li><strong>OpenAlex</strong>: ricerche scientifiche e accademiche</li>
+        <li><strong>DuckDuckGo</strong>: ricerche attente alla privacy</li>
+        <li><strong>Yandex</strong>: utile per ricerche in lingua russa</li>
+      </ul>
+
+      <h3>Ricerca avanzata e filtri</h3>
+      <p>I motori di ricerca offrono strumenti avanzati per rendere i risultati più pertinenti:</p>
+      <ul>
+        <li><strong>Filtro per lingua</strong>: limitare i risultati alla lingua desiderata</li>
+        <li><strong>Filtro geografico</strong>: cercare informazioni di una specifica area</li>
+        <li><strong>Filtro temporale</strong>: trovare informazioni recenti o di un periodo specifico</li>
+      </ul>
+      <p>Il filtro temporale è particolarmente utile quando si cercano informazioni aggiornate, come normative, dati scientifici o eventi recenti.</p>
+
+      <h3>Gestire il sovraccarico informativo e l'infodemia</h3>
+      <p>In rete è disponibile una quantità enorme di informazioni. Questa abbondanza può generare confusione, soprattutto quando le notizie sono numerose, contraddittorie o difficili da verificare.</p>
+      <p>Il termine <strong>infodemia</strong> indica una diffusione eccessiva di informazioni, spesso non sempre accurate, che può rendere difficile distinguere i contenuti affidabili da quelli fuorvianti.</p>
+      
+      <div class="key-points">
+        <h4>📌 Strategie per gestire il sovraccarico:</h4>
+        <ol>
+          <li>Selezionare fonti autorevoli e riconosciute</li>
+          <li>Confrontare più fonti prima di condividere</li>
+          <li>Evitare condivisioni impulsive</li>
+          <li>Usare strategie personali di ricerca e filtro</li>
+          <li>Verificare le informazioni prima di diffonderle</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- MODULO 1.2 -->
+    <article id="mod-1-2" class="module">
+      <h2>1.2 Valutare dati, informazioni e contenuti digitali</h2>
+      
+      <div class="intro-box">
+        <p>Questa sezione riguarda la capacità di analizzare criticamente le informazioni trovate online. Non basta trovare un contenuto: è necessario valutarne attendibilità, correttezza, aggiornamento, autorevolezza e possibile presenza di interessi commerciali o promozionali.</p>
+      </div>
+
+      <h3>Distinguere contenuti promozionali e pubblicitari</h3>
+      <p>Online molti contenuti hanno finalità promozionali. Alcuni annunci sono chiaramente riconoscibili, mentre altri possono essere presentati come articoli, recensioni, post social o risultati di ricerca.</p>
+      
+      <h4>Contenuti promozionali espliciti</h4>
+      <ul>
+        <li>Annunci pubblicitari nei motori di ricerca</li>
+        <li>Banner pubblicitari sui siti web</li>
+        <li>Post sponsorizzati sui social media</li>
+        <li>Video promozionali contrassegnati come "Annuncio" o "Sponsorizzato"</li>
+      </ul>
+      
+      <h4>Contenuti promozionali non espliciti</h4>
+      <p>Più complessi da riconoscere sono i contenuti promozionali non dichiarati:</p>
+      <ul>
+        <li>Recensioni molto positive senza sponsorizzazioni dichiarate</li>
+        <li>Articoli che presentano un prodotto come "migliore scelta" senza criteri</li>
+        <li>Post di influencer che promuovono prodotti senza trasparenza</li>
+        <li>Video apparentemente informativi che promuovono indirettamente servizi</li>
+      </ul>
+      
+      <div class="examples">
+        <h4>💡 Come riconoscere contenuti promozionali</h4>
+        <ul>
+          <li>Presenza di parole come "sponsorizzato", "annuncio", "partnership"</li>
+          <li>Linguaggio molto persuasivo o commerciale</li>
+          <li>Inviti diretti all'acquisto ("compra ora", "offerta limitata")</li>
+          <li>Mancanza di confronto con alternative</li>
+          <li>Descrizione solo dei vantaggi, senza limiti</li>
+        </ul>
+      </div>
+
+      <h3>Valutare la credibilità di una fonte online</h3>
+      <p>Per stabilire se un'informazione è affidabile bisogna analizzare diversi elementi.</p>
+      
+      <h4>Elementi per valutare una fonte</h4>
+      <ul>
+        <li><strong>Autore identificabile</strong>: chi ha prodotto il contenuto?</li>
+        <li><strong>Competenze documentabili</strong>: quali sono le credenziali dell'autore?</li>
+        <li><strong>Affiliazione</strong>: l'autore è collegato a enti riconosciuti?</li>
+        <li><strong>Fonti e riferimenti</strong>: sono citate fonti verificabili?</li>
+        <li><strong>Aggiornamento</strong>: quando è stato pubblicato il contenuto?</li>
+      </ul>
+      <p>Una fonte credibile è solitamente trasparente, verificabile e coerente con altre fonti autorevoli.</p>
+
+      <h3>Confronto tra fonti e verifica delle informazioni</h3>
+      <p>Una buona valutazione delle informazioni richiede il confronto tra più fonti. Se una notizia o un dato compare solo su un sito poco conosciuto, è opportuno verificarlo attraverso fonti indipendenti e autorevoli.</p>
+      
+      <div class="key-points">
+        <h4>📌 Il confronto permette di individuare:</h4>
+        <ol>
+          <li>Errori fattuali</li>
+          <li>Omissioni di informazioni importanti</li>
+          <li>Distorsioni nella presentazione</li>
+          <li>Bias o partialità</li>
+          <li>Informazioni obsolete</li>
+        </ol>
+      </div>
+
+      <h3>Attualità delle informazioni</h3>
+      <p>Non tutte le informazioni rimangono valide nel tempo. Alcuni contenuti, come normative, dati sanitari, statistiche, tecnologie e procedure digitali, possono cambiare rapidamente.</p>
+      
+      <div class="examples">
+        <h4>💡 Cosa controllare per verificare l'attualità:</h4>
+        <ul>
+          <li>La data di pubblicazione</li>
+          <li>La data dell'ultimo aggiornamento</li>
+          <li>Se i link citati funzionano ancora</li>
+          <li>Se i dati fanno riferimento a un periodo recente</li>
+        </ul>
+      </div>
+      <p>Usare informazioni obsolete può portare a conclusioni errate o decisioni non adeguate.</p>
+
+      <h3>Bias, omissioni e distorsioni</h3>
+      <p>Le informazioni online possono essere influenzate da opinioni personali, interessi economici, orientamenti politici o strategie comunicative.</p>
+      
+      <h4>Tipi di bias</h4>
+      <ul>
+        <li><strong>Bias di conferma</strong>: privilegiare informazioni che confermano le proprie idee</li>
+        <li><strong>Bias commerciale</strong>: presentare prodotti in modo positivo per interesse economico</li>
+        <li><strong>Bias politico</strong>: presentare fatti in modo orientato</li>
+        <li><strong>Bias di selezione</strong>: scegliere solo dati favorevoli</li>
+      </ul>
+      
+      <h4>Come riconoscere bias e distorsioni</h4>
+      <ul>
+        <li>Confrontare fonti diverse</li>
+        <li>Osservare il linguaggio usato</li>
+        <li>Verificare se vengono citati dati oggettivi</li>
+        <li>Controllare se mancano punti di vista alternativi</li>
+      </ul>
+
+      <h3>Distinguere fatti, opinioni e interpretazioni</h3>
+      <p>Una competenza importante nella valutazione delle informazioni consiste nel distinguere tra:</p>
+      
+      <div class="key-points">
+        <h4>📌 Fatti, opinioni e interpretazioni</h4>
+        <ol>
+          <li><strong>Fatti</strong>: informazioni verificabili attraverso dati, documenti o fonti attendibili</li>
+          <li><strong>Opinioni</strong>: punti di vista personali, soggettivi</li>
+          <li><strong>Interpretazioni</strong>: spiegazioni o letture di un fatto, che richiedono prove e contesto</li>
+        </ol>
+      </div>
+
+      <h3>Valutare la pertinenza delle informazioni</h3>
+      <p>Un'informazione può essere corretta ma non pertinente rispetto alla ricerca dell'utente. La pertinenza riguarda il grado di utilità di un contenuto rispetto all'obiettivo.</p>
+      
+      <div class="examples">
+        <h4>💡 Domande per valutare la pertinenza:</h4>
+        <ul>
+          <li>Risponde davvero alla domanda iniziale?</li>
+          <li>È riferito al contesto corretto?</li>
+          <li>È abbastanza specifico?</li>
+          <li>È adatto al livello di approfondimento richiesto?</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- MODULO 1.3 -->
+    <article id="mod-1-3" class="module">
+      <h2>1.3 Gestire dati, informazioni e contenuti digitali</h2>
+      
+      <div class="intro-box">
+        <p>Questa sezione riguarda l'organizzazione, l'archiviazione, il recupero e l'uso consapevole dei dati digitali. L'obiettivo è saper gestire file, informazioni e contenuti in modo ordinato, sicuro ed efficace, sia su dispositivi locali sia nel cloud.</p>
+      </div>
+
+      <h3>Dimensioni dei file e formati digitali</h3>
+      <p>I file digitali possono avere dimensioni molto diverse in base al tipo di contenuto e al formato utilizzato. I documenti di testo o PDF hanno generalmente dimensioni contenute, mentre immagini, audio e video possono occupare molto più spazio.</p>
+      
+      <h4>Fattori che influenzano le dimensioni</h4>
+      <ul>
+        <li><strong>Risoluzione</strong>: maggiore risoluzione = file più grande</li>
+        <li><strong>Qualità</strong>: qualità superiore = spazio maggiore</li>
+        <li><strong>Compressione</strong>: compressione riduce le dimensioni</li>
+        <li><strong>Formato</strong>: diversi formati hanno diversa efficienza</li>
+        <li><strong>Durata</strong>: per video e audio, la durata incide</li>
+      </ul>
+      <p>Conoscere gli ordini di grandezza dei file aiuta a scegliere dove archiviarli e come condividerli.</p>
+
+      <h3>Immagini digitali e risoluzione</h3>
+      <p>Le immagini possono avere dimensioni molto diverse a seconda della risoluzione e del formato.</p>
+      
+      <div class="key-points">
+        <h4>📌 Principali formati immagine</h4>
+        <ol>
+          <li><strong>JPEG</strong>: compresso, adatto alla condivisione web</li>
+          <li><strong>PNG</strong>: mantiene buona qualità, utile per grafiche</li>
+          <li><strong>BMP</strong>: poco compresso, più pesante</li>
+          <li><strong>RAW</strong>: usato in ambito fotografico professionale</li>
+        </ol>
+      </div>
+      <p>Un'immagine a bassa risoluzione è più leggera e adatta al web, mentre un'immagine ad alta risoluzione occupa più spazio ma offre maggiore qualità.</p>
+
+      <h3>Video digitali e compressione</h3>
+      <p>I video sono tra i file più pesanti perché contengono molte immagini in movimento, spesso accompagnate da audio.</p>
+      
+      <h4>Formati video comuni</h4>
+      <ul>
+        <li><strong>MP4</strong>: standard per condivisione web</li>
+        <li><strong>AVI</strong>: formato storico, compatibile</li>
+        <li><strong>WebM</strong>: ottimizzato per il web</li>
+        <li><strong>MOV</strong>: formato Apple, alta qualità</li>
+        <li><strong>ProRes</strong>: usato in ambito professionale</li>
+      </ul>
+      <p>Un video compresso è più facile da condividere online, mentre un video ad alta qualità può essere più adatto a usi professionali.</p>
+
+      <h3>Big data</h3>
+      <p>I big data sono grandi quantità di dati generati da attività digitali, dispositivi connessi, immagini, video, dati di posizione, audio e dati biometrici.</p>
+      
+      <div class="examples">
+        <h4>💡 A cosa servono i big data</h4>
+        <ul>
+          <li>Migliorare servizi digitali</li>
+          <li>Analizzare comportamenti degli utenti</li>
+          <li>Supportare decisioni aziendali</li>
+          <li>Addestrare sistemi di intelligenza artificiale</li>
+        </ul>
+      </div>
+      <p>La gestione dei big data richiede attenzione per aspetti legati a privacy, sicurezza e uso responsabile delle informazioni.</p>
+
+      <h3>Open data</h3>
+      <p>Gli open data sono dati resi disponibili liberamente da enti pubblici, istituzioni o organizzazioni. Possono essere consultati, scaricati e riutilizzati secondo specifiche condizioni di licenza.</p>
+      
+      <div class="key-points">
+        <h4>📌 A chi servono gli open data</h4>
+        <ol>
+          <li>Cittadini per informarsi</li>
+          <li>Ricercatori per studi e analisi</li>
+          <li>Aziende per sviluppare servizi</li>
+          <li>Sviluppatori per creare applicazioni</li>
+          <li>Pubbliche amministrazioni per trasparenza</li>
+        </ol>
+      </div>
+      
+      <h4>Open data ≠ Open source</h4>
+      <p>È importante non confondere:</p>
+      <ul>
+        <li><strong>Open data</strong>: dataset accessibili e riutilizzabili</li>
+        <li><strong>Open source</strong>: codice sorgente dei programmi disponibile pubblicamente</li>
+      </ul>
+
+      <h3>Utilizzare archivi open data</h3>
+      <p>Navigare negli archivi open data richiede la capacità di cercare, selezionare e interpretare dataset pertinenti.</p>
+      
+      <div class="key-points">
+        <h4>📌 Come usare correttamente gli open data</h4>
+        <ol>
+          <li>Individuare dataset coerenti con il proprio obiettivo</li>
+          <li>Leggere le licenze d'uso</li>
+          <li>Verificare l'aggiornamento dei dati</li>
+          <li>Interpretare correttamente i dati</li>
+          <li>Trasformare i dati in informazioni utili</li>
+        </ol>
+      </div>
+
+      <h3>Gestire i contatti su smartphone e tablet</h3>
+      <p>Gli smartphone e i tablet permettono di gestire facilmente i contatti attraverso app dedicate.</p>
+      
+      <div class="examples">
+        <h4>💡 Operazioni principali sui contatti</h4>
+        <ul>
+          <li><strong>Cerca</strong>: trovare un contatto tramite nome</li>
+          <li><strong>Modifica</strong>: aggiornare numero, email o indirizzo</li>
+          <li><strong>Aggiungi</strong>: inserire nuovi contatti</li>
+          <li><strong>Elimina</strong>: rimuovere contatti non più necessari</li>
+        </ul>
+      </div>
+
+      <h3>Archiviazione locale e archiviazione cloud</h3>
+      <p>I file possono essere archiviati localmente o nel cloud.</p>
+      
+      <h4>Archiviazione locale</h4>
+      <p>Consiste nel salvare i dati su dispositivi fisici: hard disk, SSD, chiavette USB, dispositivi esterni.</p>
+      <ul>
+        <li><strong>Vantaggi</strong>: accesso rapido anche senza Internet, maggiore controllo</li>
+        <li><strong>Svantaggi</strong>: rischio di perdita, difficoltà di accesso da altri dispositivi</li>
+      </ul>
+      
+      <h4>Archiviazione cloud</h4>
+      <p>Consiste nel salvare i dati su server remoti accessibili via Internet.</p>
+      <ul>
+        <li><strong>Vantaggi</strong>: accesso da qualsiasi dispositivo, sincronizzazione automatica</li>
+        <li><strong>Svantaggi</strong>: dipendenza dalla connessione, possibili rischi privacy</li>
+      </ul>
+
+      <h3>Statistiche di base e fogli elettronici</h3>
+      <p>I dati possono essere riassunti attraverso semplici statistiche. I fogli elettronici, come Excel o Google Fogli, permettono di calcolare rapidamente questi valori attraverso formule.</p>
+      
+      <div class="examples">
+        <h4>💡 Esempi di formule utili</h4>
+        <ul>
+          <li><strong>=MEDIA(C1:C3)</strong>: calcola la media dei valori</li>
+          <li><strong>=SOMMA(A1:A10)</strong>: somma i valori</li>
+          <li><strong>=MAX(A1:A10)</strong>: trova il valore massimo</li>
+          <li><strong>=MIN(A1:A10)</strong>: trova il valore minimo</li>
+        </ul>
+      </div>
+
+      <h3>Rappresentare i dati con grafici</h3>
+      <p>I grafici permettono di visualizzare i dati in modo immediato. La scelta del grafico corretto dipende dal tipo di informazione.</p>
+      
+      <div class="key-points">
+        <h4>📌 Scelta del grafico</h4>
+        <ol>
+          <li><strong>Diagramma a torta</strong>: utile per mostrare proporzioni rispetto a un totale</li>
+          <li><strong>Grafico a barre</strong>: utile per confronti tra categorie</li>
+          <li><strong>Grafico a linee</strong>: utile per mostrare andamenti nel tempo</li>
+        </ol>
+      </div>
+      
+      <div class="examples">
+        <h4>💡 Errore da evitare</h4>
+        <p>Non tutti i dati possono essere rappresentati con tutti i grafici. Ad esempio, non ha senso usare un diagramma a torta per dati che non possono essere sommati, come le temperature di città diverse.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div id="navButtons" class="nav-buttons">
+      <button id="prevBtn" class="nav-btn secondary disabled" onclick="prevModule()">
+        <span>←</span> Precedente
+      </button>
+      <button id="homeBtn" class="nav-btn secondary" onclick="window.location.href='index.html'">
+        🏠 Home
+      </button>
+      <button id="nextBtn" class="nav-btn primary" onclick="nextModule()">
+        Successivo <span>→</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const totalModules = 3;
+    let currentModule = 1;
+
+    function switchModule(moduleNum) {
+      // Hide all modules
+      document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+      // Show target module
+      document.getElementById('mod-1-' + moduleNum).classList.add('active');
+      
+      // Update tab buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.module == moduleNum) {
+          btn.classList.add('active');
+        }
+      });
+      
+      currentModule = moduleNum;
+      updateNavButtons();
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    function prevModule() {
+      if (currentModule > 1) {
+        switchModule(currentModule - 1);
+      }
+    }
+
+    function nextModule() {
+      if (currentModule < totalModules) {
+        switchModule(currentModule + 1);
+      }
+    }
+
+    function goHome() {
+      window.location.href = 'index.html';
+    }
+
+    function updateNavButtons() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      if (currentModule === 1) {
+        prevBtn.classList.add('disabled');
+      } else {
+        prevBtn.classList.remove('disabled');
+      }
+      
+      if (currentModule === totalModules) {
+        nextBtn.classList.add('disabled');
+      } else {
+        nextBtn.classList.remove('disabled');
+      }
+    }
+
+    // Initialize
+    updateNavButtons();
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft' && currentModule > 1) {
+        prevModule();
+      } else if (e.key === 'ArrowRight' && currentModule < totalModules) {
+        nextModule();
+      } else if (e.key === 'Escape') {
+        goHome();
+      }
+    });
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
