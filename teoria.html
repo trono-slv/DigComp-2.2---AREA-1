@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigComp 2.2 — Area 1 | Teoria</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --accent: #f97316;
+            --accent-light: #fb923c;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #dbeafe;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 1rem;
+        }
+
+        .section-intro {
+            background: rgba(30, 64, 175, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .section-intro p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        .subsection {
+            margin-bottom: 2.5rem;
+        }
+
+        .subsection-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .subsection p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .subsection ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding-left: 0;
+        }
+
+        .subsection li {
+            color: #cbd5e1;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .subsection li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .code-example {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--accent);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-light);
+            overflow-x: auto;
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(249, 115, 22, 0.3);
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .nav-info {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .home-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .home-button:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(249, 115, 22, 0.3);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-button,
+            .home-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 DigComp 2.2</h1>
+        <p>Area 1 — Alfabetizzazione su informazioni e dati</p>
+    </header>
+
+    <main>
+        <!-- SEZIONE 1.1 -->
+        <div id="section-1-1" class="section active">
+            <h2 class="section-title">1.1 Navigare, ricercare e filtrare dati, informazioni e contenuti digitali</h2>
+
+            <div class="section-intro">
+                <p>Questa sezione introduce le competenze necessarie per muoversi consapevolmente negli ambienti digitali. L'obiettivo è saper accedere alle informazioni online, utilizzare browser e motori di ricerca, formulare ricerche efficaci e comprendere il ruolo degli algoritmi e dell'intelligenza artificiale nella selezione dei contenuti.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">1.1.3 Che cos'è un browser e quali sono i principali browser</h3>
+                <p>Un browser è un programma che permette di accedere al World Wide Web e visualizzare pagine, immagini, video e altri contenuti digitali. Il browser interpreta il codice delle pagine web, come l'HTML, e lo trasforma in contenuti leggibili e interattivi per l'utente.</p>
+                <p><strong>Tra i principali browser troviamo:</strong></p>
+                <ul>
+                    <li>Google Chrome</li>
+                    <li>Microsoft Edge</li>
+                    <li>Mozilla Firefox</li>
+                    <li>Safari</li>
+                    <li>Opera</li>
+                </ul>
+                <p>Il browser rappresenta quindi lo strumento principale per navigare in Internet.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Struttura degli indirizzi web e degli URL</h3>
+                <p>Un indirizzo web, o URL, identifica una risorsa disponibile online. È composto da diversi elementi, tra cui il protocollo, il dominio, eventuali percorsi e parametri.</p>
+                <p>Ad esempio, in un indirizzo come:</p>
+                <div class="code-example">https://www.example.com/cartella/sottocartella?a=7&b=5</div>
+                <p>possiamo riconoscere:</p>
+                <ul>
+                    <li><strong>il protocollo:</strong> come https</li>
+                    <li><strong>il dominio:</strong> cioè l'indirizzo del server</li>
+                    <li><strong>il percorso:</strong> che indica la posizione della risorsa</li>
+                    <li><strong>i parametri:</strong> che trasmettono informazioni aggiuntive al server</li>
+                </ul>
+                <p>Comprendere la struttura di un URL aiuta a navigare con maggiore consapevolezza e a riconoscere meglio le risorse online.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Contenuti gratuiti, contenuti con licenza e contenuti a pagamento</h3>
+                <p>I contenuti disponibili online possono avere condizioni d'uso differenti. Alcuni sono liberamente accessibili, altri sono distribuiti con licenze specifiche, come le Creative Commons, mentre altri richiedono un pagamento o un abbonamento.</p>
+                <p><strong>Le licenze Creative Commons permettono l'uso e la condivisione dei contenuti, ma possono prevedere condizioni come:</strong></p>
+                <ul>
+                    <li>citare l'autore</li>
+                    <li>non usare il contenuto per scopi commerciali</li>
+                    <li>non modificare l'opera originale</li>
+                </ul>
+                <p>È importante distinguere tra contenuti realmente liberi e contenuti protetti da diritto d'autore.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">1.1.10 Algoritmi di intelligenza artificiale e "scatola nera"</h3>
+                <p>Gli algoritmi di intelligenza artificiale analizzano grandi quantità di dati per produrre suggerimenti, previsioni o decisioni. Tuttavia, il loro funzionamento interno non è sempre visibile o facilmente comprensibile dagli utenti.</p>
+                <p>Questo fenomeno viene spesso definito <strong>"scatola nera"</strong>, perché l'utente può osservare l'input e il risultato finale, ma non sempre riesce a comprendere il processo che ha portato a quella conclusione.</p>
+                <p>La consapevolezza di questo limite è importante perché molti contenuti digitali, suggerimenti e decisioni automatizzate possono essere influenzati da sistemi algoritmici.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Pregiudizi e bias nei sistemi di intelligenza artificiale</h3>
+                <p>I sistemi di intelligenza artificiale possono produrre risultati distorti se vengono addestrati con dati incompleti, squilibrati o non rappresentativi. Questo fenomeno è noto come <strong>bias algoritmico</strong>.</p>
+                <p>Ad esempio, un sistema di riconoscimento facciale addestrato prevalentemente su immagini di persone appartenenti a un solo gruppo etnico potrebbe funzionare peggio con persone appartenenti ad altri gruppi.</p>
+                <p><strong>Per ridurre questi rischi è importante:</strong></p>
+                <ul>
+                    <li>usare dataset diversificati</li>
+                    <li>controllare periodicamente i risultati</li>
+                    <li>promuovere responsabilità e consapevolezza tra chi sviluppa sistemi di IA</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Segnalibri o preferiti del browser</h3>
+                <p>I segnalibri, chiamati anche preferiti, permettono di salvare pagine web utili per ritrovarle facilmente in futuro.</p>
+                <p>Di solito, per aggiungere una pagina ai preferiti, si clicca sull'icona a forma di stella presente nella barra degli indirizzi del browser. È possibile scegliere una cartella di destinazione e organizzare i collegamenti per argomento.</p>
+                <p><strong>Una buona gestione dei preferiti consente di:</strong></p>
+                <ul>
+                    <li>risparmiare tempo</li>
+                    <li>organizzare le risorse digitali</li>
+                    <li>recuperare rapidamente siti importanti</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Uso degli assistenti virtuali</h3>
+                <p>Gli assistenti virtuali permettono di ottenere informazioni o svolgere azioni attraverso comandi vocali o testuali. Per ottenere risposte utili è necessario formulare richieste chiare, semplici e non ambigue.</p>
+                <p>Una domanda troppo generica può produrre una risposta imprecisa. Al contrario, una richiesta ben definita aiuta l'assistente a comprendere meglio l'intenzione dell'utente.</p>
+                <p>È inoltre importante ricordare che molti assistenti virtuali dipendono da una connessione Internet per accedere a informazioni aggiornate.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">1.1.18 Ricerche ben definite negli ambienti digitali</h3>
+                <p>Per trovare informazioni online in modo efficace è necessario seguire un metodo ordinato. Il primo passaggio consiste nel definire chiaramente l'argomento della ricerca e individuare le parole chiave più adatte.</p>
+                <p><strong>Una ricerca efficace prevede:</strong></p>
+                <ul>
+                    <li>definizione dell'obiettivo</li>
+                    <li>scelta delle parole chiave</li>
+                    <li>utilizzo di un motore di ricerca</li>
+                    <li>analisi dei risultati</li>
+                    <li>selezione delle fonti più pertinenti</li>
+                </ul>
+                <p>Usare parole chiave specifiche permette di ottenere risultati più precisi e ridurre il tempo necessario per trovare informazioni utili.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Motori di ricerca generalisti e specializzati</h3>
+                <p>I motori di ricerca consentono di individuare contenuti disponibili online. Alcuni, come Google o Bing, sono <strong>generalisti</strong> e accettano qualsiasi tipo di ricerca. Altri sono <strong>specializzati</strong> in determinati ambiti (accademico, scientifico, legale, ecc.).</p>
+                <p>La scelta del motore di ricerca dipende dall'argomento e dal tipo di informazioni che si cercano.</p>
+            </div>
+        </div>
+
+        <!-- SEZIONE 1.2 -->
+        <div id="section-1-2" class="section">
+            <h2 class="section-title">1.2 Valutare dati, informazioni e contenuti digitali</h2>
+
+            <div class="section-intro">
+                <p>Valutare dati, informazioni e contenuti digitali sviluppa la capacità di analizzare criticamente le informazioni online. L'utente impara a riconoscere contenuti promozionali, valutare l'affidabilità delle fonti, verificare autorevolezza e competenze dell'autore, controllare l'aggiornamento dei dati e confrontare più fonti per individuare eventuali bias, omissioni o distorsioni. Questa competenza è essenziale per distinguere informazioni affidabili da contenuti persuasivi, incompleti o non verificati, favorendo un uso consapevole e responsabile delle risorse digitali.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Distinguere fatti, opinioni e interpretazioni</h3>
+                <p>Una competenza importante nella valutazione delle informazioni consiste nel distinguere tra fatti, opinioni e interpretazioni.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Fatti</h4>
+                <p>Un fatto è un'informazione verificabile attraverso dati, documenti o fonti attendibili.</p>
+                <p><strong>Esempio:</strong> "Il sito indica che il documento è stato aggiornato nel 2024."</p>
+                <p>Questo tipo di informazione può essere controllato.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Opinioni</h4>
+                <p>Un'opinione esprime un punto di vista personale.</p>
+                <p><strong>Esempio:</strong> "Questo servizio è il migliore disponibile online."</p>
+                <p>Questa affermazione può essere soggettiva, soprattutto se non è accompagnata da criteri di valutazione.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Interpretazioni</h4>
+                <p>Un'interpretazione è una spiegazione o lettura di un fatto.</p>
+                <p><strong>Esempio:</strong> "L'aumento delle ricerche online dimostra che gli utenti sono più consapevoli."</p>
+                <p>Questa frase interpreta un dato, ma richiede prove e contesto per essere considerata affidabile.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Contenuti promozionali</h3>
+                <p>Un contenuto promozionale è un messaggio creato con l'obiettivo di influenzare il comportamento dell'utente, spesso per spingerlo ad acquistare un prodotto, iscriversi a un servizio, visitare un sito o aderire a una determinata proposta commerciale.</p>
+                <p>Questi contenuti possono essere espliciti oppure mascherati.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Contenuti promozionali espliciti</h4>
+                <p>I contenuti promozionali espliciti sono facilmente riconoscibili perché vengono indicati chiaramente come pubblicità.</p>
+                <p><strong>Esempi comuni:</strong></p>
+                <ul>
+                    <li>annunci pubblicitari nei motori di ricerca</li>
+                    <li>banner pubblicitari sui siti web</li>
+                    <li>post sponsorizzati sui social media</li>
+                    <li>video promozionali</li>
+                    <li>risultati contrassegnati come "Annuncio" o "Sponsorizzato"</li>
+                </ul>
+                <p>In questi casi l'utente può comprendere abbastanza facilmente che il contenuto ha una finalità commerciale.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Contenuti promozionali non espliciti</h4>
+                <p>Più complessi da riconoscere sono i contenuti promozionali non dichiarati in modo evidente. Questi possono apparire come normali articoli, recensioni, post informativi o contenuti di intrattenimento, ma in realtà hanno lo scopo di promuovere un prodotto, un servizio o un marchio.</p>
+                <p><strong>Esempi possibili:</strong></p>
+                <ul>
+                    <li>una recensione molto positiva senza indicare eventuali sponsorizzazioni</li>
+                    <li>un articolo che presenta un prodotto come "migliore scelta" senza spiegare i criteri di valutazione</li>
+                    <li>un post social di un influencer che mostra un prodotto senza rendere chiara la collaborazione commerciale</li>
+                    <li>un video apparentemente informativo ma finanziato da un'azienda</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Verificare l'autore e la fonte</h3>
+                <p>Prima di accettare un'informazione, è fondamentale verificare chi l'ha prodotta e quale sia la fonte originaria.</p>
+                <p>Elementi da controllare:</p>
+                <ul>
+                    <li>Chi ha scritto il contenuto?</li>
+                    <li>Da quale fonte proviene?</li>
+                    <li>È una fonte autorevole?</li>
+                    <li>L'autore ha credibilità?</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Verificare l'affiliazione dell'autore</h3>
+                <p>L'affiliazione indica il legame dell'autore con un'istituzione, un ente, un'organizzazione professionale o un centro di ricerca.</p>
+                <p>Ad esempio, un contenuto pubblicato da:</p>
+                <ul>
+                    <li>un'università</li>
+                    <li>un ente pubblico</li>
+                    <li>un'organizzazione scientifica</li>
+                    <li>un istituto di ricerca</li>
+                    <li>un'autorità nazionale o internazionale</li>
+                </ul>
+                <p>può offrire maggiori garanzie rispetto a una fonte non identificabile.</p>
+                <p>L'affiliazione non rende automaticamente vera ogni informazione, ma fornisce un elemento utile per valutare il livello di autorevolezza della fonte.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Verificare le competenze dell'autore</h3>
+                <p>Oltre all'affiliazione, è necessario valutare le competenze specifiche dell'autore rispetto all'argomento trattato.</p>
+                <p><strong>Ad esempio:</strong></p>
+                <ul>
+                    <li>un medico è più qualificato per trattare temi sanitari</li>
+                    <li>un giurista è più competente su questioni normative</li>
+                    <li>un ricercatore può essere più affidabile su temi scientifici</li>
+                    <li>un tecnico informatico è più indicato per contenuti tecnologici</li>
+                </ul>
+                <p>La competenza deve essere coerente con il contenuto prodotto. Un autore può essere esperto in un campo, ma non necessariamente in tutti gli altri.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Confrontare le informazioni con altre fonti autorevoli</h3>
+                <p>Una delle strategie più importanti per valutare un'informazione è il confronto tra più fonti.</p>
+                <p>Se un'informazione è corretta e rilevante, di solito può essere verificata anche attraverso altre fonti affidabili. Se invece una fonte è l'unica a sostenere un'affermazione particolare, potrebbe essere un segnale di allarme.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Verificare l'aggiornamento delle informazioni</h3>
+                <p>La data di pubblicazione o di aggiornamento di un contenuto è un elemento importante per valutarne la rilevanza.</p>
+                <p>Usare informazioni obsolete può portare a conclusioni errate o decisioni non adeguate.</p>
+                <p>La verifica dell'attualità è quindi una parte essenziale della valutazione critica online.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Bias, omissioni e distorsioni</h3>
+                <p>Le informazioni online possono essere influenzate da opinioni personali, interessi economici, orientamenti politici o strategie comunicative. Questi elementi possono generare bias, cioè distorsioni nella presentazione dei fatti.</p>
+                <p><strong>Per riconoscerli è utile:</strong></p>
+                <ul>
+                    <li>confrontare fonti diverse</li>
+                    <li>osservare il linguaggio usato</li>
+                    <li>verificare se vengono citati dati oggettivi</li>
+                    <li>controllare se mancano punti di vista alternativi</li>
+                </ul>
+                <p>Un approccio critico permette di distinguere meglio tra informazione, opinione e propaganda.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Che cosa sono i bias</h3>
+                <p>I bias sono forme di parzialità che possono influenzare la produzione o l'interpretazione delle informazioni.</p>
+                <p><strong>Possono derivare da:</strong></p>
+                <ul>
+                    <li>opinioni personali</li>
+                    <li>interessi economici</li>
+                    <li>appartenenze politiche</li>
+                    <li>strategie commerciali</li>
+                    <li>convinzioni culturali</li>
+                    <li>selezione incompleta dei dati</li>
+                    <li>uso di fonti non equilibrate</li>
+                </ul>
+                <p>Riconoscere i bias aiuta a interpretare i contenuti con maggiore consapevolezza.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Conflitti di interesse</h3>
+                <p>Un conflitto di interesse si verifica quando chi produce un contenuto potrebbe avere un vantaggio personale, economico o professionale nel presentare l'informazione in un certo modo.</p>
+                <p><strong>Esempi:</strong></p>
+                <ul>
+                    <li>una recensione positiva scritta da chi riceve una commissione sulla vendita</li>
+                    <li>un articolo finanziato da un'azienda citata nel testo</li>
+                    <li>un esperto che promuove un prodotto collegato alla propria attività</li>
+                    <li>un contenuto apparentemente neutrale ma prodotto da un soggetto interessato</li>
+                </ul>
+                <p>Il conflitto di interesse non rende automaticamente falso un contenuto, ma deve essere dichiarato e considerato nella valutazione.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Omissioni e distorsioni</h3>
+                <p>Un'informazione può essere distorta anche attraverso ciò che non viene detto.</p>
+                <p><strong>Le omissioni possono riguardare:</strong></p>
+                <ul>
+                    <li>dati contrari alla tesi sostenuta</li>
+                    <li>limiti di uno studio</li>
+                    <li>effetti negativi di una decisione</li>
+                    <li>contesto storico o culturale rilevante</li>
+                </ul>
+                <p>Un'informazione incompleta, anche se non contiene affermazioni false, può fuorviare chi la legge.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Valutare la pertinenza delle informazioni</h3>
+                <p>Un'informazione può essere corretta ma non pertinente rispetto alla ricerca dell'utente.</p>
+                <p>La pertinenza riguarda il grado di utilità di un contenuto rispetto all'obiettivo.</p>
+                <p>Ad esempio, se si cercano indicazioni aggiornate su una procedura amministrativa italiana, un articolo generico o riferito a un altro Paese potrebbe non essere adeguato.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Domande per valutare la pertinenza</h4>
+                <p><strong>Per capire se un contenuto è pertinente, è utile chiedersi:</strong></p>
+                <ul>
+                    <li>Risponde davvero alla domanda iniziale?</li>
+                    <li>È riferito al contesto corretto?</li>
+                    <li>È abbastanza specifico?</li>
+                    <li>È aggiornato?</li>
+                    <li>È adatto al livello di approfondimento richiesto?</li>
+                    <li>È utile per prendere una decisione?</li>
+                </ul>
+                <p>La pertinenza è quindi legata non solo alla qualità della fonte, ma anche allo scopo della ricerca.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Sintesi operativa del capitolo 1.2</h3>
+                <p>Il capitolo 1.2 insegna a non accettare passivamente le informazioni trovate online, ma a valutarle in modo critico e consapevole.</p>
+                <p><strong>Le competenze principali sono:</strong></p>
+                <ul>
+                    <li>riconoscere contenuti promozionali e pubblicitari</li>
+                    <li>distinguere informazione e persuasione commerciale</li>
+                    <li>verificare autore, fonte e competenze</li>
+                    <li>controllare l'affiliazione dell'autore</li>
+                    <li>confrontare più fonti autorevoli</li>
+                    <li>verificare l'aggiornamento delle informazioni</li>
+                    <li>individuare bias, omissioni e conflitti di interesse</li>
+                    <li>distinguere fatti, opinioni e interpretazioni</li>
+                    <li>valutare la pertinenza del contenuto rispetto allo scopo della ricerca</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SEZIONE 1.3 -->
+        <div id="section-1-3" class="section">
+            <h2 class="section-title">1.3 Gestire dati, informazioni e contenuti digitali</h2>
+
+            <div class="section-intro">
+                <p>Questa sezione riguarda l'organizzazione, l'archiviazione, il recupero e l'uso consapevole dei dati digitali. L'obiettivo è saper gestire file, informazioni e contenuti in modo ordinato, sicuro ed efficace, sia su dispositivi locali sia nel cloud.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Introduzione alla gestione dei dati</h3>
+                <p>Viviamo in un'epoca caratterizzata dall'abbondanza di dati e informazioni digitali. Quando si accumulano molti contenuti (documenti, immagini, video, dati, contatti), diventa fondamentale adottare metodi per evitare disordine, perdita di informazioni o difficoltà di accesso.</p>
+                <p><strong>Una gestione efficace permette di:</strong></p>
+                <ul>
+                    <li>risparmiare tempo</li>
+                    <li>evitare errori</li>
+                    <li>migliorare la produttività</li>
+                    <li>proteggere i dati</li>
+                    <li>facilitare la condivisione e la collaborazione</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Organizzare file e cartelle</h3>
+                <p>Una buona gestione dei file richiede una struttura organizzata e coerente.</p>
+                <p>I file devono essere archiviati in modo logico, utilizzando:</p>
+                <ul>
+                    <li>cartelle e sottocartelle</li>
+                    <li>nomi chiari e significativi</li>
+                    <li>strutture coerenti nel tempo</li>
+                </ul>
+                <p><strong>Esempio di struttura:</strong></p>
+                <div class="code-example">
+Documenti
+ └── Lavoro
+     └── Progetti
+         └── Progetto_A
+                </div>
+                <p>Un'organizzazione efficace permette di trovare rapidamente i file e ridurre il rischio di duplicati o perdita di dati.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Buone pratiche di gestione</h3>
+                <p>Per gestire correttamente i file è utile:</p>
+                <ul>
+                    <li>usare nomi descrittivi (es. "fattura_marzo_2026.pdf")</li>
+                    <li>evitare nomi generici come "documento1"</li>
+                    <li>mantenere una struttura coerente</li>
+                    <li>eliminare file inutili</li>
+                    <li>aggiornare e archiviare i documenti nel tempo</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Dimensioni dei file e contenuti digitali</h3>
+                <p>I file digitali hanno dimensioni diverse in base al tipo di contenuto e alla qualità.</p>
+                <p><strong>Ordini di grandezza:</strong></p>
+                <ul>
+                    <li>File di testo: generalmente piccoli (KB)</li>
+                    <li>Immagini: medi (MB)</li>
+                    <li>Video: grandi (GB)</li>
+                    <li>Audio: variabili (MB-GB)</li>
+                </ul>
+                <p>Comprendere gli ordini di grandezza dei file aiuta a scegliere dove archiviarli, come condividerli e come gestire lo spazio disponibile.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Immagini digitali e risoluzione</h3>
+                <p>Le immagini possono avere dimensioni molto diverse a seconda della risoluzione e del formato.</p>
+                <p>Un'immagine a bassa risoluzione è più leggera e adatta al web, mentre un'immagine ad alta risoluzione occupa più spazio ma offre maggiore qualità.</p>
+                <p><strong>Formati comuni:</strong></p>
+                <ul>
+                    <li><strong>JPEG:</strong> compresso e adatto alla condivisione</li>
+                    <li><strong>PNG:</strong> mantiene una buona qualità ed è utile per grafiche</li>
+                    <li><strong>BMP:</strong> poco compresso e più pesante</li>
+                    <li><strong>RAW:</strong> usato in ambito fotografico professionale</li>
+                </ul>
+                <p>La scelta del formato dipende dallo scopo d'uso.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Video digitali e compressione</h3>
+                <p>I video sono tra i file più pesanti perché contengono molte immagini in movimento, spesso accompagnate da audio. La dimensione di un video dipende da risoluzione, durata, qualità e formato di compressione.</p>
+                <p><strong>Formati comuni:</strong></p>
+                <ul>
+                    <li>MP4</li>
+                    <li>AVI</li>
+                    <li>WebM</li>
+                    <li>MOV</li>
+                    <li>ProRes</li>
+                </ul>
+                <p>Un video compresso è più facile da condividere online, mentre un video ad alta qualità può essere più adatto a usi professionali ma richiede maggiore spazio di archiviazione.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Big data</h3>
+                <p>I big data sono grandi quantità di dati generati da attività digitali, dispositivi connessi, immagini, video, dati di posizione, audio e dati biometrici.</p>
+                <p>Questi dati possono essere analizzati per ricavare informazioni utili, migliorare servizi, prendere decisioni e addestrare sistemi di intelligenza artificiale.</p>
+                <p>La gestione dei big data richiede attenzione perché riguarda anche aspetti legati a privacy, sicurezza e uso responsabile delle informazioni.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Open data</h3>
+                <p>Gli open data sono dati resi disponibili liberamente da enti pubblici, istituzioni o organizzazioni. Possono essere consultati, scaricati e riutilizzati secondo specifiche condizioni di licenza.</p>
+                <p><strong>Gli open data sono utili per:</strong></p>
+                <ul>
+                    <li>cittadini</li>
+                    <li>ricercatori</li>
+                    <li>aziende</li>
+                    <li>sviluppatori</li>
+                    <li>pubbliche amministrazioni</li>
+                </ul>
+                <p>È importante non confondere gli open data con l'open source: gli open data riguardano i dati, mentre l'open source riguarda il codice sorgente dei programmi.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Open data e open source</h3>
+                <p>Gli open data sono dataset accessibili e riutilizzabili, mentre l'open source riguarda software il cui codice sorgente è disponibile pubblicamente.</p>
+                <p><strong>Entrambi promuovono la condivisione e la collaborazione, ma si riferiscono a oggetti diversi:</strong></p>
+                <ul>
+                    <li><strong>Open data:</strong> Dati e dataset (es. dati statistici pubblici)</li>
+                    <li><strong>Open source:</strong> Software e codice sorgente (es. programma modificabile dalla comunità)</li>
+                </ul>
+                <p>Comprendere questa distinzione aiuta a usare correttamente risorse digitali aperte.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Utilizzare archivi open data</h3>
+                <p>Navigare negli archivi open data richiede la capacità di cercare, selezionare e interpretare dataset pertinenti. Non basta scaricare un file: bisogna comprendere che cosa rappresentano i dati, come sono stati raccolti e con quale licenza possono essere usati.</p>
+                <p><strong>Per usare correttamente gli open data è necessario:</strong></p>
+                <ul>
+                    <li>individuare dataset coerenti con il proprio obiettivo</li>
+                    <li>leggere le licenze</li>
+                    <li>verificare l'aggiornamento</li>
+                    <li>interpretare correttamente i dati</li>
+                    <li>trasformare i dati in informazioni utili</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">1.3.10 Gestire i contatti su smartphone e tablet</h3>
+                <p>Gli smartphone e i tablet permettono di gestire facilmente i contatti attraverso app dedicate. È possibile cercare un contatto, modificarne i dati, aggiungerne di nuovi o eliminarli.</p>
+                <p><strong>Le operazioni principali includono:</strong></p>
+                <ul>
+                    <li>cercare un contatto tramite nome</li>
+                    <li>modificare numero, email o indirizzo</li>
+                    <li>salvare le modifiche</li>
+                    <li>aggiungere nuovi contatti</li>
+                    <li>organizzare le informazioni personali</li>
+                </ul>
+                <p>Una gestione ordinata dei contatti facilita la comunicazione e riduce il rischio di perdere informazioni importanti.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">1.3.12 Archiviazione locale e cloud</h3>
+                <p>I file possono essere archiviati localmente, cioè su dispositivi fisici come hard disk, SSD, chiavette USB o computer, oppure nel cloud, cioè su server remoti accessibili tramite Internet.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Archiviazione locale</h4>
+                <p><strong>Vantaggi:</strong></p>
+                <ul>
+                    <li>accesso rapido ai file</li>
+                    <li>utilizzo anche senza connessione Internet</li>
+                    <li>maggiore controllo diretto sui dati</li>
+                </ul>
+                <p><strong>Svantaggi:</strong></p>
+                <ul>
+                    <li>rischio di perdita (guasti, furti, danni)</li>
+                    <li>difficoltà di accesso da altri dispositivi</li>
+                    <li>necessità di backup manuali</li>
+                </ul>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Archiviazione cloud</h4>
+                <p><strong>Vantaggi:</strong></p>
+                <ul>
+                    <li>accesso da più dispositivi</li>
+                    <li>condivisione facile con altre persone</li>
+                    <li>backup automatico</li>
+                    <li>scalabilità dello spazio</li>
+                </ul>
+                <p><strong>Svantaggi:</strong></p>
+                <ul>
+                    <li>dipendenza dalla connessione Internet</li>
+                    <li>questioni di privacy e sicurezza</li>
+                    <li>costi di abbonamento</li>
+                    <li>dipendenza dal provider del servizio</li>
+                </ul>
+
+                <p style="margin-top: 1.5rem;"><strong>La scelta dipende dalle esigenze di accesso, sicurezza, collaborazione e spazio disponibile.</strong></p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Strategie di backup: la regola 3-2-1</h3>
+                <p>Una strategia di backup efficace aiuta a proteggere i dati importanti da perdita accidentale.</p>
+                <p><strong>La regola 3-2-1 è una best practice:</strong></p>
+                <ul>
+                    <li><strong>3</strong> copie del file (originale + 2 backup)</li>
+                    <li><strong>2</strong> supporti diversi (es. hard disk + cloud)</li>
+                    <li><strong>1</strong> copia conservata in un luogo diverso (es. un altro edificio per i dati critici)</li>
+                </ul>
+                <p>Questa strategia riduce significativamente il rischio di perdita totale dei dati.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Privacy e GDPR nella gestione dei dati</h3>
+                <p>Quando si gestiscono dati personali (informazioni che identificano persone), è necessario rispettare norme sulla privacy, come il GDPR (Regolamento Generale sulla Protezione dei Dati) in Europa.</p>
+                <p><strong>Elementi chiave:</strong></p>
+                <ul>
+                    <li>consenso per raccogliere e usare dati personali</li>
+                    <li>diritto all'accesso ai propri dati</li>
+                    <li>diritto alla cancellazione</li>
+                    <li>sicurezza dei dati mediante crittografia</li>
+                    <li>notifica in caso di violazione</li>
+                </ul>
+                <p>Una gestione consapevole dei dati significa anche responsabilità legale.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Diritti d'autore e copyright</h3>
+                <p>I contenuti digitali (testi, immagini, video, musica, software) sono spesso protetti da diritti d'autore.</p>
+                <p><strong>È importante:</strong></p>
+                <ul>
+                    <li>non copiare o condividere contenuti protetti senza autorizzazione</li>
+                    <li>rispettare le licenze (come Creative Commons)</li>
+                    <li>attribuire il credito agli autori</li>
+                    <li>cercare contenuti liberi da diritti quando necessario</li>
+                </ul>
+                <p>Il rispetto dei diritti d'autore è sia un obbligo legale che un'questione etica.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Utilizzo di fogli elettronici e dati</h3>
+                <p>I dati possono essere organizzati e analizzati tramite fogli elettronici come Excel o Google Fogli.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Statistiche di base</h4>
+                <p>Una statistica è un riassunto dei dati.</p>
+                <p><strong>Esempio:</strong></p>
+                <div class="code-example">=MEDIA(C1:C3)</div>
+                <p>Questa formula calcola la media aritmetica dei valori.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Perché usare statistiche</h4>
+                <p>Le statistiche permettono di:</p>
+                <ul>
+                    <li>sintetizzare informazioni</li>
+                    <li>facilitare la comprensione</li>
+                    <li>supportare decisioni</li>
+                    <li>comunicare dati in modo chiaro</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Rappresentazione dei dati con grafici</h3>
+                <p>I grafici aiutano a visualizzare i dati e a comunicarli in modo più efficace.</p>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Scelta del grafico</h4>
+                <p>Ogni grafico ha uno scopo specifico:</p>
+                <ul>
+                    <li><strong>Diagramma a torta:</strong> mostra proporzioni</li>
+                    <li><strong>Istogramma:</strong> confronta valori</li>
+                    <li><strong>Grafico a linee:</strong> mostra andamenti nel tempo</li>
+                    <li><strong>Grafico a barre:</strong> facilita confronti</li>
+                </ul>
+
+                <h4 style="color: var(--primary-light); margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: 600;">Errore da evitare</h4>
+                <p>Non tutti i dati possono essere rappresentati con tutti i grafici. Ad esempio, non ha senso usare un diagramma a torta per dati che non possono essere sommati (come temperature di città diverse).</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Gestione consapevole dei dati</h3>
+                <p>Gestire dati significa anche saper scegliere:</p>
+                <ul>
+                    <li>dove salvarli</li>
+                    <li>come organizzarli</li>
+                    <li>quando archiviarli</li>
+                    <li>come proteggerli</li>
+                </ul>
+                <p>È importante bilanciare accessibilità (facilità di accesso) e sicurezza (protezione dei dati).</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Sintesi operativa del capitolo 1.3</h3>
+                <p>Il capitolo 1.3 sviluppa competenze essenziali per gestire file, dati e informazioni digitali in modo ordinato e sicuro.</p>
+                <p><strong>Le competenze principali sono:</strong></p>
+                <ul>
+                    <li>organizzare file e cartelle in modo logico</li>
+                    <li>comprendere dimensioni e formati di file</li>
+                    <li>archiviare dati localmente o nel cloud</li>
+                    <li>implementare strategie di backup efficaci (regola 3-2-1)</li>
+                    <li>gestire contatti su dispositivi mobili</li>
+                    <li>rispettare privacy e GDPR</li>
+                    <li>comprendere diritti d'autore e licenze</li>
+                    <li>usare fogli elettronici per analizzare dati</li>
+                    <li>rappresentare dati con grafici appropriati</li>
+                    <li>sviluppare consapevolezza sulla gestione responsabile dei dati</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- NAVIGAZIONE -->
+        <div class="nav-container">
+            <button class="nav-button" id="prev-btn" onclick="previousSection()">← Precedente</button>
+            <div class="nav-info">
+                <span id="section-counter">Sezione 1 di 3</span>
+            </div>
+            <button class="nav-button" id="next-btn" onclick="nextSection()">Successivo →</button>
+            <button class="home-button" onclick="goHome()">🏠 Torna a Home</button>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>DigComp 2.2 — Area 1: Alfabetizzazione su informazioni e dati</strong></p>
+        <p>Materiale didattico a cura di Dott. Salvatore Trono — Esperto in SSL — Docente Formatore</p>
+        <p>© 2024-2026 | Uso esclusivamente didattico e formativo</p>
+    </footer>
+
+    <script>
+        const sections = ['section-1-1', 'section-1-2', 'section-1-3'];
+        let currentSectionIndex = 0;
+
+        function showSection(index) {
+            // Nascondi tutte le sezioni
+            sections.forEach(sectionId => {
+                document.getElementById(sectionId).classList.remove('active');
+            });
+
+            // Mostra la sezione attuale
+            document.getElementById(sections[index]).classList.add('active');
+
+            // Aggiorna contatore
+            document.getElementById('section-counter').textContent = `Sezione ${index + 1} di ${sections.length}`;
+
+            // Aggiorna stato pulsanti
+            document.getElementById('prev-btn').disabled = index === 0;
+            document.getElementById('next-btn').disabled = index === sections.length - 1;
+
+            // Scroll in alto
+            window.scrollTo(0, 0);
+        }
+
+        function previousSection() {
+            if (currentSectionIndex > 0) {
+                currentSectionIndex--;
+                showSection(currentSectionIndex);
+            }
+        }
+
+        function nextSection() {
+            if (currentSectionIndex < sections.length - 1) {
+                currentSectionIndex++;
+                showSection(currentSectionIndex);
+            }
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Inizializza
+        showSection(0);
+    </script>
+    <script src="teoria.js"></script>
+</body>
+</html>
