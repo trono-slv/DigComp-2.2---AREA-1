@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigComp 2.2 - Area 1 | Quiz Interattivo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- SCREEN 1: WELCOME -->
+  <div id="screen-welcome" class="screen active">
+    <header class="site-header">
+      <h1>📚 DigComp 2.2 - Area 1</h1>
+      <p class="subtitle">Alfabetizzazione su Informazione e Dati</p>
+      <p class="author">👤 Dott. Salvatore Trono – Esperto in SSL – Docente Formatore</p>
+    </header>
+
+    <main class="welcome-main">
+      <section class="welcome-section">
+        <h2>📖 Descrizione Test</h2>
+        <p>Questo test valuta la tua comprensione dei concetti fondamentali di DigComp 2.2 - Area 1, che affronta tre competenze chiave:</p>
+        <ul class="list-content">
+          <li><strong>1.1 Navigare, ricercare e filtrare:</strong> cercare informazioni online, usare browser e motori di ricerca, comprendere gli algoritmi</li>
+          <li><strong>1.2 Valutare dati e informazioni:</strong> analizzare criticamente fonti, riconoscere bias, distinguere fatti da opinioni</li>
+          <li><strong>1.3 Gestire dati e contenuti:</strong> organizzare file, proteggere privacy, usare backup e cloud storage</li>
+        </ul>
+      </section>
+
+      <section class="welcome-section">
+        <h2>📋 Istruzioni Svolgimento</h2>
+        <ul class="list-content">
+          <li>Rispondi a tutte le domande senza tornare indietro</li>
+          <li>Hai 2 minuti per domanda (timer automatico)</li>
+          <li>Al termine riceverai il punteggio e il riepilogo dettagliato</li>
+          <li>Potrai ripetere il test per una nuova valutazione con domande diverse</li>
+          <li><strong>⚠️ Attenzione:</strong> Accettando i termini confermi che il test è solo a scopo formativo</li>
+        </ul>
+      </section>
+
+      <section class="welcome-section cards-section">
+        <p class="cards-invite">📌 <strong>Prima di procedere:</strong></p>
+        <div class="cards-grid">
+          <button onclick="navigateToTeoria()" class="card-link">
+            <span class="card-icon">📚</span>
+            <span class="card-title">Leggi la Teoria</span>
+            <span class="card-desc">Ripassare prima di fare il test</span>
+          </button>
+          <button onclick="openModalWarning()" class="card-link">
+            <span class="card-icon">📝</span>
+            <span class="card-title">Inizia il Quiz</span>
+            <span class="card-desc">Comincia la valutazione</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Credits: Dott. Salvatore Trono - Laureato in Servizi Giuridici per l'Impresa • Formatore • Esperto in Sicurezza sui Luoghi di Lavoro</p>
+      <p class="disclaimer">⚠️ <em>Questo materiale è fornito a scopo esclusivamente formativo e non costituisce formazione certificata.</em></p>
+    </footer>
+  </div>
+
+  <!-- MODAL WARNING -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h2 class="modal-title">⚠️ ATTENZIONE</h2>
+      <div class="modal-divider"></div>
+
+      <div class="modal-legal">
+        <div class="legal-header">⚖️ AVVISO LEGALE E DISCLAIMER</div>
+
+        <div class="legal-section">
+          <h3>📜 Riferimento Normativo</h3>
+          <p>Questo materiale è coperto da diritti d'autore secondo il D.Lgs. 633/1941 (Legge sul Diritto d'Autore italiano) e dalle direttive UE sulla protezione delle opere intellettuali.</p>
+        </div>
+
+        <div class="legal-section">
+          <h3>⚖️ Sanzioni Penali</h3>
+          <p>La riproduzione, distribuzione, modifica o uso non autorizzato del presente materiale è vietato per legge e può esporre a sanzioni penali fino a €516 e civili per il danno arrecato (art. 171 bis L.A.).</p>
+        </div>
+
+        <div class="legal-section">
+          <h3>❌ Divieti Espliciti</h3>
+          <ul class="legal-list">
+            <li>❌ Vietato copiare e distribuire senza autorizzazione dell'autore</li>
+            <li>❌ Vietato modificare o alterare il contenuto</li>
+            <li>❌ Vietato usare per scopi commerciali</li>
+            <li>❌ Vietato pubblicare su altri siti senza permesso esplicito</li>
+          </ul>
+        </div>
+
+        <div class="legal-section">
+          <h3>✅ Autorizzazione Richiesta</h3>
+          <p>Per qualsiasi uso al di là della consultazione personale a scopo formativo, è <strong>OBBLIGATORIO</strong> ottenere autorizzazione scritta da:</p>
+          <p><strong>Dott. Salvatore Trono</strong><br>Esperto in SSL – Docente Formatore</p>
+        </div>
+      </div>
+
+      <div class="modal-disclaimer">
+        <p><strong>DICHIARAZIONE IMPORTANTE:</strong></p>
+        <p>Confermo di aver letto e compreso che:</p>
+        <ul class="disclaimer-list">
+          <li>✓ Questo materiale è fornito esclusivamente a scopo formativo</li>
+          <li>✓ <strong>NON costituisce formazione certificata o abilitante</strong></li>
+          <li>✓ L'autore è Dott. Salvatore Trono</li>
+          <li>✓ Non posso distribuirlo, modificarlo o usarlo senza autorizzazione</li>
+          <li>✓ Accetto pienamente i termini sopra descritti</li>
+        </ul>
+      </div>
+
+      <div class="modal-buttons">
+        <button onclick="closeModalWarning()" class="btn-secondary">❌ ANNULLA</button>
+        <button onclick="startQuiz()" class="btn-primary">✅ ACCETTO E CONTINUO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 1.5: SELEZIONE CAPITOLO -->
+  <div id="screen-chapter-select" class="screen hidden">
+    <header class="chapter-header">
+      <h1>📚 Scegli il Capitolo</h1>
+      <p>Seleziona quale area vuoi testare</p>
+    </header>
+
+    <main class="chapter-main">
+      <div class="chapter-grid">
+        <button onclick="selectChapter('1.1')" class="chapter-card">
+          <h3>📍 Capitolo 1.1</h3>
+          <p>Navigare, ricercare e filtrare</p>
+        </button>
+        <button onclick="selectChapter('1.2')" class="chapter-card">
+          <h3>✅ Capitolo 1.2</h3>
+          <p>Valutare dati e informazioni</p>
+        </button>
+        <button onclick="selectChapter('1.3')" class="chapter-card">
+          <h3>💾 Capitolo 1.3</h3>
+          <p>Gestire dati e contenuti</p>
+        </button>
+        <button onclick="selectChapter('all')" class="chapter-card full">
+          <h3>🎯 Tutti i Capitoli</h3>
+          <p>Test completo di Area 1</p>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- SCREEN 2: QUIZ -->
+  <div id="screen-quiz" class="screen hidden">
+    <header class="quiz-header">
+      <h1>📝 Quiz DigComp 2.2 - Area 1</h1>
+      <div class="quiz-controls">
+        <div class="timer" id="timer">20:00</div>
+        <button onclick="confirmBackHome()" class="btn-secondary small">🏠 Torna alla Home</button>
+      </div>
+    </header>
+
+    <main class="quiz-main">
+      <!-- PROGRESS BAR -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <!-- QUESTION CONTAINER -->
+      <div id="question-container" class="question-container">
+        <!-- Generato da script.js -->
+      </div>
+
+      <!-- ALERT TIMER -->
+      <div id="timer-alert" class="timer-alert hidden">
+        ⏰ Attenzione! Rimangono meno di 5 minuti!
+      </div>
+    </main>
+  </div>
+
+  <!-- SCREEN 3: RESULTS -->
+  <div id="screen-results" class="screen hidden">
+    <header class="results-header">
+      <h1>🎯 Risultati del Quiz</h1>
+    </header>
+
+    <main class="results-main">
+      <!-- SCORE CARD -->
+      <div id="score-card" class="score-card">
+        <!-- Generato da script.js -->
+      </div>
+
+      <!-- RIEPILOGO DOMANDE -->
+      <section class="results-review">
+        <h2>📋 Riepilogo Risposte</h2>
+        <div id="results-list">
+          <!-- Generato da script.js -->
+        </div>
+      </section>
+
+      <!-- BOTTONI -->
+      <div class="results-buttons">
+        <button onclick="restartQuiz()" class="btn-primary">🔄 Rifai il Test</button>
+        <a href="index.html" class="btn-secondary">🏠 Torna alla Home</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
